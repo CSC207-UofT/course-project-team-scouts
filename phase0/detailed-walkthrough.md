@@ -44,7 +44,7 @@
 
 ## future features (more complex)
 
-- during the [[##searching]] phase, we can allow the user to choose from a list of previous queries
+- during the [searching](#searching-entities) phase, we can allow the user to choose from a list of previous queries
 	- maybe each time they want to enter a new query, allow them to name it
 	- the user can choose to discard a query if they don't want to use it again later
 - when searching by attribute, we can allow the user to weight the importance of each attribute
