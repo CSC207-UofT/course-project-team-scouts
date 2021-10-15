@@ -14,7 +14,7 @@ This file contains more technical details than the other walkthrough files. If y
 - **BTS:** a `CommandLine` class will display all of the main prompts, but it call methods from relevant classes to do everything else (handling user input)
     - `CommandLine` is sorta like the main class
 - **BTS:** `CommandLine` calls on the `CSVAdapter` class, which will fetch all the players and teams from the CSV file
-    - it will add players to `PlayersDatabase` and teams to `TeamDatabase` by calling their `addEntity` method
+    - it will add players to `PlayerDatabase` and teams to `TeamDatabase` by calling their `addEntity` method
     - alternatively, we could have an actual `Main` class that calls on `CSVAdapter` before `CommandLine` does anything
 
 1. select an existing scout profile (corresponds to a `Scout` object), or create a new one (**THIS WILL NOT BE A PART OF PHASE 0**)
