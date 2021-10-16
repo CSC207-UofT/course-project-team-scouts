@@ -13,11 +13,11 @@ public class SearchByPlayerAttributes{
         String resultRow = null;
         BufferedReader br = new BufferedReader(new FileReader("./dataset(s)/players_20.csv"));
         String l;
-        int iteration = 0;
+        int i = 0;
         while ((l = br.readLine()) != null)  // parses until we reach the end of line
         {
-            if(iteration == 0) {
-                iteration++;
+            if(i == 0) {
+                i++;
                 continue;
             }
             String[] val = l.split(",");

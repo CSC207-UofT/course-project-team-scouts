@@ -10,19 +10,19 @@ public class SearchForPlayer{
         String inp = sc.nextLine();
         System.out.println(searchPlayer(2, inp));
     }
-    public static String searchPlayer(int ColumnIndex, String player) throws IOException {
-        String resultRow = null;
-        BufferedReader br = new BufferedReader(new FileReader("./dataset(s)/players_20.csv"));
+    public static String searchPlayer(int ColumnIndex, String p) throws IOException {
+        String target = null;
+        BufferedReader b = new BufferedReader(new FileReader("./dataset(s)/players_20.csv"));
         String l;
-        while ((l = br.readLine()) != null)  // parses until we reach the end of line
+        while ((l = b.readLine()) != null)  // loops until we reach the end of line
         {
             String[] val = l.split(",");
-            if(val[ColumnIndex].equals(player)) {
-                resultRow = l;
+            if(val[ColumnIndex].equals(p)) {
+                target = l;
                 break;
             }
         }
-        br.close();
-        return resultRow;
+        b.close();
+        return target;
     }
 }
