@@ -1,5 +1,0 @@
-Age (Less than)
-Height (cm)
-Weight (kg)
-Strength
-Stamina

@@ -1,12 +1,13 @@
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
 
 public class InputPlayerAttributes implements InputData {
-    BufferedReader reader;
 
     @Override
     public String getInput() throws IOException{
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         return reader.readLine();
     }
 
@@ -20,7 +21,7 @@ public class InputPlayerAttributes implements InputData {
         PlayerPropertiesIterator prompts = new PlayerPropertiesIterator();
         List<String> temp = new ArrayList<>();
 
-        System.out.print("Type 'exit' to quit or 'ok' to continue (only integers accepted): ");
+        System.out.print("Type 'exit' to quit or 'ok' to continue (for each prompt please only input integers): ");
         try {
             String input = getInput();
             while (!input.equals("exit") && prompts.hasNext()) {
@@ -44,7 +45,7 @@ public class InputPlayerAttributes implements InputData {
                 pPresenter.outputResults(SearchByPlayerAttributes.searchPlayer(attributes));
             }
         } catch (IndexOutOfBoundsException | IOException e) {
-            System.out.println("Empty input.");
+            System.out.println("Exiting.");
         }
     }
 }

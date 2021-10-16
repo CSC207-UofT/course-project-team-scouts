@@ -6,8 +6,7 @@ import java.util.List;
  * Responsible for storing Player Data as a list of player entities
  */
 public class PlayerDatabase{
-    private static List<Player> Players = new ArrayList<>();
-
+    private static List<Player> players = new ArrayList<>();
 
     public PlayerDatabase() {
     }
@@ -33,10 +32,10 @@ public class PlayerDatabase{
 
     /**
      * Setter for PLayers
-     * @param playerz list of player entities
+     * @param playerList list of player entities
      */
-    public static void setPlayers(List<Player> playerz) {
-        players = playerz;
+    public static void setPlayers(List<Player> playerList) {
+        players = playerList;
     }
 
     /**
@@ -46,7 +45,4 @@ public class PlayerDatabase{
     public static List<Player> getPlayers(){
         return players;
     }
-
-
-
 }
