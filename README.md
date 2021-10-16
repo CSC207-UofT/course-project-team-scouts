@@ -1,6 +1,6 @@
 # Team Scouts
 
-A CSC207 course project. Please add/change whatever you'd like!
+A CSC207 course project. We're making a football player scouting app.
 
 ## To-Do
 
@@ -20,7 +20,7 @@ A CSC207 course project. Please add/change whatever you'd like!
 
 ## Questions
 
-(Things we can ask the TA)
+(Things to ask the TA)
 
 - how do decide between private and public instance variables?
-  - *i.e.* when to use getters and setters?
+  - *i.e.* when to use getters and setters rather than accessing variables directly?
