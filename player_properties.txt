@@ -1,0 +1,5 @@
+Age (within 5 years)
+Height (within 10 cm)
+Weight (within 10 kg)
+Strength Score (within 8 strength)
+Stamina Score (within 8 stamina)

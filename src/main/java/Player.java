@@ -96,4 +96,12 @@ public class Player {
     public int getAge() {
         return age;
     }
+
+    public double getHeight() { return height; }
+
+    public double getWeight() { return weight; }
+
+    public int getStrength() { return skills.get("strength"); }
+
+    public int getStamina() { return skills.get("stamina"); }
 }
