@@ -27,16 +27,16 @@ public class PlayerDatabase{
                                   String team, boolean scouted, String position,
                                   HashMap<String, Integer> skills) {
         Player newBaller = new Player(name, age, height, weight,
-        team, scouted, position, skills);
-        Players.add(newBaller);
+                team, scouted, position, skills);
+        players.add(newBaller);
     }
 
     /**
      * Setter for PLayers
-     * @param players list of player entities
+     * @param playerz list of player entities
      */
-    public static void setPlayers(List<Player> players) {
-        Players = players;
+    public static void setPlayers(List<Player> playerz) {
+        players = playerz;
     }
 
     /**
@@ -44,7 +44,7 @@ public class PlayerDatabase{
      * @return Players list of player entities
      */
     public static List<Player> getPlayers(){
-        return Players;
+        return players;
     }
 
 

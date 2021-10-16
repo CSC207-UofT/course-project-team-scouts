@@ -19,6 +19,8 @@ public class PlayersPresenter implements PresentData<Player> {
                 header.append(String.format("%20s", skill)).append("|");
             }
             System.out.println(header);
+        } else {
+            System.out.println("No players found.");
         }
 
         // Loop through all players in the list to get their skill values.
