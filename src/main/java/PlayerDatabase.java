@@ -6,7 +6,7 @@ import java.util.List;
  * Responsible for storing Player Data as a list of player entities
  */
 public class PlayerDatabase{
-    private static List<Player> players = new ArrayList<>();
+    private static List<Player> Players = new ArrayList<>();
 
 
     public PlayerDatabase() {
