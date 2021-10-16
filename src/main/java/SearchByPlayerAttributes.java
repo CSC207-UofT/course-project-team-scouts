@@ -1,24 +1,25 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SearchByPlayerAttributes{
-    public static void main(String[] args) throws IOException {
-        Scanner sc = new Scanner(System.in);
-        System.out.println(searchPlayer(90, 80, 90)); // just a sample
-    }
-    public static String searchPlayer(int val1, int val2, int val3) throws IOException {
-        //we can add more vals eventually
-        String resultRow = null;
-        BufferedReader br = new BufferedReader(new FileReader("./dataset(s)/players_20.csv"));
-        String l;
-        int i = 0;
-        while ((l = br.readLine()) != null)  // parses until we reach the end of line
-        {
-            if(i == 0) {
-                i++;
-                continue;
+    public static List<Player> searchPlayer(ArrayList<Integer> a) throws IOException {
+        // we can add more values eventually
+        List<Player> playerList = PlayerDatabase.getPlayers();
+        List<Player> validPlayers = new ArrayList<>();
+        for (Player p : playerList) {
+            int age = p.getAge();
+            double weight = p.getWeight();
+            double height = p.getHeight();
+            int strength = p.getStrength();
+            int stamina = p.getStamina();
+
+            if (age >= a.get(0) - 5 && age <= a.get(0) + 5
+                    || height - 10 <= a.get(1) && height + 10 >= a.get(1)
+                    || weight - 10 <= a.get(2) && weight + 10 >= a.get(2)
+                    || strength - 8 <= a.get(3) && strength + 8 >= a.get(3)
+                    || stamina - 8 <= a.get(4) && stamina - 8 >= a.get(4)) {
+                validPlayers.add(p);
             }
             String[] val = l.split(",");
             if(Integer.parseInt(val[column1]) > val1 && Integer.parseInt(val[column2]) > val1 &&
