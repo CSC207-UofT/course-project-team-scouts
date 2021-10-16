@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -5,7 +6,7 @@ import java.util.List;
  * Responsible for storing Player Data as a list of player entities
  */
 public class PlayerDatabase{
-    private static List<Player> players = new Arraylist<>();
+    private static List<Player> players = new ArrayList<>();
 
 
     public PlayerDatabase() {
@@ -26,7 +27,7 @@ public class PlayerDatabase{
                                   String team, boolean scouted, String position,
                                   HashMap<String, Integer> skills) {
         Player newBaller = new Player(name, age, height, weight,
-        team, scouted, position, skills);
+                team, scouted, position, skills);
         players.add(newBaller);
     }
 
