@@ -7,10 +7,7 @@ import java.util.*;
  * This class reads the player data csv into a java object. Subsets and returns the data
  * depending on the use case.
  */
-public class CsvAdapter {
-
-    public CsvAdapter() {
-    }
+public class CSVAdapter {
 
     /**
      * Helper method that converts string to integers. Tries to catch NumberFormatException
@@ -33,16 +30,16 @@ public class CsvAdapter {
      * Returns a hashmap, mapping the string describing a player attribute to the value of
      * that players attribute as an int
      * @param row is an array of strings of player attribute ratings
-     * @return sexyHash is a mapping of skillTypes to the players attribute rating in that skill
+     * @return hashMap is a mapping of skillTypes to the players attribute rating in that skill
      */
     public HashMap<String, Integer> makeHashMap(String[] row){
-        HashMap<String, Integer> sexyHash = new HashMap<>();
+        HashMap<String, Integer> hashMap = new HashMap<>();
         String[] skillTypes = {"crossing" ,"finishing",
                 "heading accuracy","short passing",
                 "volleys","dribbling" ,"curve",
                 "fk accuracy", "long passing",
-                "ball control", "acceleration" , "sprint speed"
-                , "agility", "reactions", "balance",
+                "ball control", "acceleration" , "sprint speed",
+                "agility", "reactions", "balance",
                 "shot_power", "jumping", "stamina", "strength",
                 "long_shots", "aggression", "interceptions",
                 "positioning", "vision", "penalties",
@@ -51,16 +48,16 @@ public class CsvAdapter {
                 "goalkeeping kicking","goalkeeping positioning","goalkeeping reflexes"};
 
         for (int i = 0; i <= skillTypes.length - 1; i = i + 1){
-            sexyHash.put(skillTypes[i], stringToInt(row[i]));
+            hashMap.put(skillTypes[i], stringToInt(row[i]));
         }
-        return sexyHash;
+        return hashMap;
     }
 
     /**
      * The method responsible for initializing the Player Database. Reads csv file data
      * concerning the player, reformats it where appropriate and feeds it the PlayerDatabase
      */
-    public void data_dump() {
+    public void dataDump() {
         try {
             // Create fileReader and CsvReader objects
             String file = "dataset(s)/players_20.csv";
@@ -94,14 +91,12 @@ public class CsvAdapter {
 
                 String team = row[9];
 
-                boolean scouted = false;
-
                 String position = row[14];
 
                 String[] skillAttributes = Arrays.copyOfRange(row, 44, 78);
                 HashMap<String, Integer> skills = makeHashMap(skillAttributes);
 
-                PlayerDatabase.add_entity(name, age, height, weight, team, scouted,
+                PlayerDatabase.add_entity(name, age, height, weight, team, false,
                         position, skills);
             }
 
