@@ -32,7 +32,7 @@ public class PlayerDatabase{
 
     /**
      * Setter for PLayers
-     * @param players list of player entities
+     * @param playerz list of player entities
      */
     public static void setPlayers(List<Player> playerz) {
         players = playerz;
