@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.Map;
 
 /*
  * Class dealing w/ a player entity
@@ -51,14 +52,25 @@ public class Player {
 
     // Default Constructor
     public Player() {
-        this.name = "";
+        this.name = "John Doe";
         this.age = 0;
         this.height = height;
         this.weight = weight;
         this.team = team;
         this.scouted = scouted;
         this.position = position;
+        this.skills = new HashMap<String, Integer>();
+    }
 
+    public Player(HashMap<String, Integer> skills) {
+        this.name = "John Doe";
+        this.age = 0;
+        this.height = height;
+        this.weight = weight;
+        this.team = team;
+        this.scouted = scouted;
+        this.position = position;
+        this.skills = skills;
     }
 
     public Player(String name, int age, double height, double weight, Team team, boolean scouted, String position,
@@ -73,6 +85,15 @@ public class Player {
         this.skills = skills;
     }
 
+    public HashMap<String, Integer> getSkills() {
+        return this.skills;
+    }
 
+    public String getName() {
+        return name;
+    }
 
+    public int getAge() {
+        return age;
+    }
 }
