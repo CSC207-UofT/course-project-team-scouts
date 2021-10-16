@@ -7,7 +7,7 @@ import java.util.*;
  * This class reads the player data csv into a java object. Subsets and returns the data
  * depending on the use case.
  */
-public class CSVAdapter {
+public class CSVAdapter implements InputAdapter {
 
     /**
      * Helper method that converts string to integers. Tries to catch NumberFormatException
@@ -57,7 +57,8 @@ public class CSVAdapter {
      * The method responsible for initializing the Player Database. Reads csv file data
      * concerning the player, reformats it where appropriate and feeds it the PlayerDatabase
      */
-    public void dataDump() {
+    @Override
+    public void dataDump(String databaseFile) {
         try {
             // Create fileReader and CsvReader objects
             String file = "dataset(s)/players_20.csv";
