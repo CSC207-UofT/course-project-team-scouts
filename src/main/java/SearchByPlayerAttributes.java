@@ -21,14 +21,7 @@ public class SearchByPlayerAttributes{
                     || stamina - 8 <= a.get(4) && stamina - 8 >= a.get(4)) {
                 validPlayers.add(p);
             }
-            String[] val = l.split(",");
-            if(Integer.parseInt(val[column1]) > val1 && Integer.parseInt(val[column2]) > val1 &&
-                    Integer.parseInt(val[column3]) > val1 ) {
-                resultRow = l;
-                break;
-            }
         }
-        br.close();
-        return resultRow;
+        return validPlayers;
     }
 }
