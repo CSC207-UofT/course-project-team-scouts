@@ -44,7 +44,7 @@ public class Player {
     private int age;
     private double height;
     private double weight;
-    private Team team;
+    private String team;
     private boolean scouted;
     private String position;
     private HashMap<String, Integer> skills;
@@ -61,7 +61,7 @@ public class Player {
 
     }
 
-    public Player(String name, int age, double height, double weight, Team team, boolean scouted, String position,
+    public Player(String name, int age, double height, double weight, String team, boolean scouted, String position,
                   HashMap<String, Integer> skills) {
         this.name = name;
         this.age = age;
