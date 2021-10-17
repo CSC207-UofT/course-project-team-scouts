@@ -20,7 +20,7 @@
 
 ### Daniel
 
-### Kaartik
+### Kaartik - Implemented SearchForPLayer and helped implement SearchByPlayerAttributes. Assisted with InputPlayerAttributesTest and Players Class and resolve simple errors and warnings in Input classes. Researched and found the dataset. In the future I would like to work and delve deeper into scouting algorithms which would enrich the user experience and also make the scouting system advanced. Would also like to work on reducing the runtime and load of the program.
 
 ### Matthew
 
