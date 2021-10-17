@@ -10,10 +10,10 @@ class Scout {
 
     // default constructor
     public Scout() {
-        this.name = "John Doe";
+        this.name = "N/A";
         this.team = null;
-        this.history = new HashMap<Player, Date>();
-        this.type = "Player";           // Player scout by default, not tactical
+        this.history = new HashMap<>();
+        this.type = "Player";           // Made a player scout by default, not a tactical one.
     }
 
     // typical constructor (w/ all args)

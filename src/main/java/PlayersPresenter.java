@@ -2,6 +2,12 @@ import java.util.HashMap;
 import java.util.List;
 
 public class PlayersPresenter implements PresentData<Player> {
+    /**
+     * Outputs the results of a search for players by their skill attributes
+     * to the console in a tabular format. Does not return anything to the
+     * calling method.
+     * @param playerList a list of Player entities that were yielded by the search.
+     */
     @Override
     public void outputResults(List<Player> playerList) {
         // Output the header of the table.
