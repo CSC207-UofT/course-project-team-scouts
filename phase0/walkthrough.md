@@ -1,6 +1,6 @@
 # Scenario Walk-Through
 
-The user is presented with a welcome/startup message, and then is prompted to choose how they would like to search (handled by `CommandLine`). 
+The user is presented with a welcome/startup message, and then is prompted to choose what they're searching for (this is handled by `CommandLine`). 
 They may choose to search for a player or a team. For example, let's say that the user chooses to search for a player.
 Then, the user will be asked if they would like to search for players by name or by specifying attributes.
 Let's say that the user chooses to search based on attributes.
