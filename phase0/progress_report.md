@@ -24,6 +24,18 @@ Worked on the unittest, and helped create the use case classes. I also helped Ka
 ### Kaartik - Implemented SearchForPLayer and helped implement SearchByPlayerAttributes. Assisted with InputPlayerAttributesTest and Players Class and resolve simple errors and warnings in Input classes. Researched and found the dataset. In the future I would like to work and delve deeper into scouting algorithms which would enrich the user experience and also make the scouting system advanced. Would also like to work on reducing the runtime and load of the program.
 
 ### Matthew
+Worked on the `Player` and `Scout` entity classes. Also 
+implemented the Presenter functionality, creating the `PresentData`
+interface and implementing the `PlayersPresenter` class. Researched how to
+output data in a tabular fashion and format strings in order to present results of a search
+in the most readable way possible. Past Phase 0, I plan to continue
+working on the Presenter functionality, implementing a presenter class
+that works to output data about entire Teams, and another
+presenter class that returns result of a search for a singular
+player. Additionally, I would like to help out with the development
+of classes that calculate and present statistics aggregated across
+entire Teams, and participate in refining the existing search processes
+in the program.
 
 ### Michael
 =======
