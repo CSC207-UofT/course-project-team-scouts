@@ -1,5 +1,22 @@
 # Progress Report
 
+- [Summaries](#summaries)
+  - [Specification](#specification)
+  - [CRC Model](#crc-model)
+  - [Scenario Walkthrough](#scenario-walkthrough)
+    - [Scenario A](#scenario-a)
+    - [Scenario B](#scenario-b)
+  - [Skeleton Program](#skeleton-program)
+- [The Good Parts](#the-good-parts)
+- [Questions and Concerns](#questions-and-concerns)
+- [Group Member Roles](#group-member-roles)
+  - [Aditya](#aditya)
+  - [Daniel](#daniel)
+  - [Kaartik](#kaartik)
+  - [Matthew](#matthew)
+  - [Michael](#michael)
+  - [Tobey](#tobey)
+
 ## Summaries
 
 ### Specification
@@ -77,15 +94,21 @@ Our [CRC model](https://github.com/CSC207-UofT/course-project-team-scouts/blob/m
 
 ## Group Member Roles
 
-(what have you done, and what will you work on?)
-
-- the original specification and all the CRC cards were a collaborative effort
+The original specification and most CRC cards were a collaborative effort. Almost every major design choice was made in a group call with everyone present.
 
 ### Aditya
 
 Worked on the unittest, and helped create the use case classes. I also helped Kaartik implement the SearchForPlayer class and worked with Matthew to find a way to display data in the Players Presenter class. In the future I would like to do some more research and find a way to implement GetSearchQuery, modify or rework on InputPlayerAttributes and analyze how we could put implement and put the StatsCalculator interface to use.
 
 ### Daniel
+
+Produced final versions of all written materials (this document, the specification, walkthrough, and CRC cards). 
+Wrote a more detailed, "behind-the-scenes" scenario walkthrough that helped us get organized and better understand the responsibilities of each class. 
+Collaborated with Tobey on the `CommandLine` and search classes. 
+Helped plan out the unit tests with Aditya. 
+In the future, I'd like to focus more on the user interface and overall flow of the program. 
+I am also interested in implementing a "smarter" attribute-based searching class which takes into account weights and ranges of values. 
+I also enjoy writing documents like these 🙂.
 
 ### Kaartik
 
