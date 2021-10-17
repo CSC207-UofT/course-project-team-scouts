@@ -17,30 +17,18 @@
 - the original specification and all the CRC cards were a collaborative effort
 
 ### Aditya
+Worked on the unittest, and helped create the use case classes. I also helped Kaartik implement the SearchForPlayer class and worked with Matthew to find a way to display data in the Players Presenter class. In the future I would like to do some more research and find a way to implement GetSearchQuery, modify or rework on InputPlayerAttributes and analyze how we could put implement and put the StatsCalculator interface to use.
 
 ### Daniel
 
-### Kaartik
+### Kaartik - Implemented SearchForPLayer and helped implement SearchByPlayerAttributes. Assisted with InputPlayerAttributesTest and Players Class and resolve simple errors and warnings in Input classes. Researched and found the dataset. In the future I would like to work and delve deeper into scouting algorithms which would enrich the user experience and also make the scouting system advanced. Would also like to work on reducing the runtime and load of the program.
 
 ### Matthew
 
-What I've done:
-- Worked on `Player` entity class
-- Worked on `Scout` entity class
-- Worked on Presenter functionality
-  - Created `PresentData` interface
-  - Implemented `PlayersPresenter` class
-
-What I will continue to work on past Phase 0:
-- Continue working on Presenter functionality
-  - Implement presenter class that works for entire Teams
-  - Implement presenter class that returns result of search for singular player
-  - Potentially port search results to a GUI format
-- Work on development of Statistics calculations aggregated across entire Teams
-  - And presentation of these statistics
-- Aid the development and refinement of search classes
-
 ### Michael
+=======
+### Michael - Implemented CsvAdapter and PlayerDatabase, assisted with implementing Player and reformating the Specification. Researched  and found data sources and querying approcahes. In the future I would like to stick to the data side of things, and reimplement PlayerDatabase, TeamDatabase, CsvAdapter when we have more features and more complex and heavy data, I'd also be interested in implementing a more sophisticated search algorithms in the search classes. 
+>>>>>>> ba628a891efa2d3c3ab2275cec7e926b1a8fb069
 
 ### Tobey
 
