@@ -17,6 +17,7 @@
 - the original specification and all the CRC cards were a collaborative effort
 
 ### Aditya
+Worked on the unittest, and helped create the use case classes. I also helped Kaartik implement the SearchForPlayer class and worked with Matthew to find a way to display data in the Players Presenter class. In the future I would like to do some more research and find a way to implement GetSearchQuery, modify or rework on InputPlayerAttributes and analyze how we could put implement and put the StatsCalculator interface to use.
 
 ### Daniel
 
