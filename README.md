@@ -1,6 +1,6 @@
 # Team Scouts
 
-A CSC207 course project by Tobey Brizuela, Aditya Peri, Matthew Parvaneh, Michael Umeh Kaartik Issar, and Daniel Lazaro. We're making a football player scouting app.
+A CSC207 course project by Tobey Brizuela, Aditya Peri, Matthew Parvaneh, Michael Umeh, Kaartik Issar, and Daniel Lazaro. We're making a football player scouting app.
 
 ## To-Do
 
