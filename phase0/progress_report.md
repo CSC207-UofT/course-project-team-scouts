@@ -25,6 +25,19 @@ Worked on the unittest, and helped create the use case classes. I also helped Ka
 
 ### Matthew
 
+Worked on the `Player` and `Scout` entity classes. Also
+implemented the Presenter functionality, creating the `PresentData`
+interface and implementing the `PlayersPresenter` class with Aditya.
+Researched how to output data in a tabular fashion and format strings
+in order to present results of a search in the most readable way possible.
+Past Phase 0, I plan to continue working on the Presenter functionality,
+implementing a presenter class that works to output data
+about entire Teams, and another presenter class that returns result of a search for a singular
+player. Additionally, I would like to help out with the development
+of classes that calculate and present statistics aggregated across
+entire Teams, as well aiding Michael in handling the data side
+of the program.
+
 ### Michael
 =======
 ### Michael - Implemented CsvAdapter and PlayerDatabase, assisted with implementing Player and reformating the Specification. Researched  and found data sources and querying approcahes. In the future I would like to stick to the data side of things, and reimplement PlayerDatabase, TeamDatabase, CsvAdapter when we have more features and more complex and heavy data, I'd also be interested in implementing a more sophisticated search algorithms in the search classes. 
