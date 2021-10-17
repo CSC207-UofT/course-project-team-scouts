@@ -2,13 +2,6 @@
 
 This file contains more technical details than the other walkthrough files. If you'd like to make changes, please submit a pull request or let the others know what you're changing.
 
-## general notes
-
-- this plan deviates from the CRC cards in many ways; I am working on updating the cards to match
-- all the `Database` classes store entities in a private, static list
-  - the classes include `addEntity` methods (add to the list) and `getEntities` methods (return the list)
-- all the `____Input` classes display prompts, accept inputs, and pass that input to a search class
-
 ## program startup
 
 - **BTS:** a `CommandLine` class will display all of the main prompts, but it call methods from relevant classes to do everything else (handling user input)
