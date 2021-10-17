@@ -24,7 +24,7 @@
 
 ### Matthew
 
-### Michael
+### Michael - Implemented CsvAdapter and PlayerDatabase, assisted with implementing Player and reformating the Specification. Researched  and found data sources and querying approcahes. In the future I would like to stick to the data side of things, and reimplement PlayerDatabase, TeamDatabase, CsvAdapter when we have more features and more complex and heavy data, I'd also be interested in implementing a more sophisticated search algorithms in the search classes. 
 
 ### Tobey
 
