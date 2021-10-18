@@ -18,7 +18,7 @@ public class SearchByPlayerAttributes {
                     && height - 20 <= a.get(1) && height + 20 >= a.get(1)
                     && weight - 20 <= a.get(2) && weight + 20 >= a.get(2)
                     && strength - 25 <= a.get(3) && strength + 25 >= a.get(3)
-                    && stamina - 25 <= a.get(4) && stamina - 25 >= a.get(4)) {
+                    && stamina - 25 <= a.get(4) && stamina + 25 >= a.get(4)) {
                 validPlayers.add(p);
             }
         }
