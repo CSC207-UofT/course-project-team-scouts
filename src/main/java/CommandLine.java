@@ -9,22 +9,22 @@ public class CommandLine {
         runPrompts();
     }
 
-    private static void runPrompts() throws IOException{
+    private static void runPrompts() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         System.out.print("Would you like to search for players based on their name or attributes?" +
                 " (Please input 'name' or 'attributes'): ");
         String s = reader.readLine();
-        if (s.equals("name")) {
-            InputPlayerName inputClass = new InputPlayerName();
+
+        try {
+            InputData inputClass = Builder.getinputtype(s);
             inputClass.run();
+
+        }catch (NullPointerException e){
+            System.out.println("Invalid Response");
         }
-        else if (s.equals("attributes")) {
-            InputPlayerAttributes inputClass = new InputPlayerAttributes();
-            inputClass.run();
-        }
-        else {
-            System.out.println("Invalid Response!");
-        }
+
+
+
     }
 }
