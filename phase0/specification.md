@@ -23,5 +23,5 @@ The application should allow users to search for players in the database either 
 or by querying the database based on a (sub)set of **player attributes** with desired values/ranges of values. 
 Teams will also be easily searchable by name or attributes.
 The returned player/team(s) will be **output by presenter methods** with a **summary of their attributes**.
-This summary should include overall ratings across all skills, 
-as well as average ratings for the different skill categories (*e.g.* defense, offense, goalkeeping).
+This summary should include **overall ratings** across all skills, 
+as well as average **ratings for the different skill categories** (*e.g.* defense, offense, goalkeeping).
