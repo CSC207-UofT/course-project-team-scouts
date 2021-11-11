@@ -56,4 +56,17 @@ public class Player {
     public int getStrength() { return skills.get("strength"); }
 
     public int getStamina() { return skills.get("stamina"); }
+
+    public void setName(String pos) {
+        name = pos;
+    }
+    public void setAge(int x){
+        age = x;
+    }
+    public void displayName(){
+        System.out.println("This player's position is " + getName());
+    }
+    public void displayAge(){
+        System.out.println("This player's age is " + getAge());
+    }
 }
