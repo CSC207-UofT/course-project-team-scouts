@@ -14,11 +14,11 @@ They will be given a series of prompts asking them to specify a single value or 
 For example, the console will display `Striking ability:`, and the user could enter `22` (single value) or `18 25` (range).
 This process will repeat until the user has entered a desired value for all relevant attributes.
 Once all attribute values have been entered, the application will search for all players (in `PlayerDatabase`) which match the user's specification (handled by `SearchByPlayerAttributes`).
-The results of the search will be passed to a presenter class (`PlayersPresenter`) which displays the names and attributes of the matching players.
+The results of the search will be passed to a presenter class (`PlayersPresenter`) which displays the names, attributes, and ratings of the matching players.
 
 If instead the user chooses to search by name, they will be given a prompt asking them to specify a name (handled by `InputPlayerName`).
 For example, the user may input `Danny`. 
 The application will search for all players (in `PlayerDatabase`) which contain `Danny` somewhere in their name (handled by `SearchForPlayer`).
 The results of the search will be passed to the same presenter class (`PlayersPresenter`), and the user will see a similar output. 
-Similar processes would occur if a user chose to search for teams at the beginning.
-But of course, different classes are involved in those processes (*e.g.* `InputTeamAttributes`, `TeamsPresenter`, etc.).
+Similar processes would occur if a user chose to search for teams at the beginning,
+although different classes are involved in those processes (*e.g.* `InputTeamAttributes`, `TeamsPresenter`, etc.).
