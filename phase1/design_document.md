@@ -38,12 +38,18 @@ Also see [`phase0/walkthrough.md`](https://github.com/CSC207-UofT/course-project
 ## Major Design Decisions
 
 - Created subclasses of player and implemented the **factory design pattern**
-  - *Details/justification...*
+  - All players have the same kinds of attributes in our database, but depending on the type of player (forward, defense, goalkeeper, etc.), not all of those attributes are very relevant.
+    - For example, when presenting a defender, we aren't interested in their goalkeeping abilities.
+  - To avoid multiple switch statements in our program, we use polymorphism instead, thus avoiding a [code smell](https://refactoring.guru/smells/switch-statements).
+    - The `PlayerPresenter` method is overloaded to allow different outputs depending on the subclass of `Player` that we pass in.
 - Implemented the **builder design pattern** for the different types of searches
   - *Details/justification...*
 - Replaced `Scout` with a `User` class
-  - *Details/justification...*
+  - We had always thought of `Scout`s as the users of the program, so this class name didn't accurately represent what we wanted the class to do.
+    - *i.e.* It doesn't make much sense for a `Scout` class to have a username and password.
 - Made our Business Data (entities) serializable
+  - *Details/justification...*
+- Reworked our search/input classes
   - *Details/justification...*
 
 ## Clean Architecture
@@ -74,9 +80,20 @@ Also see [`phase0/walkthrough.md`](https://github.com/CSC207-UofT/course-project
 
 In the previous phase, we implemented the adapter design pattern. *Explanation...*
 
-In this phase, we implemented the factory design pattern and builder design pattern (see [above](#major-design-decisions) for details/explanations).
+In this phase, we implemented the factory design pattern and builder design pattern (see [above](#major-design-decisions) for details/explanations). 
+Below is an outline of the role that each class plays in satisfying the design pattern:
 
-We also considered implementing the decorator design pattern in this phase, but we decided against it. *This is because...*
+- factory design pattern:
+  - factory class = `PlayerFactory`
+  - common base class = `Player`
+  - products = `Forward`, `Midfielder`, `Defender`, `Goalkeeper` (subclasses of `Player`)
+- builder design pattern:
+  - *...*
+
+We also considered implementing the decorator design pattern in this phase.
+The idea was to have a `BasePlayerStatsCalculator` class which can calculate the overall rating of a `Player` or `Team`, taking into account **all** skill attributes.
+Then, we would have several decorator classes like `OffensiveRatingDecorator` and `GoalkeepingRatingDecorator` that would provide the additional functionality of generating a rating based on a **subset** of skill attributes.
+*However, we decided against this, since...*
 
 *In the future, we may consider implementing...*
 
