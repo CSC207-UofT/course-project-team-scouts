@@ -93,7 +93,18 @@ Below is an outline of the role that each class plays in satisfying the design p
 We also considered implementing the decorator design pattern in this phase.
 The idea was to have a `BasePlayerStatsCalculator` class which can calculate the overall rating of a `Player` or `Team`, taking into account **all** skill attributes.
 Then, we would have several decorator classes like `OffensiveRatingDecorator` and `GoalkeepingRatingDecorator` that would provide the additional functionality of generating a rating based on a **subset** of skill attributes.
-*However, we decided against this, since...*
+*However, we decided against this, since it turns out that while the Decorator pattern could 
+certainly be successfully applied, it would not provide the optimal implementation of the 
+StatsCalculator classes. This is because Decorators are typically most useful when considering
+some kind of singular object that can be modified in a number of different ways. Keeping up
+with the theme of soccer players, a good example would be having a base player entity
+that can be customized with many individual pieces of attire or accessories. In the case
+of the StatsCalculator classes, they are simply being used by other classes to calculate 
+singular statistics on command, so it is sufficient that they are just monolithic classes
+with individual methods for each kind of statistic. A decorator pattern would make it such
+that different combinations of statistics would all be returned as one kind of object, which
+could be useful in some circumstances, but is relatively cumbersome in the context
+of our program.
 
 *In the future, we may consider implementing...*
 
