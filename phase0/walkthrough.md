@@ -18,7 +18,7 @@ The results of the search will be passed to a presenter class (`PlayersPresenter
 
 If instead the user chooses to search by name, they will be given a prompt asking them to specify a name (handled by `InputPlayerName`).
 For example, the user may input `Danny`. 
-The application will search for all players (in `PlayerDatabase`) which contain `Danny` somewhere in their name (handled by `SearchForPlayer`).
+The application will search for all players (in `PlayerDatabase`) which contain `Danny`, or something similar, in their name (handled by `SearchForPlayer`).
 The results of the search will be passed to the same presenter class (`PlayersPresenter`), and the user will see a similar output. 
 Similar processes would occur if a user chose to search for teams at the beginning,
 although different classes are involved in those processes (*e.g.* `InputTeamAttributes`, `TeamsPresenter`, etc.).
