@@ -23,8 +23,12 @@ public class CommandLine {
         }catch (NullPointerException e){
             System.out.println("Invalid Response");
         }
+    }
 
+    public static void resumeOutput() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-
+        System.out.print("Press ENTER in order to get the next page of players: ");
+        String s = reader.readLine();
     }
 }
