@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -13,21 +12,10 @@ public class PlayerDatabase{
 
     /**
      * Adds new player to Player database
-     * @param name name of player as string
-     * @param age age of player as int
-     * @param height height of player as double
-     * @param weight weight of player as double
-     * @param team team of player as string
-     * @param scouted whether player has been scouted as boolean
-     * @param position player position as string
-     * @param skills player skill string and corresponding attribute value as Hashmap
+     * @param player player object to be added to database
      */
-    public static void add_entity(String name, int age, double height, double weight,
-                                  String team, boolean scouted, String position,
-                                  HashMap<String, Integer> skills) {
-        Player newBaller = new Player(name, age, height, weight,
-                team, scouted, position, skills);
-        players.add(newBaller);
+    public static void add_entity(Player player) {
+        players.add(player);
     }
 
     /**
