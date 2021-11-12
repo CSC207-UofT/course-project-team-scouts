@@ -27,6 +27,42 @@ public class CSVAdapter implements InputAdapter {
     }
 
     /**
+     * Helper method that converts strings to Doubles. Tries to catch NumberFormatException
+     * @param doubleAsString csv string cell value
+     * @return value the sole parameter now as a double
+     */
+    public double stringToDouble(String doubleAsString){
+        double value;
+        try {
+            value = Double.parseDouble(doubleAsString);
+        }
+        catch (NumberFormatException e) {
+            value = 0.0;
+        }
+        return value;
+    }
+
+    /**
+     * Helper method that checks if a Team is already in the Team database.
+     * Adds it if not, updates it with player if it is.
+     * @param t_name team name as string
+     * @param teams collection of team names as string so far
+     * @param player a Player object that belongs to this team
+     */
+    public void updateTeamsDatabase(String t_name, ArrayList<String> teams, Player player){
+        if (teams.contains(t_name)){
+            TeamDatabase.updateRoster(t_name, player);
+        }
+        else{
+            teams.add(t_name);
+            List<Player> roster = new ArrayList<>();
+            roster.add(player);
+            TeamDatabase.add_entity(t_name, roster);
+        }
+    }
+
+
+    /**
      * Returns a hashmap, mapping the string describing a player attribute to the value of
      * that players attribute as an int
      * @param row is an array of strings of player attribute ratings
@@ -69,36 +105,30 @@ public class CSVAdapter implements InputAdapter {
             List<String[]> entries = csvReader.readAll();
 
             // Iterate through each row representing a player, reformat player data and
-            // pass it to
+            // pass it to PlayerFactory, update database with new player
             for (String[] row : entries){
+
+                // list of teams accumulator
+                ArrayList<String> teams_accumulator = new ArrayList<>();
+
                 String name = row[3];
-
                 int age = stringToInt(row[4]);
-                double height;
-                double weight;
-
-                try {
-                    height = Double.parseDouble(row[6]);
-                }
-                catch (NumberFormatException e) {
-                    height = 0.0;
-                }
-                try {
-                    weight = Double.parseDouble(row[7]);
-                }
-                catch (NumberFormatException e) {
-                    weight = 0.0;
-                }
-
+                double height = stringToDouble(row[6]);
+                double weight = stringToDouble(row[7]);
                 String team = row[9];
 
+                int rating = stringToInt(row[10]);
+                double value = stringToDouble(row[12]);
                 String position = row[14];
 
                 String[] skillAttributes = Arrays.copyOfRange(row, 44, 78);
                 HashMap<String, Integer> skills = makeHashMap(skillAttributes);
 
-                PlayerDatabase.add_entity(name, age, height, weight, team, false,
-                        position, skills);
+                Player player = PlayerFactory.makePlayer(name, age, height, weight, team,
+                        rating, value, position, skills);
+
+                PlayerDatabase.add_entity(player);
+                updateTeamsDatabase(team, teams_accumulator, player);
             }
 
         } catch (Exception e) {
