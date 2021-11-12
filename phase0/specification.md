@@ -18,6 +18,7 @@ so that players and teams can be easily accessed when searched for.
 Some associated use cases include **adding players** to the database and **assigning**/grouping them into teams. 
 Additionally, users will be able to make their own scout profiles, allowing them to **interact** with player entities (scout them). 
 To accomplish this, the application will be able to **add new user profiles** to the system, or **retrieve an existing profile** from storage. 
+This requires **serialization** of the program's Business Data (player, team, and user entities)
 Finally, the most crucial element of the application is the **searching** functionality. 
 The application should allow users to search for players in the database either **by name**, 
 or by querying the database based on a (sub)set of **player attributes** with desired values/ranges of values. 
