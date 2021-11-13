@@ -85,4 +85,7 @@ public class Player {
     public String getPosition() {
         return position;
     }
+
+    public void displayPos(){
+        System.out.println("Arbitrary Position");}
 }
