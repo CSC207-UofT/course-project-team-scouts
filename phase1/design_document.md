@@ -44,7 +44,7 @@ Also see [`phase0/walkthrough.md`](https://github.com/CSC207-UofT/course-project
     - We are automatically provided with the appropriate `Player` subclass by `PlayerFactory`, without needing to specify the exact class of the object that will be created.
     - The `PlayerPresenter` method is overloaded to allow different outputs depending on the subclass of `Player` that we pass in.
 - Implemented the **builder design pattern** for the different types of searches
-  - *Details/justification...*
+  - The builder design pattern is primarily used when we want to use the same object building process to build different kind of objects. Our code offers two ways to scout a player, one by searching for players by name and the other by searching for players by attributes. The `Builder` class works like the brain, and decides which object to instantiate (or build), based on the input from the user. 
 - Replaced `Scout` with a `User` class
   - We had always thought of `Scout`s as the users of the program, so the class name we had didn't accurately represent what we wanted the class to do.
   - Our new `User` class allows for additional functionality that wouldn't make sense with the `Scout` class.
