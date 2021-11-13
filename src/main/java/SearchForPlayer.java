@@ -8,7 +8,9 @@ public class SearchForPlayer{
         List<Player> validPlayers = new ArrayList<>();
         for (Player p : playerList) {
             String n = p.getName();
-            if (n.contains(target)) {
+
+            int score = LevDistance.distance(n, target);
+            if ((score < 4) | (n.contains(target))) {
                 validPlayers.add(p);
             }
         }
