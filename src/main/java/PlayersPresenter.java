@@ -50,10 +50,11 @@ public class PlayersPresenter implements PresentData<Player> {
                 try {
                     CommandLine.resumeOutput();
                 } catch (Exception e) {
-                    System.out.println("Invalid input.");
+                    // Even if user enters the wrong key, we can still let it
+                    // go to the next page of output.
+                    System.out.print("");
                 }
             }
-
         }
     }
 
@@ -86,9 +87,9 @@ public class PlayersPresenter implements PresentData<Player> {
 
     /**
      * Checks an individual string to determine if it contains non-latin based
-     * characters (particularly in eastern Asian scripts). Serves as a helper method
+     * characters (particularly those in eastern Asian scripts). Serves as a helper method
      * to the output functions, determines if strings contain these characters, which
-     * typically break the styling of the output.
+     * typically break the format of the output.
      *
      * Using a solution designed and shared by Joop Eggen on Stack Overflow.
      * https://stackoverflow.com/questions/26357938/detect-chinese-character-in-java/26358371
@@ -97,9 +98,9 @@ public class PlayersPresenter implements PresentData<Player> {
      * @return whether the string contains characters that will not be output properly to the console.
      */
     private boolean containsNonLatinCharacters(String s) {
-        for (int i = 0; i < s.length(); i++) {
+        for (int i = 0; i < s.length(); ) {
             int codepoint = s.codePointAt(i);
-//            i += Character.charCount(codepoint);
+            i += Character.charCount(codepoint);
 
             if (Character.UnicodeScript.of(codepoint) == Character.UnicodeScript.HAN) {
                 return true;

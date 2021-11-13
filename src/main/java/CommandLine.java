@@ -25,6 +25,12 @@ public class CommandLine {
         }
     }
 
+    /**
+     * Halts output to the console until the user presses the ENTER key.
+     * Used primarily by presenter classes.
+     *
+     * @throws IOException user may enter the wrong key.
+     */
     public static void resumeOutput() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 

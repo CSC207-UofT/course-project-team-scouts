@@ -1,7 +1,7 @@
 import java.util.List;
 
 public class TeamStatsCalculator extends StatsCalculator<Team> {
-    PlayerStatsCalculator calculator = new PlayerStatsCalculator();
+    PlayerStatsCalculator playerCalc = new PlayerStatsCalculator();
 
     /**
      * Generates an overall offensive rating for a Team. Accomplishes this by making
@@ -16,7 +16,7 @@ public class TeamStatsCalculator extends StatsCalculator<Team> {
         List<Player> players = team.getPlayers();
         int offensiveSum = 0;
         for (Player p : players) {
-            offensiveSum += calculator.generateOffensiveRating(p);
+            offensiveSum += playerCalc.generateOffensiveRating(p);
         }
 
         return offensiveSum / players.size();
@@ -35,7 +35,7 @@ public class TeamStatsCalculator extends StatsCalculator<Team> {
         List<Player> players = team.getPlayers();
         int defensiveSum = 0;
         for (Player p : players) {
-            defensiveSum += calculator.generateDefensiveRating(p);
+            defensiveSum += playerCalc.generateDefensiveRating(p);
         }
 
         return defensiveSum / players.size();

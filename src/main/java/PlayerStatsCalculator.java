@@ -20,9 +20,9 @@ public class PlayerStatsCalculator extends StatsCalculator<Player> {
                                         "long_shots", "vision", "penalties"};
 
         // Converting the array into an ArrayList for easier lookup.
-        ArrayList<String> offensiveAttributes = new ArrayList<String>(Arrays.asList(attributes));
+        ArrayList<String> offensiveAttributes = new ArrayList<>(Arrays.asList(attributes));
 
-        return calculateAverage(skills, offensiveAttributes);
+        return calculateAverageBySkillType(skills, offensiveAttributes);
     }
 
     /**
@@ -39,9 +39,9 @@ public class PlayerStatsCalculator extends StatsCalculator<Player> {
         HashMap<String, Integer> skills = player.getSkills();
         String[] attributes = {"balance", "strength", "marking", "standing tackle",
                                         "sliding tackle"};
-        ArrayList<String> defensiveAttributes = new ArrayList<String>(Arrays.asList(attributes));
+        ArrayList<String> defensiveAttributes = new ArrayList<>(Arrays.asList(attributes));
 
-        return calculateAverage(skills, defensiveAttributes);
+        return calculateAverageBySkillType(skills, defensiveAttributes);
     }
 
     /**
@@ -58,9 +58,9 @@ public class PlayerStatsCalculator extends StatsCalculator<Player> {
         String[] attributes = {"goalkeeping diving","goalkeeping handling",
                 "goalkeeping kicking","goalkeeping positioning","goalkeeping reflexes"};
 
-        ArrayList<String> goalkeepingAttributes = new ArrayList<String>(Arrays.asList(attributes));
+        ArrayList<String> goalkeepingAttributes = new ArrayList<>(Arrays.asList(attributes));
 
-        return calculateAverage(skills, goalkeepingAttributes);
+        return calculateAverageBySkillType(skills, goalkeepingAttributes);
     }
 
     /**
@@ -70,8 +70,8 @@ public class PlayerStatsCalculator extends StatsCalculator<Player> {
      * @param desiredSkills the set of all skills of a specific type (e.g. offensive, defensive, etc.)
      * @return the average of all the desired skill values (truncated to the nearest integer).
      */
-    public int calculateAverage(HashMap<String, Integer> allSkills,
-                                ArrayList<String> desiredSkills) {
+    public int calculateAverageBySkillType(HashMap<String, Integer> allSkills,
+                                           ArrayList<String> desiredSkills) {
         // Calculate the total of all desired skill values.
         int skillsSum = 0;
         for (String skill : allSkills.keySet()) {
