@@ -41,8 +41,8 @@ Also see [`phase0/walkthrough.md`](https://github.com/CSC207-UofT/course-project
   - All players have the same kinds of attributes in our database, but depending on the type of player (forward, defense, goalkeeper, etc.), not all of those attributes are very relevant.
     - For example, when presenting a defender, we aren't interested in their goalkeeping abilities.
   - To avoid multiple switch statements in our program, we use polymorphism instead, thus avoiding a [code smell](https://refactoring.guru/smells/switch-statements).
-  - We are provided with an object of a player using factory methods without needing to specify the exact class of the object that will be created.
     - The `PlayerPresenter` method is overloaded to allow different outputs depending on the subclass of `Player` that we pass in.
+  - - We are provided with an object of a player using factory methods without needing to specify the exact class of the object that will be created.
 - Implemented the **builder design pattern** for the different types of searches
   - *Details/justification...*
 - Replaced `Scout` with a `User` class
