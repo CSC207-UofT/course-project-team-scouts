@@ -22,7 +22,7 @@ public class TeamDatabase{
 
     public static void updateRoster(String t_name, Player player){
         for (Team t: teams){
-            if (t.getTeamname().equals(t_name)){
+            if (t.getTeamName().equals(t_name)){
                 t.addPlayer(player);
             }
         }

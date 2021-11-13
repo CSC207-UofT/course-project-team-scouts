@@ -123,12 +123,12 @@ public class CSVAdapter implements InputAdapter {
 
                 String[] skillAttributes = Arrays.copyOfRange(row, 44, 78);
                 HashMap<String, Integer> skills = makeHashMap(skillAttributes);
+//
+//                Player player = PlayerFactory.makePlayer(name, age, height, weight, team,
+//                        rating, value, position, skills);
 
-                Player player = PlayerFactory.makePlayer(name, age, height, weight, team,
-                        rating, value, position, skills);
-
-                PlayerDatabase.add_entity(player);
-                updateTeamsDatabase(team, teams_accumulator, player);
+//                PlayerDatabase.add_entity(player);
+//                updateTeamsDatabase(team, teams_accumulator, player);
             }
 
         } catch (Exception e) {
