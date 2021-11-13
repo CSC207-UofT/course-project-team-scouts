@@ -70,10 +70,10 @@ Also see [`phase0/walkthrough.md`](https://github.com/CSC207-UofT/course-project
 ## SOLID Design
 
 - Single Responsibility Principle
-  - For the most part, our code follows the Single Responsiblity Principle fairly well. Almost all of our classes are broken down well, with each one of them handling a single concern. A small example for the same would be, we have different search classes `SearchForPlayer` and `SearchByPlayerAttributes` for different kinds of search operations, thus avoiding a single class to handle to different kinds of search tasks. 
+  - For the most part, our code follows the Single Responsiblity Principle fairly well. Almost all of our classes are broken down well, with each one of them handling a single concern. A small example for the same would be, we have different search classes `SearchForPlayer` and `SearchByPlayerAttributes` for different kinds of search operations, thus avoiding a single class to handle two different kinds of search tasks. 
   - One domain where our project might not follow the Single Responsibility Principle, is with our dataset. Our classes, and code in general is highly dependent on the specific dataset we are using *players_20.csv*. Changing datasets can result result in need of humongous changes in our code.
 - Open/Closed Principle
-  - *Explanation of how our project follows this...*
+  - The entirety of our phase 1 has been *extending* on our code from phase 0 while minimising any *modification* in our source code from phase 0. We have extended our project and added features like a new login system, team creation feature, updating the search methadology, upgrading presenter class, adding the factory design pattern, etc. Overall,for the most part our project has been open to extension while closed for modification, with some exceptions. 
 - Liskov Substitution Principle
   - *Explanation of how our project follows this...*
 - Interface Segregation Principle
