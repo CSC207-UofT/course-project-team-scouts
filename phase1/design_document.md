@@ -41,8 +41,8 @@ Also see [`phase0/walkthrough.md`](https://github.com/CSC207-UofT/course-project
   - All players have the same kinds of attributes in our database, but depending on the type of player (forward, defense, goalkeeper, etc.), not all of those attributes are very relevant.
     - For example, when presenting a defender, we aren't interested in their goalkeeping abilities.
   - To avoid multiple switch statements in our program, we use polymorphism instead, thus avoiding a [code smell](https://refactoring.guru/smells/switch-statements).
+    - We are automatically provided with the appropriate `Player` subclass by `PlayerFactory`, without needing to specify the exact class of the object that will be created.
     - The `PlayerPresenter` method is overloaded to allow different outputs depending on the subclass of `Player` that we pass in.
-  - - We are provided with an object of a player using factory methods without needing to specify the exact class of the object that will be created.
 - Implemented the **builder design pattern** for the different types of searches
   - *Details/justification...*
 - Replaced `Scout` with a `User` class
@@ -70,8 +70,8 @@ Also see [`phase0/walkthrough.md`](https://github.com/CSC207-UofT/course-project
 ## SOLID Design
 
 - Single Responsibility Principle
-  - For the most part, our code follows the Single Responsiblity Principle fairly well. Almost all of our classes are broken down well, with each one of them handling a single concern. A small example for the same would be, we have different search classes `SearchForPlayer` and `SearchByPlayerAttributes` for different kinds of search operations, thus avoiding a single class to handle two different kinds of search tasks. 
-  - One domain where our project might not follow the Single Responsibility Principle, is with our dataset. Our classes, and code in general is highly dependent on the specific dataset we are using *players_20.csv*. Changing datasets can result result in need of humongous changes in our code.
+  - For the most part, our code follows the Single Responsiblity Principle fairly well. Almost all of our classes are broken down well, with each one of them handling a single concern. For example, we have different search classes `SearchForPlayer` and `SearchByPlayerAttributes` for different kinds of search operations, thus avoiding a single class to handle two different kinds of search tasks. 
+  - One domain where our project might not follow the Single Responsibility Principle, is with our dataset. Our classes, and our code in general, is highly dependent on the specific dataset we are using (`players_20.csv`). If we changed this dataset to one which does not contain the same player attributes, then we would have to modify almost every class in our program.
 - Open/Closed Principle
   - The entirety of our phase 1 has been *extending* on our code from phase 0 while minimising any *modification* in our source code from phase 0. We have extended our project and added features like a new login system, team creation feature, updating the search methadology, upgrading presenter class, adding the factory design pattern, etc. Overall,for the most part our project has been open to extension while closed for modification, with some exceptions. 
 - Liskov Substitution Principle
@@ -87,9 +87,21 @@ Also see [`phase0/walkthrough.md`](https://github.com/CSC207-UofT/course-project
 
 ## Design Patterns
 
-In the previous phase, we implemented the adapter design pattern. *Explanation...*
+In the previous phase, we implemented the **adapter** design pattern. 
+Our program requires that we interact with some sort of external database, and we chose to read in data from a CSV file. 
+The `OpenCSV` Java library provides methods that will allow for this functionality. 
+However, we don't want to make large parts of our program dependent on `OpenCSV`'s interface, since this could change in the future. 
+Additionally, if our dataset changes format (*e.g.* we use a SQLite file instead), we could run into the same issue.
 
-In this phase, we implemented the **factory** design pattern and **builder** design pattern (see [above](#major-design-decisions) for details/explanations). 
+In essence, the responsibility of this adapter is to call methods from the `OpenCSV` library (which is the adaptee) on behalf of other classes (which are the clients). We have implemented the adapter design pattern like so:
+
+1. `CommandLine` (the client) wants to import all players and teams from the CSV as Java entities
+2. `CommandLine` creates a new instance of `CSVAdapter` (the adapter), which implements the `InputAdapter` interface (the adapter interface)
+3. `CSVAdapter` creates a new instance of `CSVReaderBuilder` (the adaptee from the `OpenCSV` library)
+4. `CommandLine` calls `CSVAdapter.dataDump()`, which calls `CSVReaderBuilder.readAll()`
+	- `CSVAdapter` adds the players/teams corresponding to each row to our database classes (in the form of `Player` and `Team` entities)
+
+In this phase, we also implemented the **factory** design pattern and **builder** design pattern (see [above](#major-design-decisions) for details/explanations). 
 Below is an outline of the role that each class plays in satisfying the design pattern:
 
 - **factory design pattern:**
