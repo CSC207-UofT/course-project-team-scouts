@@ -45,16 +45,24 @@ Also see [`phase0/walkthrough.md`](https://github.com/CSC207-UofT/course-project
 - Implemented the **builder design pattern** for the different types of searches
   - *Details/justification...*
 - Replaced `Scout` with a `User` class
-  - We had always thought of `Scout`s as the users of the program, so this class name didn't accurately represent what we wanted the class to do.
-    - *i.e.* It doesn't make much sense for a `Scout` class to have a username and password.
+  - We had always thought of `Scout`s as the users of the program, so the class name we had didn't accurately represent what we wanted the class to do.
+  - Our new `User` class allows for additional functionality that wouldn't make sense with the `Scout` class.
+    - *e.g.* a `Scout` shouldn't have a username and password if it is just another entity alongside players and teams.
 - Made our Business Data (entities) serializable
-  - *Details/justification...*
+  - One of the most important features included in the new specification is the ability to save the state of the program.
+    - Users should be able to keep track of scouting history and player shortlists.
+    - Any teams added by users should be kept in memory, as well as any changes made to player attributes.
+  - To enable saving state, we have made all core entities serializable(`Player`s, `Team`s, `Users`, and the `Database` classes).
+    - We have also introduced a new class for loading in the data files.
 - Reworked our search/input classes
-  - *Details/justification...*
+  - This decision has more to do with usability than software design principles.
+  - We wanted to make sure that when searching by attribute, the user only needs to specify values for the attributes that they care about.
+  - We also wanted users to be able to specify a range of values if they want, or just specify a single value.
+  - Our previous design, which used `PlayerPropertiesIterator` and a text file with a list of attributes, didn't allow for this flexibility in input.
 
 ## Clean Architecture
 
-*TODO: Draw a chart of our classes in the layers of clean architecture w/ dependency arrows*
+*TODO: Draw a chart of our main classes in the layers of clean architecture w/ dependency arrows*
 
 *TODO: Brief explanation of chart*
 
