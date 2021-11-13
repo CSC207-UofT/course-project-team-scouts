@@ -16,7 +16,7 @@ class Team {
     }
 
 
-    public String getTeamname() {
+    public String getTeamName() {
         return team_name;
     }
 
