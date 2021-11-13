@@ -41,6 +41,7 @@ Also see [`phase0/walkthrough.md`](https://github.com/CSC207-UofT/course-project
   - All players have the same kinds of attributes in our database, but depending on the type of player (forward, defense, goalkeeper, etc.), not all of those attributes are very relevant.
     - For example, when presenting a defender, we aren't interested in their goalkeeping abilities.
   - To avoid multiple switch statements in our program, we use polymorphism instead, thus avoiding a [code smell](https://refactoring.guru/smells/switch-statements).
+  - We are provided with an object of a player using factory methods without needing to specify the exact class of the object that will be created.
     - The `PlayerPresenter` method is overloaded to allow different outputs depending on the subclass of `Player` that we pass in.
 - Implemented the **builder design pattern** for the different types of searches
   - *Details/justification...*
@@ -69,8 +70,8 @@ Also see [`phase0/walkthrough.md`](https://github.com/CSC207-UofT/course-project
 ## SOLID Design
 
 - Single Responsibility Principle
-  - *Explanation of how our project follows this...*
-  - *Maybe mention how we can't follow this sometimes; if our dataset changes, we might have to change every single part of our program*
+  - For the most part, our code follows the Single Responsiblity Principle fairly well. Almost all of our classes are broken down well, with each one of them handling a single concern. A small example for the same would be, we have different search classes `SearchForPlayer` and `SearchByPlayerAttributes` for different kinds of search operations, thus avoiding a single class to handle to different kinds of search tasks. 
+  - One domain where our project might not follow the Single Responsibility Principle, is with our dataset. Our classes, and code in general is highly dependent on the specific dataset we are using *players_20.csv*. Changing datasets can result result in need of humongous changes in our code.
 - Open/Closed Principle
   - *Explanation of how our project follows this...*
 - Liskov Substitution Principle
