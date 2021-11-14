@@ -3,18 +3,18 @@ import java.util.ArrayList;
 import java.util.List;
 import static org.junit.Assert.*;
 
-public class PlayerDatabaseTest {
+public class TestPlayerDatabase {
 
     Player testPlayer = new Player();
 
     @Test
-    public void addEntityTest() {
+    public void testAddEntity() {
         PlayerDatabase.add_entity(testPlayer);
         assertTrue(PlayerDatabase.getPlayers().contains(testPlayer));
     }
 
     @Test
-    public void setPlayersTest() {
+    public void testSetPlayers() {
         List<Player> footballers = new ArrayList<>();
         footballers.add(testPlayer);
         PlayerDatabase.setPlayers(footballers);
@@ -22,7 +22,7 @@ public class PlayerDatabaseTest {
     }
 
     @Test
-    public void getPlayersTest() {
+    public void testGetPlayers() {
         List<Player> empty = new ArrayList<>();
         assertEquals(PlayerDatabase.getPlayers(), empty);
 

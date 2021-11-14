@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class TeamDatabaseTest {
+public class TestTeamDatabase {
 
     Team club;
     List<Player> roster;
@@ -23,20 +23,20 @@ public class TeamDatabaseTest {
     }
 
     @Test
-    public void addEntityTest() {
+    public void testAddEntity() {
         TeamDatabase.addEntity("Fc Barcelona", roster);
         assertEquals(2, TeamDatabase.getTeams().size());
     }
 
     @Test
-    public void updateRosterTest() {
+    public void testUpdateRoster() {
         TeamDatabase.updateRoster("Fc Barcelona", test_player);
         int test_team_size = TeamDatabase.getTeams().get(0).getPlayers().size();
         assertEquals(2, test_team_size);
     }
 
     @Test
-    public void setTeamsTest() {
+    public void testSetTeams() {
         List<Team> test_teams = new ArrayList<>();
         test_teams.add(club);
         test_teams.add(club);
@@ -45,7 +45,7 @@ public class TeamDatabaseTest {
     }
 
     @Test
-    public void getTeamsTest() {
+    public void testGetTeams() {
         assertEquals(1, TeamDatabase.getTeams().size());
     }
 

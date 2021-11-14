@@ -6,7 +6,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class TeamTest {
+public class TestTeam {
 
     Team club;
     Player test_player;
@@ -21,18 +21,18 @@ public class TeamTest {
 
 
     @Test
-    public void getTeamNameTest() {
+    public void testGetTeamName() {
         assertEquals("Fc Barcelona", club.getTeamName());
     }
 
     @Test
-    public void addPlayerTest() {
+    public void testAddPlayer() {
         club.addPlayer(test_player);
         assertEquals(2, club.getPlayers().size());
     }
 
     @Test
-    public void getPlayersTest() {
+    public void testGetPlayers() {
         assertEquals(1, club.getPlayers().size());
     }
 

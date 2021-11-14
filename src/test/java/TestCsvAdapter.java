@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class CSVAdapterTest {
+public class TestCsvAdapter {
 
     CSVAdapter adapter;
 
@@ -17,7 +17,7 @@ public class CSVAdapterTest {
     }
 
     @Test
-    public void stringToIntTest() {
+    public void testStringToInt() {
         String t1 = "69";
         String t2 = "kanye West";
         assertEquals(69, adapter.stringToInt(t1));
@@ -25,7 +25,7 @@ public class CSVAdapterTest {
     }
 
     @Test
-    public void stringToDoubleTest() {
+    public void testStringToDouble() {
         String t1 = "69.0";
         String t2 = "kanye West";
         assertEquals(69.0, adapter.stringToDouble(t1), 0.0);
@@ -33,7 +33,7 @@ public class CSVAdapterTest {
     }
 
     @Test
-    public void makeHashMapTest() {
+    public void testMakeHashMap() {
         String[] testArray = new String[35];
         HashMap<String, Integer> hashMapTest = new HashMap<>();
         String[] skillTypes = {"crossing" ,"finishing",
@@ -57,7 +57,7 @@ public class CSVAdapterTest {
     }
 
     @Test
-    public void updateTeamsDatabaseTest() {
+    public void testUpdateTeamsDatabase() {
         Player test_player = new Player();
         String team_name = "Fc Barcelona";
         ArrayList<String> teams = new ArrayList<>();
@@ -72,7 +72,7 @@ public class CSVAdapterTest {
 
 
     @Test
-    public void dataDumpTest() {
+    public void testDataDump() {
         adapter.dataDump("dataset(s)/testing_subset.csv");
         assertEquals(PlayerDatabase.getPlayers().size(), 3);
         assertEquals(TeamDatabase.getTeams().size(), 3);
