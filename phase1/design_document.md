@@ -77,7 +77,7 @@ Also see [`phase0/walkthrough.md`](https://github.com/CSC207-UofT/course-project
 - Liskov Substitution Principle
   - *Explanation of how our project follows this...*
 - Interface Segregation Principle
-  - *Explanation of how our project follows this...*
+  - The user is not forced to depend on methods it does not use in our code. For instance, the `InputPlayerName` and `InputPlayerAttributes` classes extend the `InputData` interface, therefore, when a client wants to search for a player by name, it does not need to worry about the input of attributes.
 - Dependency Inversion
   - *Explanation of how our project follows this...*
 
