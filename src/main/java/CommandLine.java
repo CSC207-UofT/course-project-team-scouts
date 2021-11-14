@@ -3,13 +3,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class CommandLine {
-    
-    /** 
+
+    /**
      * The main method of this program. Instantiates necessary classes
      * and starts the command line interface.
-     * 
-     * @param  args        additional arguments.
-     * @throws IOException if the database file ("dataset(s)/players_20.csv") 
+     *
+     * @param args additional arguments.
+     * @throws IOException if the database file ("dataset(s)/players_20.csv")
      *                     is missing
      */
     public static void main(String[] args) throws IOException {
@@ -19,10 +19,9 @@ public class CommandLine {
     }
 
 
-    
-    /** 
+    /**
      * Runs all user prompts and accepts input.
-     * 
+     *
      * @throws IOException if user input is invalid
      */
     private static void runPrompts() throws IOException {
@@ -36,7 +35,7 @@ public class CommandLine {
             InputData inputClass = PlayerBuilder.getInputType(s);
             inputClass.run();
 
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             System.out.println("Invalid Response");
         }
     }

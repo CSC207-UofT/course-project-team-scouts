@@ -16,8 +16,8 @@ public class PlayerStatsCalculator extends StatsCalculator<Player> {
     public int generateOffensiveRating(Player player) {
         HashMap<String, Integer> skills = player.getSkills();
         String[] attributes = {"crossing", "finishing", "heading accuracy",
-                                        "volleys", "dribbling", "curve", "fk accuracy", "shot_power",
-                                        "long_shots", "vision", "penalties"};
+                "volleys", "dribbling", "curve", "fk accuracy", "shot_power",
+                "long_shots", "vision", "penalties"};
 
         // Converting the array into an ArrayList for easier lookup.
         ArrayList<String> offensiveAttributes = new ArrayList<>(Arrays.asList(attributes));
@@ -38,7 +38,7 @@ public class PlayerStatsCalculator extends StatsCalculator<Player> {
     public int generateDefensiveRating(Player player) {
         HashMap<String, Integer> skills = player.getSkills();
         String[] attributes = {"balance", "strength", "marking", "standing tackle",
-                                        "sliding tackle"};
+                "sliding tackle"};
         ArrayList<String> defensiveAttributes = new ArrayList<>(Arrays.asList(attributes));
 
         return calculateAverageBySkillType(skills, defensiveAttributes);
@@ -55,8 +55,8 @@ public class PlayerStatsCalculator extends StatsCalculator<Player> {
      */
     public int generateGoalkeepingRating(Player player) {
         HashMap<String, Integer> skills = player.getSkills();
-        String[] attributes = {"goalkeeping diving","goalkeeping handling",
-                "goalkeeping kicking","goalkeeping positioning","goalkeeping reflexes"};
+        String[] attributes = {"goalkeeping diving", "goalkeeping handling",
+                "goalkeeping kicking", "goalkeeping positioning", "goalkeeping reflexes"};
 
         ArrayList<String> goalkeepingAttributes = new ArrayList<>(Arrays.asList(attributes));
 
@@ -66,7 +66,7 @@ public class PlayerStatsCalculator extends StatsCalculator<Player> {
     /**
      * Calculates the average of all skills of a particular skill type.
      *
-     * @param allSkills the set of all skills and their respective values possessed by a given Player entity.
+     * @param allSkills     the set of all skills and their respective values possessed by a given Player entity.
      * @param desiredSkills the set of all skills of a specific type (e.g. offensive, defensive, etc.)
      * @return the average of all the desired skill values (truncated to the nearest integer).
      */

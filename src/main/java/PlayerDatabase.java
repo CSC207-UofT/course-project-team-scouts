@@ -4,7 +4,7 @@ import java.util.List;
 /**
  * Responsible for storing Player Data as a list of player entities
  */
-public class PlayerDatabase{
+public class PlayerDatabase {
     private static List<Player> players = new ArrayList<>();
 
     public PlayerDatabase() {
@@ -12,6 +12,7 @@ public class PlayerDatabase{
 
     /**
      * Adds new player to Player database
+     *
      * @param player player object to be added to database
      */
     public static void add_entity(Player player) {
@@ -20,6 +21,7 @@ public class PlayerDatabase{
 
     /**
      * Setter for PLayers
+     *
      * @param playerList list of player entities
      */
     public static void setPlayers(List<Player> playerList) {
@@ -28,9 +30,10 @@ public class PlayerDatabase{
 
     /**
      * Getter for Players
+     *
      * @return Players list of player entities
      */
-    public static List<Player> getPlayers(){
+    public static List<Player> getPlayers() {
         return players;
     }
 }

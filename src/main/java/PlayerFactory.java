@@ -5,8 +5,7 @@ import java.util.Set;
 public class PlayerFactory {
     public static Player makePlayer(String name, int age, double height, double weight,
                                     String team, int rating, double value, String position,
-                                    HashMap<String, Integer> skills){
-//        Player newPLayer = null;
+                                    HashMap<String, Integer> skills) {
         Set<String> defender = new HashSet<>();
         defender.add("CB");
         defender.add("LB");
@@ -31,18 +30,13 @@ public class PlayerFactory {
         forward.add("LF");
 
 
-
-
-        if(position.equals("GK")){
+        if (position.equals("GK")) {
             return new Goalkeeper(name, age, height, weight, team, rating, value, position, skills);
-        } else
-        if (defender.contains(position)){
+        } else if (defender.contains(position)) {
             return new Defender(name, age, height, weight, team, rating, value, position, skills);
-        } else
-        if (midfielder.contains(position)){
+        } else if (midfielder.contains(position)) {
             return new Midfielder(name, age, height, weight, team, rating, value, position, skills);
-        } else
-        if (forward.contains(position)){
+        } else if (forward.contains(position)) {
             return new Forward(name, age, height, weight, team, rating, value, position, skills);
         } else
             return null;

@@ -53,28 +53,43 @@ public class Player {
         return age;
     }
 
-    public double getHeight() { return height; }
+    public double getHeight() {
+        return height;
+    }
 
-    public double getWeight() { return weight; }
+    public double getWeight() {
+        return weight;
+    }
 
-    public int getRating() { return rating; }
+    public int getRating() {
+        return rating;
+    }
 
-    public double getValue() { return value; }
+    public double getValue() {
+        return value;
+    }
 
-    public int getStrength() { return skills.get("strength"); }
+    public int getStrength() {
+        return skills.get("strength");
+    }
 
-    public int getStamina() { return skills.get("stamina"); }
+    public int getStamina() {
+        return skills.get("stamina");
+    }
 
     public void setName(String pos) {
         name = pos;
     }
-    public void setAge(int x){
+
+    public void setAge(int x) {
         age = x;
     }
-    public void displayName(){
+
+    public void displayName() {
         System.out.println("This player's position is " + getName());
     }
-    public void displayAge(){
+
+    public void displayAge() {
         System.out.println("This player's age is " + getAge());
     }
 
@@ -86,6 +101,7 @@ public class Player {
         return position;
     }
 
-    public void displayPos(){
-        System.out.println("Arbitrary Position");}
+    public void displayPos() {
+        System.out.println("Arbitrary Position");
+    }
 }

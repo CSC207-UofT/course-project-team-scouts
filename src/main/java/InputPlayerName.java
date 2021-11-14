@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 public class InputPlayerName implements InputData {
 
     @Override
-    public String getInput() throws IOException{
+    public String getInput() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         return reader.readLine();
     }
@@ -19,7 +19,7 @@ public class InputPlayerName implements InputData {
         } catch (IOException e) {
             System.out.println("Invalid player name.");
         }
-        
+
         try {
             if (name != null) {
                 PlayersPresenter pPresenter = new PlayersPresenter();
