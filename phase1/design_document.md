@@ -100,6 +100,33 @@ Also see [`phase0/walkthrough.md`](https://github.com/CSC207-UofT/course-project
 
 *TODO: Why did we go with package by component? (might help to explain by process of elimination)*
 
+There are many packaging strategies we could have chosen to apply to our project's file structure, however, we 
+came to the conclusion that the Packaging by Component strategy would fit our project best. We came to this conclusion
+by process of elimination; we considered how each of the strategies learned in class would organize all of the files
+in the project before settling on packaging by component. 
+
+To begin with, we looked at the Vertical packaging strategy. This
+was the one that certainly was the least applicable to our project; this would store all files in just one single package, which would
+be very messy and difficult to deal with. For example, when writing and testing code, it would be harder to search and find files
+since they are all bundled up together in no particular order, a problem that would also make it harder for someone else who is
+unfamiliar with the project to understand its structure. 
+
+Next, we considered the Inside/Outside packaging
+strategy, which seems to divide code up into a main package that handles a service, and separate packages for the supplementary
+components to the service. We concluded that this did not fit our project either, as individual services
+might get too large, and it would not make sense to separate things like databases from the services that use them. 
+
+After this, we
+considered the Packaging by layer strategy, which we felt was also not an optimal strategy. Abiding by this strategy would mean
+we had to put all code corresponding to a specific layer of the Clean Architecture model into the same package. This would mean that 
+packages would be large and have lots of files that are only related to each other just by layer, and not by what their functionality is,
+which would once again be confusing to look at. 
+
+Thus, we settled on Packaging by Component. This strategy allowed us to put files
+that correspond to a single feature or function in our program, such as presentation or searching, into the same package. This would be the easiest
+to look at and search through to find specific files, while also making it clear what all the different features of our 
+program are and which files are responsible for providing them.
+
 ## Design Patterns
 
 In the previous phase, we implemented the **adapter** design pattern. 
