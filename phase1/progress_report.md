@@ -38,6 +38,6 @@
 
 ### Matthew
 
-### Michael 
+### Michael - Implemented TeamDatabase and Team classes. Reimplemnted CsvAdapter, Player and SearchForPlayer to enamble Team data loading, Player factory design method initialization and fuzzy name searching. Wrote some tests. 
 
 ### Tobey
