@@ -1,6 +1,4 @@
 import org.junit.*;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.Assert.*;
@@ -20,7 +18,7 @@ public class PlayerDatabaseTest {
         List<Player> footballers = new ArrayList<>();
         footballers.add(testPlayer);
         PlayerDatabase.setPlayers(footballers);
-        assertEquals(PlayerDatabase.getPlayers(), footballers);
+        assertEquals(footballers, PlayerDatabase.getPlayers());
     }
 
     @Test

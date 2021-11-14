@@ -57,7 +57,7 @@ public class CSVAdapter implements InputAdapter {
             teams.add(t_name);
             List<Player> roster = new ArrayList<>();
             roster.add(player);
-            TeamDatabase.add_entity(t_name, roster);
+            TeamDatabase.addEntity(t_name, roster);
         }
     }
 
@@ -109,8 +109,7 @@ public class CSVAdapter implements InputAdapter {
     public void dataDump(String databaseFile) {
         try {
             // Create fileReader and CsvReader objects
-            String file = "dataset(s)/players_20.csv";
-            FileReader fileReader = new FileReader(file);
+            FileReader fileReader = new FileReader(databaseFile);
             CSVReader csvReader = new CSVReaderBuilder(fileReader).withSkipLines(1).build();
 
             // Read all the data at once into a list of string arrays

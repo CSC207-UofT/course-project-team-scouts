@@ -16,7 +16,7 @@ public class SearchForPlayer{
             String lower_n = n.toLowerCase(Locale.ROOT);
 
             int score = LevenshteinDistance.getDefaultInstance().apply(lower_t,lower_n);
-            if ((score < 4) | (lower_n.contains(lower_t))) {
+            if ((score < 5) | (lower_n.contains(lower_t))) {
                 validPlayers.add(p);
             }
         }
