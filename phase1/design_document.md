@@ -98,14 +98,12 @@ Also see [`phase0/walkthrough.md`](https://github.com/CSC207-UofT/course-project
 
 ## Packaging Strategy
 
-*TODO: Why did we go with package by component? (might help to explain by process of elimination)*
-
 There are many packaging strategies we could have chosen to apply to our project's file structure, however, we 
 came to the conclusion that the Packaging by Component strategy would fit our project best. We came to this conclusion
 by process of elimination; we considered how each of the strategies learned in class would organize all of the files
 in the project before settling on packaging by component. 
 
-To begin with, we looked at the Vertical packaging strategy. This
+To begin with, we looked at the Vertical Packaging strategy. This
 was the one that certainly was the least applicable to our project; this would store all files in just one single package, which would
 be very messy and difficult to deal with. For example, when writing and testing code, it would be harder to search and find files
 since they are all bundled up together in no particular order, a problem that would also make it harder for someone else who is
@@ -117,7 +115,7 @@ components to the service. We concluded that this did not fit our project either
 might get too large, and it would not make sense to separate things like databases from the services that use them. 
 
 After this, we
-considered the Packaging by layer strategy, which we felt was also not an optimal strategy. Abiding by this strategy would mean
+considered the Packaging by Layer strategy, which we felt was also not an optimal strategy. Abiding by this strategy would mean
 we had to put all code corresponding to a specific layer of the Clean Architecture model into the same package. This would mean that 
 packages would be large and have lots of files that are only related to each other just by layer, and not by what their functionality is,
 which would once again be confusing to look at. 
@@ -151,7 +149,8 @@ Below is an outline of the role that each class plays in satisfying the design p
   - common base class = `Player`
   - products = `Forward`, `Midfielder`, `Defender`, `Goalkeeper` (subclasses of `Player`)
 - **builder design pattern:**
-  - *...*
+  - builder class = `InputBuilder`
+  - products = `InputPlayerName`, `InputPlayerAttributes`
 
 We also considered implementing the decorator design pattern in this phase.
 The idea was to have a `BasePlayerStatsCalculator` class which can calculate the overall rating of a `Player` or `Team`, taking into account **all** skill attributes.
