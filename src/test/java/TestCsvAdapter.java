@@ -1,6 +1,12 @@
+import data.PlayerDatabase;
+import data.TeamDatabase;
+import entities.Player;
+import entities.Team;
 import org.junit.Before;
 import org.junit.Test;
+import services.CSVAdapter;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -72,7 +78,7 @@ public class TestCsvAdapter {
 
 
     @Test
-    public void testDataDump() {
+    public void testDataDump() throws IOException {
         adapter.dataDump("dataset(s)/testing_subset.csv");
         assertEquals(PlayerDatabase.getPlayers().size(), 3);
         assertEquals(TeamDatabase.getTeams().size(), 3);

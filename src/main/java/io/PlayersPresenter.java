@@ -1,3 +1,8 @@
+package io;
+
+import entities.Player;
+import ui.CommandLine;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -26,7 +31,7 @@ public class PlayersPresenter implements PresentData<Player> {
      */
     private void printRows(List<Player> players) {
         int playerCount = 0;
-        for (Player p: players) {
+        for (Player p : players) {
             // Build a row in the table corresponding to a given player and the
             // values for their skill attributes.
             StringBuilder playerRow = new StringBuilder();

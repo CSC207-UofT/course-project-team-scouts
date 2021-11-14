@@ -1,4 +1,7 @@
-import java.io.*;
+package io;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
 
 /**
@@ -29,6 +32,7 @@ public class PlayerPropertiesIterator implements Iterator<String> {
 
     /**
      * Checks for subsequent prompts.
+     *
      * @return true if there is prompt that has not yet been returned.
      */
     @Override
@@ -38,6 +42,7 @@ public class PlayerPropertiesIterator implements Iterator<String> {
 
     /**
      * Returns the next prompt to be printed.
+     *
      * @return the next prompt.
      */
     @Override

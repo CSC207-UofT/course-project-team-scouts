@@ -1,3 +1,5 @@
+package data;
+
 public abstract class StatsCalculator<T> {
     abstract int generateOffensiveRating(T entity);
 

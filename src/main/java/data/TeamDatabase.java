@@ -1,10 +1,15 @@
+package data;
+
+import entities.Player;
+import entities.Team;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Responsible for storing Team Data as a list of Team entities
  */
-public class TeamDatabase{
+public class TeamDatabase {
     private static List<Team> teams = new ArrayList<>();
 
     public TeamDatabase() {
@@ -12,7 +17,8 @@ public class TeamDatabase{
 
     /**
      * Adds new team to Team database
-     * @param name team name as string
+     *
+     * @param name    team name as string
      * @param players arraylist of players on team
      */
     public static void addEntity(String name, List<Player> players) {
@@ -20,9 +26,9 @@ public class TeamDatabase{
         teams.add(new_club);
     }
 
-    public static void updateRoster(String t_name, Player player){
-        for (Team t: teams){
-            if (t.getTeamName().equals(t_name)){
+    public static void updateRoster(String t_name, Player player) {
+        for (Team t : teams) {
+            if (t.getTeamName().equals(t_name)) {
                 t.addPlayer(player);
             }
         }
@@ -30,6 +36,7 @@ public class TeamDatabase{
 
     /**
      * Setter for Teams
+     *
      * @param teamList list of  entities
      */
     public static void setTeams(List<Team> teamList) {
@@ -38,9 +45,10 @@ public class TeamDatabase{
 
     /**
      * Getter for Teams
+     *
      * @return list of Team entities
      */
-    public static List<Team> getTeams(){
+    public static List<Team> getTeams() {
         return teams;
     }
 }
