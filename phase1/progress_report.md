@@ -38,6 +38,11 @@
 
 ### Matthew
 
+Continued working on the Presenter classes, made lots of modifications to `PlayersPresenter` and implemented
+`TeamsPresenter`. Also worked on the aggregated Statistics functionality for the program by implementing both the `TeamStatsCalculator` and `PlayerStatsCalculator` classes. 
+Wrote tests for some of these classes and helped write about the packaging strategy
+decision on the design document.
+
 ### Michael - Implemented TeamDatabase and Team classes. Reimplemnted CsvAdapter, Player and SearchForPlayer to enamble Team data loading, Player factory design method initialization and fuzzy name searching. Wrote some tests. 
 
 ### Tobey
