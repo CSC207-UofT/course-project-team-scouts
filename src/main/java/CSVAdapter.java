@@ -57,7 +57,7 @@ public class CSVAdapter implements InputAdapter {
             teams.add(t_name);
             List<Player> roster = new ArrayList<>();
             roster.add(player);
-            TeamDatabase.add_entity(t_name, roster);
+            TeamDatabase.addEntity(t_name, roster);
         }
     }
 
@@ -89,6 +89,18 @@ public class CSVAdapter implements InputAdapter {
         return hashMap;
     }
 
+    public String isolatePosition(String compPosition){
+        String position;
+        String comma = ",";
+        if (compPosition.contains(comma)){
+            position = compPosition.substring(0, compPosition.indexOf(comma));
+        }
+        else{
+            position = compPosition;
+        }
+        return position;
+    }
+
     /**
      * The method responsible for initializing the Player Database. Reads csv file data
      * concerning the player, reformats it where appropriate and feeds it the PlayerDatabase
@@ -97,8 +109,7 @@ public class CSVAdapter implements InputAdapter {
     public void dataDump(String databaseFile) {
         try {
             // Create fileReader and CsvReader objects
-            String file = "dataset(s)/players_20.csv";
-            FileReader fileReader = new FileReader(file);
+            FileReader fileReader = new FileReader(databaseFile);
             CSVReader csvReader = new CSVReaderBuilder(fileReader).withSkipLines(1).build();
 
             // Read all the data at once into a list of string arrays
@@ -111,7 +122,7 @@ public class CSVAdapter implements InputAdapter {
                 // list of teams accumulator
                 ArrayList<String> teams_accumulator = new ArrayList<>();
 
-                String name = row[3];
+                String name = row[2];
                 int age = stringToInt(row[4]);
                 double height = stringToDouble(row[6]);
                 double weight = stringToDouble(row[7]);
@@ -119,13 +130,13 @@ public class CSVAdapter implements InputAdapter {
 
                 int rating = stringToInt(row[10]);
                 double value = stringToDouble(row[12]);
-                String position = row[14];
+                String position = isolatePosition(row[14]);
 
                 String[] skillAttributes = Arrays.copyOfRange(row, 44, 78);
                 HashMap<String, Integer> skills = makeHashMap(skillAttributes);
 
-                Player player = PlayerFactory.makePlayer(name, age, height, weight, team,
-                        rating, value, position, skills);
+                Player player = PlayerFactory.makePlayer(name, age, height, weight, team, rating,
+                        value, position, skills);
 
                 PlayerDatabase.add_entity(player);
                 updateTeamsDatabase(team, teams_accumulator, player);

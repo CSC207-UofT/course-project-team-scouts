@@ -37,7 +37,7 @@ public class PlayersPresenter implements PresentData<Player> {
                 playerRow.append(String.format("%20s", p.getAge())).append("|");
 
                 for (Integer skillValue : p.getSkills().values()) {
-                    playerRow.append(String.format("%20d", skillValue)).append("|");
+                    playerRow.append(String.format("%25d", skillValue)).append("|");
                 }
                 System.out.println(playerRow);
 
@@ -77,7 +77,7 @@ public class PlayersPresenter implements PresentData<Player> {
             header.append(String.format("%20s", "Age")).append("|");
 
             for (String skill : attributes.keySet()) {
-                header.append(String.format("%20s", skill)).append("|");
+                header.append(String.format("%25s", skill)).append("|");
             }
             System.out.println(header);
         } else {
