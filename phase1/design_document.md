@@ -44,7 +44,9 @@ Also see [`phase0/walkthrough.md`](https://github.com/CSC207-UofT/course-project
     - We are automatically provided with the appropriate `Player` subclass by `PlayerFactory`, without needing to specify the exact class of the object that will be created.
     - The `PlayerPresenter` method is overloaded to allow different outputs depending on the subclass of `Player` that we pass in.
 - Implemented the **builder design pattern** for the different types of searches
-  - The builder design pattern is primarily used when we want to use the same object building process to build different kind of objects. Our code offers two ways to scout a player, one by searching for players by name and the other by searching for players by attributes. The `Builder` class works like the brain, and decides which object to instantiate (or build), based on the input from the user. 
+  - The builder design pattern is primarily used when we want to use the same object building process to build different kind of objects. 
+  - Our code offers two ways to scout a player, one by searching for players by name and the other by searching for players by attributes. 
+  - The `Builder` class works like the brain, and decides which object to instantiate (or build), based on the input from the user. 
 - Replaced `Scout` with a `User` class
   - We had always thought of `Scout`s as the users of the program, so the class name we had didn't accurately represent what we wanted the class to do.
   - Our new `User` class allows for additional functionality that wouldn't make sense with the `Scout` class.
@@ -70,16 +72,29 @@ Also see [`phase0/walkthrough.md`](https://github.com/CSC207-UofT/course-project
 ## SOLID Design
 
 - Single Responsibility Principle
-  - For the most part, our code follows the Single Responsiblity Principle fairly well. Almost all of our classes are broken down well, with each one of them handling a single concern. For example, we have different search classes `SearchForPlayer` and `SearchByPlayerAttributes` for different kinds of search operations, thus avoiding a single class to handle two different kinds of search tasks. 
-  - One domain where our project might not follow the Single Responsibility Principle, is with our dataset. Our classes, and our code in general, is highly dependent on the specific dataset we are using (`players_20.csv`). If we changed this dataset to one which does not contain the same player attributes, then we would have to modify almost every class in our program.
+  - For the most part, our code follows the Single Responsibility Principle fairly well. Almost all of our classes are broken down well, with each one of them handling a single concern. 
+    - For example, we have different search classes `SearchForPlayer` and `SearchByPlayerAttributes` for different kinds of search operations, thus avoiding a single class to handle two different kinds of search tasks. 
+  - One domain where our project might not follow the Single Responsibility Principle, is with our dataset. 
+    - Our classes, and our code in general, are highly dependent on the specific dataset we are using (`players_20.csv`). 
+    - If we changed this dataset to one which does not contain the same player attributes, then we would have to modify almost every class in our program.
 - Open/Closed Principle
-  - The entirety of our phase 1 has been *extending* on our code from phase 0 while minimising any *modification* in our source code from phase 0. We have extended our project and added features like a new login system, team creation feature, updating the search methadology, upgrading presenter class, adding the factory design pattern, etc. Overall,for the most part our project has been open to extension while closed for modification, with some exceptions. 
+  - The entirety of our Phase 1 has been *extending* on our code from Phase 0 while minimizing any *modification* of our existing code. 
+    - Overall, our project has been open to extension while closed for modification, with some exceptions. 
+  - We have added features like a **new login system**, **team creation feature**, **adding the factory design pattern**. All of these added features have not required any existing classes to be modified very much.
+  - Other changes in our project, like **updating the search methodology** and **upgrading presenter classes**, have required changes to existing classes, but these changes are mostly extensions (rather than replacing existing code).
 - Liskov Substitution Principle
-  - *Explanation of how our project follows this...*
+  - Our use of interfaces and parent classes allows many subtypes to be substituted for their parent classes.
+  - For example, the `Defender`, `Goalkeeper`, and other subclasses of `Player`, as well as `Player` itself, can all be added to `PlayerDatabase` using the `addEntity` method.
+      - The same is true for all the methods of `PlayersPresenter` and `PlayerStatsCalculator`.
 - Interface Segregation Principle
-  - The user is not forced to depend on methods it does not use in our code. For instance, the `InputPlayerName` and `InputPlayerAttributes` classes extend the `InputData` interface, therefore, when a client wants to search for a player by name, it does not need to worry about the input of attributes.
-- Dependency Inversion
-  - *Explanation of how our project follows this...*
+  - The user is not forced to depend on methods it does not use in our code. 
+    - For instance, the `InputPlayerName` and `InputPlayerAttributes` classes extend the `InputData` interface, therefore, when a client wants to search for a player by name, it does not need to worry about inputting attributes.
+  - Additionally, all of our classes are specific enough that they only implement methods that they require, and we have avoided abstract classes or interfaces that enforce unnecessary methods.
+    - *e.g.* Our `InputAdapter` interface only requires a `dataDump` method, which takes in a database file, to be implemented. It is up to the concrete adapter class to decide what other methods (like `makeHashMap`) are necessary for proper functionality.
+- Dependency Inversion Principle
+  - We tried as much as possible to introduce layers of abstraction between higher level and lower level classes, mostly by using interfaces.
+  - For example, the `main` method of our program (in `CommandLine`) class could have depended directly on the concrete `CSVAdapter` class, but we applied Dependency Inversion by adding an interface (`InputAdapter`) between these classes.
+    - The lower level `CommandLine` (a UI class) depends on the `InputAdapter` interface, and the higher level `CSVAdapter` (a gateway class) implements this interface.
 
 ## Packaging Strategy
 
