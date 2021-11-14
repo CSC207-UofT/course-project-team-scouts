@@ -1,12 +1,17 @@
+import entities.Player;
 import org.junit.*;
+import services.CSVAdapter;
+
+import java.io.IOException;
+
 import static org.junit.Assert.*;
 
-public class PlayerTest {
+public class TestPlayer {
 
 
     Player testPlayer = new Player();
     @Before
-    public void setUp() throws Exception {
+    public void setUp() throws IOException {
         CSVAdapter adapter = new CSVAdapter();
         adapter.dataDump("dataset(s)/players_20.csv");
     }

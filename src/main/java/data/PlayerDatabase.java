@@ -1,3 +1,7 @@
+package data;
+
+import entities.Player;
+
 import java.util.ArrayList;
 import java.util.List;
 

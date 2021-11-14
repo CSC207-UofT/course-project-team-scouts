@@ -1,3 +1,7 @@
+package io;
+
+import search.SearchByPlayerAttributes;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

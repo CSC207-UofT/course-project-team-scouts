@@ -1,3 +1,7 @@
+package data;
+
+import entities.Player;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -66,7 +70,7 @@ public class PlayerStatsCalculator extends StatsCalculator<Player> {
     /**
      * Calculates the average of all skills of a particular skill type.
      *
-     * @param allSkills     the set of all skills and their respective values possessed by a given Player entity.
+     * @param allSkills     the set of all skills and their respective values possessed by a given entities.Player entity.
      * @param desiredSkills the set of all skills of a specific type (e.g. offensive, defensive, etc.)
      * @return the average of all the desired skill values (truncated to the nearest integer).
      */

@@ -1,7 +1,9 @@
+package entities;
+
 import java.util.ArrayList;
 import java.util.List;
 
-class Team {
+public class Team {
     private final String team_name;
     List<Player> players;
 

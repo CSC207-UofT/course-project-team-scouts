@@ -1,3 +1,9 @@
+package entities;
+
+import io.InputData;
+import io.InputPlayerAttributes;
+import io.InputPlayerName;
+
 public class PlayerBuilder {
 
 

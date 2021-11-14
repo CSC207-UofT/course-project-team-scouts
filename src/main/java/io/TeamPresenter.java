@@ -1,3 +1,8 @@
+package io;
+
+import data.TeamStatsCalculator;
+import entities.Team;
+
 import java.util.List;
 
 class TeamPresenter implements PresentData<Team> {

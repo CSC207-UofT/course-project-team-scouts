@@ -1,3 +1,7 @@
+package services;
+
+import java.io.IOException;
+
 public interface InputAdapter {
     /**
      * This method is responsible for importing all data from an external database.
@@ -7,5 +11,5 @@ public interface InputAdapter {
      * @param databaseFile is a string representing path of the database file on the
      *                     local filesystem (e.g. "dataset(s)/players_20.csv")
      */
-    void dataDump(String databaseFile);
+    void dataDump(String databaseFile) throws IOException;
 }

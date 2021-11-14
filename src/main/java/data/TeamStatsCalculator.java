@@ -1,3 +1,8 @@
+package data;
+
+import entities.Player;
+import entities.Team;
+
 import java.util.List;
 
 public class TeamStatsCalculator extends StatsCalculator<Team> {
