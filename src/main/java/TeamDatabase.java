@@ -15,7 +15,7 @@ public class TeamDatabase{
      * @param name team name as string
      * @param players arraylist of players on team
      */
-    public static void add_entity(String name, List<Player> players) {
+    public static void addEntity(String name, List<Player> players) {
         Team new_club = new Team(name, players);
         teams.add(new_club);
     }
