@@ -1,11 +1,8 @@
 import org.junit.*;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import static org.junit.Assert.*;
 
 public class PlayerTest {
+
 
     Player testPlayer = new Player();
     @Before
@@ -15,14 +12,43 @@ public class PlayerTest {
     }
 
     @Test
-    public void TestsetAge(){
+    public void TestSetAge(){
         testPlayer.setAge(20);
         assertEquals(testPlayer.getAge(), 20);
     }
     @Test
-    public void TestsetName(){
+    public void TestSetName(){
         testPlayer.setName("Kaartik");
         assertEquals(testPlayer.getName(), "Kaartik");
     }
+
+    @Test
+    public void TestDefaultHeight(){
+        double height = testPlayer.getHeight();
+        assertEquals(height, 0.0, 0);
+
+
+    }
+
+    @Test
+    public void TestDefaultWeight(){
+        double height = testPlayer.getWeight();
+        assertEquals(height, 0.0, 0);
+
+
+    }
+
+    @Test
+    public void TestDefaultRating(){
+        double rating = testPlayer.getRating();
+        assertEquals(rating, 0.0, 0);
+    }
+
+    @Test
+    public void TestDefaultPosition(){
+
+        assertNull(testPlayer.getPosition());
+    }
+
 
 }
