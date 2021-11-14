@@ -10,5 +10,5 @@ public class Midfielder extends Player{
 
     @Override
     public void displayPos() {
-        System.out.println("This player's pos is " + super.getPosition());}
+        System.out.println("This player's position is " + super.getPosition());}
 }

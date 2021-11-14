@@ -4,13 +4,13 @@ import java.io.FileReader;
 import java.util.*;
 
 /**
- * This class reads the player data csv into a java object. Subsets and returns the data
+ * This class reads the player data csv into a Java object. Subsets and returns the data
  * depending on the use case.
  */
 public class CSVAdapter implements InputAdapter {
 
     /**
-     * Helper method that converts string to integers. Tries to catch NumberFormatException
+     * Helper method that converts strings to integers. Tries to catch NumberFormatException.
      * @param intAsString csv string cell value
      * @return value the sole parameter now as an int
      */
@@ -27,7 +27,7 @@ public class CSVAdapter implements InputAdapter {
     }
 
     /**
-     * Helper method that converts strings to Doubles. Tries to catch NumberFormatException
+     * Helper method that converts strings to doubles. Tries to catch NumberFormatException.
      * @param doubleAsString csv string cell value
      * @return value the sole parameter now as a double
      */
@@ -64,7 +64,7 @@ public class CSVAdapter implements InputAdapter {
 
     /**
      * Returns a hashmap, mapping the string describing a player attribute to the value of
-     * that players attribute as an int
+     * that players attribute as an int.
      * @param row is an array of strings of player attribute ratings
      * @return hashMap is a mapping of skillTypes to the players attribute rating in that skill
      */
@@ -104,6 +104,7 @@ public class CSVAdapter implements InputAdapter {
     /**
      * The method responsible for initializing the Player Database. Reads csv file data
      * concerning the player, reformats it where appropriate and feeds it the PlayerDatabase
+     * @param databaseFile the path of the database file (CSV)
      */
     @Override
     public void dataDump(String databaseFile) {
