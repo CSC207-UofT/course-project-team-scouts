@@ -65,7 +65,7 @@ public class TeamStatsCalculator extends StatsCalculator<Team> {
 
     /**
      * Generates the overall net worth for a Team. Accomplishes this by
-     * taking the average of all individual values of Player entities..
+     * taking the sum of all individual values of Player entities..
      *
      * @param team the team for which an overall rating is desired.
      * @return an integer representation of the overall worth of the team in Euros.
@@ -77,6 +77,6 @@ public class TeamStatsCalculator extends StatsCalculator<Team> {
             valueSum += p.getValue();
         }
 
-        return valueSum / players.size();
+        return valueSum;
     }
 }
