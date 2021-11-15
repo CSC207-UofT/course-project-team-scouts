@@ -15,10 +15,14 @@
 - We've implemented design patterns where applicable, making our code adhere more to SOLID design and Clean Architecture (see [`phase1/design_document.md](https://github.com/CSC207-UofT/course-project-team-scouts/blob/main/phase1/design_docmument.md)).
   - Includes adapter, factory, and builder design patterns.
 - The refactoring we've done has made things easier to work with
-  - Classes were moved/refactored according to our packaging technique
+  - Classes were moved/refactored according to our packaging technique, allowing our code to be much more organized
   - The `Player` creation process is now the responsibility of a factory class, `PlayerFactory`
     - Allowed us to refactor and simplify `CSVAdapter`
   - Some duplicate code was removed (resolved a code smell)
+- While implementing our `StatsCalculator` classes, we noticed that our `Player` and `Team` classes were dependent on `StatsCalculator`, which violates the dependency rules of Clean Architecture
+  - We removed these dependencies, and in the process, we removed unnecessary attributes like net worth and ratings.
+    - Instead, we calculate these values whenever they are needed.
+  - Now the dependencies have been inverted, `PlayerStatsCalculator` depends on `Player` and `TeamStatsCalculator` depends on `Team`.
 
 ## Questions and Concerns
 

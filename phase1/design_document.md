@@ -73,6 +73,7 @@ Here's a summary of the major changes in Phase 1 compared to Phase 0:
 - Enterprise Business Rules (entities)
   - Added subclasses of `Player`: `Defender`, `Forward`, `Midfielder`, `Goalkeeper`
   - Added `User` and removed `Scout`
+  - Inverted `Player`'s and `Team`'s dependency on the corresponding `StatsCalculator` classes
 - Application Business Rules (use cases)
   - Added `PlayerFactory` and `InputBuilder` classes (correspond to factor and builder design patterns)
   - Added `LoginController` and `LoginUseCase` classes to support logging in 
