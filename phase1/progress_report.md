@@ -63,7 +63,7 @@ Implemented a simple Builder Design Pattern in the command line. I further worke
 
 Worked on written materials, including the updated specification and walkthrough, the design document, and the progress report. 
 Decided on a packaging strategy and refactored all classes to adhere to the strategy.
-Performed other miscellaneous refactoring and reformatting of code (eliminating duplicated code, renaming for styling, etc.), and added documenation where it was missing.
+Performed other miscellaneous refactoring and reformatting of code (eliminating duplicated code, renaming for styling, etc.), and added documentation where it was missing.
 Wrote tests for `TeamStatsCalculator`, fixed broken tests, and increased overall line coverage.
 
 ### Kaartik

@@ -56,9 +56,9 @@ Also see [`phase0/walkthrough.md`](https://github.com/CSC207-UofT/course-project
   - One of the most important features included in the new specification is the ability to save the state of the program.
     - Users should be able to keep track of scouting history and player shortlists.
     - Any teams added by users should be kept in memory, as well as any changes made to player attributes.
-  - To enable saving state, we have made all core entities serializable(`Player`s, `Team`s, `Users`, and the `Database` classes).
-    - We have also introduced a new class for loading in the data files.
-- Reworked our search/input classes
+  - To enable saving state, we will be making all core entities serializable(`Player`s, `Team`s, `Users`, and the `Database` classes).
+    - `User` serialization has already been implemented, the rest is in progress.
+- Reworked our search/input classes (still in progress)
   - This decision has more to do with usability than software design principles.
   - We wanted to make sure that when searching by attribute, the user only needs to specify values for the attributes that they care about.
   - We also wanted users to be able to specify a range of values if they want, or just specify a single value.
