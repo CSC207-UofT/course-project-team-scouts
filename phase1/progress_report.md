@@ -36,7 +36,7 @@ Implemented a simple Builder Design Pattern in the command line. I further worke
 ### Daniel
 
 ### Kaartik
-Implemented the Factory Design Pattern along with Aditya while working on the `Player`, `Defender`, `Midfielder`, `Defender`, `Goalkeeper` and `PlayerFactory` classes. Also helped in Builder class, and wrote documentation for it. Wrote documentation for design principles, Factory Design Pattern and Builder Design pattern. Wrote a couple of tests for Player Class.
+Implemented the Factory Design Pattern along with Aditya while working on the `Player`, `Defender`, `Midfielder`, `Defender`, `Goalkeeper` and `PlayerFactory` classes (where we also overcame the issue of coupling different subpositions of a position into one ). Also helped in Builder class, and wrote documentation for it. Wrote documentation for design principles, Factory Design Pattern and Builder Design pattern. Wrote a couple of tests for Player Class.
 
 ### Matthew
 
