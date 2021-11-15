@@ -12,7 +12,13 @@
 
 ## The Good Parts
 
-*What has worked well with our design?*
+- We've implemented design patterns where applicable, making our code adhere more to SOLID design and Clean Architecture (see [`phase1/design_document.md](https://github.com/CSC207-UofT/course-project-team-scouts/blob/main/phase1/design_docmument.md)).
+  - Includes adapter, factory, and builder design patterns.
+- The refactoring we've done has made things easier to work with
+  - Classes were moved/refactored according to our packaging technique
+  - The `Player` creation process is now the responsibility of a factory class, `PlayerFactory`
+    - Allowed us to refactor and simplify `CSVAdapter`
+  - Some duplicate code was removed (resolved a code smell)
 
 ## Questions and Concerns
 
@@ -31,6 +37,17 @@
     - Java does not allow static variables to be serialized.
     - Even if we could, it wouldn't be possible read in a previously created `PlayerDatabase` or `TeamDatabase` object and replace the static variable's value from when it was first initialized.
   - The static methods prevent us from having an abstract `Database` class or interface, and the static variables create issues with inheritance (we have to shadow the parent's variables).
+- Our `InputData` classes are difficult to test
+  - Testing how console inputs are handled is significantly harder than testing if the right objects are returned by a method.
+    - *e.g.* for many of our methods we can do:
+      ```java
+      expected = Object(...)
+      actual = methodCall(...)
+      assertEquals(expected, actual)
+      ``` 
+    - For the `InputData.run` method, the return type is `void`, so we cannot test it as easily.
+  - Additionally, the `run` method's output depends on other classes (the `PresentData` classes), which we already have some tests for.
+    - Any test of `run` would just indirectly be a test of a `PresentData` method.
 
 ## Group Member Roles
 
@@ -40,9 +57,14 @@ Implemented a simple Builder Design Pattern in the command line. I further worke
 
 ### Daniel
 
+Worked on written materials, including the updated specification and walkthrough, the design document, and the progress report. 
+Decided on a packaging strategy and refactored all classes to adhere to the strategy.
+Performed other miscellaneous refactoring and reformatting of code (eliminating duplicated code, renaming for styling, etc.), and added documenation where it was missing.
+Wrote tests for `TeamStatsCalculator`, fixed broken tests, and increased overall line coverage.
+
 ### Kaartik
 
-Implemented the Factory Design Pattern along with Aditya while working on the `Player`, `Defender`, `Midfielder`, `Defender`, `Goalkeeper` and `PlayerFactory` classes (where we also overcame the issue of coupling different subpositions of a position into one). Also helped in `Builder` class, and wrote documentation for it. Wrote documentation for design principles, Factory Design Pattern and Builder Design pattern. Wrote a couple of tests for Player Class.
+Implemented the Factory Design Pattern along with Aditya while working on the `Player`, `Defender`, `Midfielder`, `Defender`, `Goalkeeper` and `PlayerFactory` classes (where we also overcame the issue of coupling different subpositions of a position into one). Also helped in `Builder` class, and wrote documentation for it. Wrote documentation for design principles, Factory Design Pattern and Builder Design pattern. Wrote a couple of tests for `Player` Class.
 
 ### Matthew
 
