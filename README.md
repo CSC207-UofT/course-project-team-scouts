@@ -4,16 +4,8 @@ A CSC207 course project by Tobey Brizuela, Aditya Peri, Matthew Parvaneh, Michae
 
 ## To-Do
 
-### `Player` class
+For a list of what's to-do, in progress, and completed so far, see the [Phase 1 project board](https://github.com/CSC207-UofT/course-project-team-scouts/projects/1).
 
-- [ ] add value attribute to players
-- [ ] use `Skill` class instead of `HashMap` for storing player skills (?)
-- [ ] use `Team` class instead of `String` for storing player's team
+## References
 
-### `Search____` classes
-
-- [ ] combine `SearchForPlayer` and `SearchByPlayerAttributes` (?)
-  - instead of using separate classes, we can have one `Player` search class with an overloaded method
-  - one version of the method takes in a single argument (a player's name)
-  - the other version takes in a mapping of skills with whatever values the user specified
-- [ ] also combine `SearchForTeam` and `SearchByTeamAttributes` (?)
+For a list of external resources used (*e.g.* code examples, design pattern info, etc.), see [Team Scouts Zotero library](https://www.zotero.org/groups/4509466/team_scouts/library).
