@@ -56,3 +56,5 @@ decision on the design document.
 Implemented TeamDatabase and Team classes. Reimplemnted CsvAdapter, Player and SearchForPlayer to enamble Team data loading, Player factory design method initialization and fuzzy name searching. Wrote some tests. 
 
 ### Tobey
+
+Implemented `User`, `UserList`, `ReadWriter`, `UserReadWriter`, `LoginController`, `LoginUseCase`, and `LoginInputBoundary` classes. Edited the `CommandLine` class to run through a simple username and password prompt sequence according to a pre-defined User object added to the list of users. Within the relevant login classes, implemented serialization within the storage and retrieval of data from `users.ser`. Additionally, added relevant tests for the implemented Login feature.
