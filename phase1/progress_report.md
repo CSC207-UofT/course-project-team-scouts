@@ -16,8 +16,6 @@
 
 ## Questions and Concerns
 
-*What are we struggling with?*
-
 - There's no such thing as a static abstract method (in Java, at least)
   - We would like to have an abstract `Database` class that our `PlayerDatabase` and `TeamDatabase` can implement.
   - We want to make sure that all database classes have methods which return a list of the entities in the database, but with our current design, these methods are static.
@@ -27,6 +25,12 @@
   - Some of the player names in our database contain non-Latin characters. These are not monospaced, but our current presenter functions assume that all output is monospaced.
   - The result is that column formatting is ruined, and attribute data becomes misaligned.
   - From our research, it seems like there is no real solution to this problem in Java, other than replacing non-Latin characters with a placeholder (*e.g.* `?`), or removing these players from the output entirely (this is our current solution).
+- Our `Database` classes have static variables and methods, causing multiple issues
+  - Testing is a hassle, since we have to reset the static variables after every single test that modifies them and make sure that we aren't missing any hidden mutation.
+  - Serialization is not possible for the `Database` classes if they have static variables.
+    - Java does not allow static variables to be serialized.
+    - Even if we could, it wouldn't be possible read in a previously created `PlayerDatabase` or `TeamDatabase` object and replace the static variable's value from when it was first initialized.
+  - The static methods prevent us from having an abstract `Database` class or interface, and the static variables create issues with inheritance (we have to shadow the parent's variables).
 
 ## Group Member Roles
 
@@ -35,6 +39,7 @@
 ### Daniel
 
 ### Kaartik
+
 Implemented the Factory Design Pattern along with Aditya while working on the `Player`, `Defender`, `Midfielder`, `Defender`, `Goalkeeper` and `PlayerFactory` classes. Also helped in Builder class, and wrote documentation for it. Wrote documentation for design principles, Factory Design Pattern and Builder Design pattern. Wrote a couple of tests for Player Class.
 
 ### Matthew
@@ -44,6 +49,8 @@ Continued working on the Presenter classes, made lots of modifications to `Playe
 Wrote tests for some of these classes and helped write about the packaging strategy
 decision on the design document.
 
-### Michael - Implemented TeamDatabase and Team classes. Reimplemnted CsvAdapter, Player and SearchForPlayer to enamble Team data loading, Player factory design method initialization and fuzzy name searching. Wrote some tests. 
+### Michael 
+
+Implemented TeamDatabase and Team classes. Reimplemnted CsvAdapter, Player and SearchForPlayer to enamble Team data loading, Player factory design method initialization and fuzzy name searching. Wrote some tests. 
 
 ### Tobey
