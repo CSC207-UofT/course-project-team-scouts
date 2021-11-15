@@ -12,9 +12,6 @@ import java.util.List;
 public class TeamDatabase {
     private static List<Team> teams = new ArrayList<>();
 
-    public TeamDatabase() {
-    }
-
     /**
      * Adds new team to Team database
      *

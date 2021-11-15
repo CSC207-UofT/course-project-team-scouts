@@ -104,6 +104,6 @@ public class Player {
     }
 
     public void displayPos() {
-        System.out.println("Arbitrary Position");
+        System.out.println("This player's position is " + getPosition());
     }
 }
