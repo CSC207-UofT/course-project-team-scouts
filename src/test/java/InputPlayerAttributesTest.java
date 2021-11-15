@@ -1,3 +1,5 @@
+import data.PlayerDatabase;
+import data.TeamDatabase;
 import entities.Player;
 import org.junit.*;
 import search.SearchByPlayerAttributes;
@@ -39,12 +41,11 @@ public class InputPlayerAttributesTest {
 
         assertTrue(truth_value);
         }
+    }
 
-
-
-
-
-
-
+    @After
+    public void tearDown() {
+        PlayerDatabase.setPlayers(new ArrayList<>());
+        TeamDatabase.setTeams(new ArrayList<>());
     }
 }

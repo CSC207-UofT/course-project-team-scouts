@@ -25,6 +25,7 @@ public class TestPlayerDatabase {
 
     @Test
     public void testGetPlayers() {
+        PlayerDatabase.setPlayers(new ArrayList<>());
         List<Player> empty = new ArrayList<>();
         assertEquals(PlayerDatabase.getPlayers(), empty);
 

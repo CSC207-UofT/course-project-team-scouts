@@ -49,6 +49,9 @@ public class TestTeamDatabase {
 
     @Test
     public void testGetTeams() {
+        List<Team> test_teams = new ArrayList<>();
+        test_teams.add(club);
+        TeamDatabase.setTeams(test_teams);
         assertEquals(1, TeamDatabase.getTeams().size());
     }
 
