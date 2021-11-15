@@ -1,10 +1,10 @@
-package entities;
+package io;
 
 import io.InputData;
 import io.InputPlayerAttributes;
 import io.InputPlayerName;
 
-public class PlayerBuilder {
+public class InputBuilder {
 
 
     /**

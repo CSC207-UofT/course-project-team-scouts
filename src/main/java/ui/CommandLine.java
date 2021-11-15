@@ -1,6 +1,6 @@
 package ui;
 
-import entities.PlayerBuilder;
+import io.InputBuilder;
 import io.InputData;
 import services.CSVAdapter;
 
@@ -38,7 +38,7 @@ public class CommandLine {
         String s = reader.readLine();
 
         try {
-            InputData inputClass = PlayerBuilder.getInputType(s);
+            InputData inputClass = InputBuilder.getInputType(s);
             inputClass.run();
 
         } catch (NullPointerException e) {
