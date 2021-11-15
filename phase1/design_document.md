@@ -21,19 +21,20 @@ Also see [`phase0/walkthrough.md`](https://github.com/CSC207-UofT/course-project
   - Our program now supports multiple user profiles with usernames and passwords.
   - Users will be able to view scouting history and add new players to their scouting shortlist.
 - Team creation
-  - Users can create a new team to scout for, rather than choosing an existing team
+  - Users will be able to create a new team to scout for, rather than choosing an existing team (still in progress).
   - The team will be added to the existing teams database and function just like any other team (same attributes and use cases).
 - Serialization for data retrieval
   - User profiles must be stored in memory to enable login features, and players/teams should be able to save their state so that the databases aren't rebuilt every time the program runs.
-  - The user, team, and player entities are all serializable now, as well as their associated databases.
+  - The user, team, and player entities will also be serializable (still in progress).
 - Updated presenter classes
   - Presenter classes now produce a summary of the most important player and team information, including ratings.
     - *e.g.* overall rating, offensive rating, defensive rating, and goalkeeping rating
   - These ratings are calculated by new calculator methods, which take averages of specific skill attributes.
 - Updated search/input classes (more details found in walkthrough)
-  - Users no longer have to enter a value for every single attribute. Instead, they can specify which attributes are relevant to their search.
-  - Users are also able to specify a range of acceptable values.
   - Searching by name (player or team) is more "fuzzy" &mdash; results will also include names that aren't exact matches.
+  - Still in progress:
+    - Users will no longer have to enter a value for every single attribute. Instead, they can specify which attributes are relevant to their search.
+    - Users will also be able to specify a range of acceptable values.
 
 ## Major Design Decisions
 
@@ -65,9 +66,18 @@ Also see [`phase0/walkthrough.md`](https://github.com/CSC207-UofT/course-project
 
 ## Clean Architecture
 
-*TODO: Draw a chart of our main classes in the layers of clean architecture w/ dependency arrows*
+We have largely preserved the structure of our program from Phase 0, but now with some additional classes. See [`phase0/crc_model.pdf`](https://github.com/CSC207-UofT/course-project-team-scouts/blob/main/phase0/crc_model.pdf) for Phase 0's CRC cards.
 
-*TODO: Brief explanation of chart*
+Here's a summary of the major changes in Phase 1 compared to Phase 0:
+
+- Enterprise Business Rules (entities)
+  - Added subclasses of `Player`: `Defender`, `Forward`, `Midfielder`, `Goalkeeper`
+  - Added `User` and removed `Scout`
+- Application Business Rules (use cases)
+  - Added `PlayerFactory` and `InputBuilder` classes (correspond to factor and builder design patterns)
+  - Added `LoginController` and `LoginUseCase` classes to support logging in 
+- Interface Adapters (controllers, gateways, and presenters)
+  - Added `ReadWriter`, `UserReadWriter`, and `LoginInputBoundary` classes to support user serialization and input
 
 ## SOLID Design
 
@@ -81,7 +91,8 @@ Also see [`phase0/walkthrough.md`](https://github.com/CSC207-UofT/course-project
   - The entirety of our Phase 1 has been *extending* on our code from Phase 0 while minimizing any *modification* of our existing code. 
     - Overall, our project has been open to extension while closed for modification, with some exceptions. 
   - We have added features like a **new login system**, **team creation feature**, **adding the factory design pattern**. All of these added features have not required any existing classes to be modified very much.
-  - Other changes in our project, like **updating the search methodology** and **upgrading presenter classes**, have required changes to existing classes, but these changes are mostly extensions (rather than replacing existing code).
+  - Other changes in our project, like **updating the search methodology** and **upgrading presenter classes**, *have* required changes to existing classes.
+    - This should happen less in Phase 2, when we have finalized the core functionality and are more focused on extending functionality.
 - Liskov Substitution Principle
   - Our use of interfaces and parent classes allows many subtypes to be substituted for their parent classes.
   - For example, the `Defender`, `Goalkeeper`, and other subclasses of `Player`, as well as `Player` itself, can all be added to `PlayerDatabase` using the `addEntity` method.
@@ -159,9 +170,9 @@ However, we decided against using decorators for this purpose.
 Decorators are most useful when we are working with a **singular object** whose behaviour or attributes we want to modify/expand. 
 Keeping up with the theme of soccer players, a good example would be having a base `Player` entity that can be customized with many individual pieces of attire or accessories.
 However, our `StatsCalculator` classes are simply being used by other classes to calculate singular statistics on the fly, 
-so it is fine that they are just monolithic classes with methods for each kind of statistic. 
+so it is fine that they are just monolithic classes with methods for each kind of statistic.
 
-*In the future, we may consider implementing...*
+We will continue to consider how other design patterns can be applied to our project in the future.
 
 ## Progress Report
 
