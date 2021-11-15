@@ -11,9 +11,6 @@ import java.util.List;
 public class PlayerDatabase {
     private static List<Player> players = new ArrayList<>();
 
-    public PlayerDatabase() {
-    }
-
     /**
      * Adds new player to Player database
      *

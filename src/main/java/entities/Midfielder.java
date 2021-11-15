@@ -8,9 +8,4 @@ public class Midfielder extends Player {
         super(name, age, height, weight, team, rating, value, position, skills);
 
     }
-
-    @Override
-    public void displayPos() {
-        System.out.println("This player's position is " + super.getPosition());
-    }
 }
