@@ -1,7 +1,11 @@
 package ui;
 
 import entities.PlayerBuilder;
+import entities.User;
+import entities.UserList;
 import io.InputData;
+import io.LoginController;
+import io.LoginUseCase;
 import services.CSVAdapter;
 
 import java.io.BufferedReader;
@@ -20,18 +24,29 @@ public class CommandLine {
      */
     public static void main(String[] args) throws IOException {
         CSVAdapter adapter = new CSVAdapter();
+        UserList users = new UserList();
+        users.add(new User("John", "123")); //adds a pre-defined user to list of users database
+        LoginUseCase useCase = new LoginUseCase(users); //use case
+        LoginController controller = new LoginController(useCase); //controller
         adapter.dataDump("dataset(s)/players_20.csv");
-        runPrompts();
+        runPrompts(controller);
     }
 
-
     /**
-     * Runs all user prompts and accepts input.
+     * Runs through all user prompts
      *
-     * @throws IOException if user input is invalid
+     * @param controller the LoginController used to run the login process
+     *                   given a username and password
+     * @throws IOException method prone to IOException when taking input
      */
-    private static void runPrompts() throws IOException {
+    private static void runPrompts(LoginController controller) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.println("Username: ");
+        String username = reader.readLine();
+        System.out.println("Password: ");
+        String password = reader.readLine();
+        controller.runLogin(username, password);
 
         System.out.print("Would you like to search for players based on their name or attributes?" +
                 " (Please input 'name' or 'attributes'): ");
