@@ -36,11 +36,13 @@
 
 ### Aditya
 
+Implemented a simple Builder Design Pattern in the command line. I further worked with Kaartik on implementing the Factory Design Pattern. I also extended the functionaliy of the PlayerFactory class by making it incorporate different sub 'position' attributesfor each position  from the database (For example RW,RF,LF,LW for Forward, CM, LM , RM for midfielder etc). Apart from this, I also worked with Michael on thoroughly debugging the implementation of Factory Design Pattern, the SearchForPlayer  class and the InputForPlayer class. Lastly, I also helped Kaartik in writing the tests for the player class.  
+
 ### Daniel
 
 ### Kaartik
 
-Implemented the Factory Design Pattern along with Aditya while working on the `Player`, `Defender`, `Midfielder`, `Defender`, `Goalkeeper` and `PlayerFactory` classes. Also helped in Builder class, and wrote documentation for it. Wrote documentation for design principles, Factory Design Pattern and Builder Design pattern. Wrote a couple of tests for Player Class.
+Implemented the Factory Design Pattern along with Aditya while working on the `Player`, `Defender`, `Midfielder`, `Defender`, `Goalkeeper` and `PlayerFactory` classes (where we also overcame the issue of coupling different subpositions of a position into one ). Also helped in Builder class, and wrote documentation for it. Wrote documentation for design principles, Factory Design Pattern and Builder Design pattern. Wrote a couple of tests for Player Class.
 
 ### Matthew
 
