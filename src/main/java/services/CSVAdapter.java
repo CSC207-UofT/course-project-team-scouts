@@ -60,14 +60,14 @@ public class CSVAdapter implements InputAdapter {
      * @param teams  collection of team names as string so far
      * @param player a Player object that belongs to this team
      */
-    public void updateTeamsDatabase(String t_name, ArrayList<String> teams, Player player) {
+    public void updateTeamsDatabase(String t_name, ArrayList<String> teams, Player player, TeamDatabase teamDatabase) {
         if (teams.contains(t_name)) {
-            TeamDatabase.updateRoster(t_name, player);
+            teamDatabase.updateRoster(t_name, player);
         } else {
             teams.add(t_name);
             List<Player> roster = new ArrayList<>();
             roster.add(player);
-            TeamDatabase.addEntity(t_name, roster);
+            teamDatabase.addEntity(t_name, roster);
         }
     }
 
@@ -118,7 +118,8 @@ public class CSVAdapter implements InputAdapter {
      * @param databaseFile the path of the database file (CSV)
      */
     @Override
-    public void dataDump(String databaseFile) throws IOException {
+    public void dataDump(String databaseFile, PlayerDatabase playerDatabase, TeamDatabase teamDatabase)
+            throws IOException {
         try {
             // Create fileReader and CsvReader objects
             FileReader fileReader = new FileReader(databaseFile);
@@ -147,11 +148,11 @@ public class CSVAdapter implements InputAdapter {
                 String[] skillAttributes = Arrays.copyOfRange(row, 44, 78);
                 HashMap<String, Integer> skills = makeHashMap(skillAttributes);
 
-                Player player = PlayerFactory.makePlayer(name, age, height, weight, team, rating,
+                Player player = playerDatabase.createPlayer(name, age, height, weight, team, rating,
                         value, position, skills);
 
-                PlayerDatabase.add_entity(player);
-                updateTeamsDatabase(team, teams_accumulator, player);
+                playerDatabase.addEntity(player);
+                updateTeamsDatabase(team, teams_accumulator, player, teamDatabase);
             }
 
         } catch (Exception e) {

@@ -9,8 +9,8 @@ import java.util.List;
 /**
  * Responsible for storing Team Data as a list of Team entities
  */
-public class TeamDatabase {
-    private static List<Team> teams = new ArrayList<>();
+public class TeamDatabase extends Database {
+    private List<Team> teams = new ArrayList<>();
 
     /**
      * Adds new team to Team database
@@ -18,12 +18,16 @@ public class TeamDatabase {
      * @param name    team name as string
      * @param players arraylist of players on team
      */
-    public static void addEntity(String name, List<Player> players) {
-        Team new_club = new Team(name, players);
-        teams.add(new_club);
+    public Team createTeam(String name, List<Player> players) {
+        return new Team(name, players);
     }
 
-    public static void updateRoster(String t_name, Player player) {
+    @Override
+    public void addEntity(Team team) {
+        teams.add(team);
+    }
+
+    public void updateRoster(String t_name, Player player) {
         for (Team t : teams) {
             if (t.getTeamName().equals(t_name)) {
                 t.addPlayer(player);
@@ -36,7 +40,7 @@ public class TeamDatabase {
      *
      * @param teamList list of  entities
      */
-    public static void setTeams(List<Team> teamList) {
+    public void setTeams(List<Team> teamList) {
         teams = teamList;
     }
 
@@ -45,7 +49,7 @@ public class TeamDatabase {
      *
      * @return list of Team entities
      */
-    public static List<Team> getTeams() {
+    public List<Team> getTeams() {
         return teams;
     }
 }

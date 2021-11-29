@@ -22,7 +22,7 @@ public class InputPlayerAttributesTest {
     public void runTest() throws IOException{
         List<Player> expectedPlayers;
         expectedPlayers = new ArrayList<>();
-//        expectedPlayers.add(new Player("L. Messi", 32, 170, , ));
+        //     expectedPlayers.add(new Player("L. Messi", 32, 170, , ));
         //     public Player(String name, int age, double height, double weight, String team, boolean scouted, String position,
         //                  HashMap<String, Integer> skills)
         ArrayList<Integer> attributes = new ArrayList<>();
