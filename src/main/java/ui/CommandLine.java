@@ -25,6 +25,7 @@ public class CommandLine {
      *                     is missing
      */
     public static void main(String[] args) throws IOException {
+        // Initialize adapter
         CSVAdapter adapter = new CSVAdapter();
         UserList users = new UserList();
         PlayerDatabase playerDatabase = new PlayerDatabase();
