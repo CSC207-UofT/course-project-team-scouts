@@ -2,11 +2,11 @@ package services;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
+import com.opencsv.exceptions.CsvException;
 import data.PlayerDatabase;
 import data.TeamDatabase;
 import entities.Player;
 import entities.PlayerFactory;
-import entities.Team;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -52,29 +52,6 @@ public class CSVAdapter implements InputAdapter {
         }
         return value;
     }
-
-    /**
-     * Helper method that checks if a Team is already in the Team database.
-     * Adds it if not, updates it with player if it is.
-     *
-     * @param teamName team name as string
-     * @param teams  collection of team names as string so far
-     * @param player a Player object that belongs to this team
-     */
-    public void updateTeamsDatabase(String teamName, ArrayList<String> teams, Player player, TeamDatabase teamDatabase) {
-        if (teams.contains(teamName)) {
-            teamDatabase.updateRoster(teamName, player);
-        } else {
-            teams.add(teamName);
-
-            List<Player> roster = new ArrayList<>();
-            roster.add(player);
-
-            Team team = new Team(teamName, roster);
-            teamDatabase.addEntity(team);
-        }
-    }
-
 
     /**
      * Returns a hashmap, mapping the string describing a player attribute to the value of
@@ -125,15 +102,14 @@ public class CSVAdapter implements InputAdapter {
     public void dataDump(String databaseFile, PlayerDatabase playerDatabase, TeamDatabase teamDatabase)
             throws IOException {
         try {
-            // Create fileReader and CsvReader objects
+            // Create fileReader and CSVReader objects
             FileReader fileReader = new FileReader(databaseFile);
             CSVReader csvReader = new CSVReaderBuilder(fileReader).withSkipLines(1).build();
 
             // Read all the data at once into a list of string arrays
             List<String[]> entries = csvReader.readAll();
 
-            // Iterate through each row representing a player, reformat player data and
-            // pass it to PlayerFactory, update database with new player
+            // Iterate through each row and process it
             for (String[] row : entries) {
 
                 // list of teams accumulator

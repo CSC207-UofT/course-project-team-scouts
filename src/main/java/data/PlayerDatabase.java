@@ -5,7 +5,7 @@ import entities.Player;
 /**
  * Responsible for storing Player Data as a list of player entities
  */
-public class PlayerDatabase extends Database<Player> {    
+public class PlayerDatabase extends Database<Player> {
     // This method is unnecessary - CSVAdapter calls PlayerFactory, which
     // calls the constructor of Player
     // public Player createPlayer(String name, int age, double height, double weight,
