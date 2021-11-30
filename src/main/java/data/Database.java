@@ -8,7 +8,7 @@ import java.util.List;
  * and player databases.
  */
 class Database<T> {
-    private List<T> entityList;
+    protected List<T> entityList;
 
     public Database() {
         entityList = new ArrayList<>();
