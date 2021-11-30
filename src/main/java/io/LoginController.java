@@ -26,13 +26,11 @@ public class LoginController {
             case SUCCESS:
                 // Should we be printing? How might you refactor this program
                 // to fit the Clean Architecture?
-                System.out.println("Success!");
-                break;
+                presenter.printSuccessfulLogin(username);
             case FAILURE:
                 presenter.printFailedLogin();
             case NO_SUCH_USER:
-                System.out.println("No such user found with username: " + username);
-
+                presenter.printNoUser(username);
         }
     }
 }

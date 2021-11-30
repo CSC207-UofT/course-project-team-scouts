@@ -1,7 +1,7 @@
 package io;
 
+import data.UserDatabase;
 import entities.User;
-import entities.UserList;
 import java.io.IOException;
 
 public class LoginUseCase {
@@ -12,12 +12,12 @@ public class LoginUseCase {
     private final UserDatabase users;
 
     /**
-     *Serializes and deserializes list of users
+     * Serializes and deserializes list of users
      */
-    UserReadWriter readWriter = new UserReadWriter();
+    ReadWriter readWriter = new ReadWriter();
 
     /**
-     * / The "output" of this use case.
+     * The "output" of this use case.
      */
     // Note: This could also be a fully-fledged class if we need to return
     // information to the controller.
