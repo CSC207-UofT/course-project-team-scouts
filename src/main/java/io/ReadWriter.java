@@ -4,15 +4,39 @@ import entities.UserList;
 
 import java.io.IOException;
 
-public interface ReadWriter {
+public class ReadWriter {
     /**
-     * @param filepath location of information file
-     * @param o object to be serialized
+     * Writes the entities to file at filePath.
+     *
+     * @param filePath the file to write the records to
+     * @param database stores the list of entities to be serialized
+     * @throws IOException can throw input/output exception
      */
-    void saveToFile(String filepath, Object o) throws IOException;
+    public void saveToFile(String filePath, Database<?> database) throws IOException {
+        OutputStream file = new FileOutputStream(filePath);
+        OutputStream buffer = new BufferedOutputStream(file);
+        ObjectOutput output = new ObjectOutputStream(buffer);
+
+        // serialize the Map
+        output.writeObject(database);
+        output.close();
+    }
 
     /**
-     * @param filepath location of login information file
+     * Store the entities to file at filePath.
+     *
+     * @param filePath file where the entities are stored
+     * @return list of entities
+     * @throws IOException can throw input/output exception
      */
-    UserList readFromFile(String filepath) throws IOException, ClassNotFoundException;
+    public Database<?> readFromFile(String filePath) throws IOException, ClassNotFoundException {
+        InputStream file = new FileInputStream(filePath);
+        InputStream buffer = new BufferedInputStream(file);
+        ObjectInput input = new ObjectInputStream(buffer);
+
+        // serialize the Map
+        Database<?> database = (Database<?>) input.readObject();
+        input.close();
+        return database;
+    }
 }

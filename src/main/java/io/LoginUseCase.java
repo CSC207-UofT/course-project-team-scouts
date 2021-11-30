@@ -4,12 +4,12 @@ import entities.User;
 import entities.UserList;
 import java.io.IOException;
 
-public class LoginUseCase implements LoginInputBoundary {
+public class LoginUseCase {
 
     /**
      * List of users organized by username
      */
-    private final UserList users;
+    private final UserDatabase users;
 
     /**
      *Serializes and deserializes list of users
@@ -25,7 +25,7 @@ public class LoginUseCase implements LoginInputBoundary {
         SUCCESS, FAILURE, NO_SUCH_USER // Should we do NO_SUCH_USER as well as SUCCESS and FAILURE?
     }
 
-    public LoginUseCase(UserList users) {
+    public LoginUseCase(UserDatabase users) {
         this.users = users;
         try {
             String filepath = "dataset(s)/users.ser";
@@ -44,7 +44,7 @@ public class LoginUseCase implements LoginInputBoundary {
     public LoginResult logIn(String username, String password) {
         User user = users.getUser(username);
         if (user == null) {
-            users.add(new User(username, password));
+            users.addEntity(new User(username, password));
             return LoginResult.NO_SUCH_USER;
         }
         else if (user.passwordMatches(password)) {
