@@ -15,7 +15,7 @@ public class InputPlayerAttributesTest {
     @Before
     public void setUp() throws IOException {
         CSVAdapter adapter = new CSVAdapter();
-        adapter.dataDump("dataset(s)/players_20.csv");
+        adapter.processFile("dataset(s)/players_20.csv");
     }
 
     @Test
