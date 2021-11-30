@@ -6,6 +6,7 @@ import data.PlayerDatabase;
 import data.TeamDatabase;
 import entities.Player;
 import entities.PlayerFactory;
+import entities.Team;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -56,18 +57,21 @@ public class CSVAdapter implements InputAdapter {
      * Helper method that checks if a Team is already in the Team database.
      * Adds it if not, updates it with player if it is.
      *
-     * @param t_name team name as string
+     * @param teamName team name as string
      * @param teams  collection of team names as string so far
      * @param player a Player object that belongs to this team
      */
-    public void updateTeamsDatabase(String t_name, ArrayList<String> teams, Player player, TeamDatabase teamDatabase) {
-        if (teams.contains(t_name)) {
-            teamDatabase.updateRoster(t_name, player);
+    public void updateTeamsDatabase(String teamName, ArrayList<String> teams, Player player, TeamDatabase teamDatabase) {
+        if (teams.contains(teamName)) {
+            teamDatabase.updateRoster(teamName, player);
         } else {
-            teams.add(t_name);
+            teams.add(teamName);
+
             List<Player> roster = new ArrayList<>();
             roster.add(player);
-            teamDatabase.addEntity(t_name, roster);
+
+            Team team = new Team(teamName, roster);
+            teamDatabase.addEntity(team);
         }
     }
 
@@ -148,7 +152,7 @@ public class CSVAdapter implements InputAdapter {
                 String[] skillAttributes = Arrays.copyOfRange(row, 44, 78);
                 HashMap<String, Integer> skills = makeHashMap(skillAttributes);
 
-                Player player = playerDatabase.createPlayer(name, age, height, weight, team, rating,
+                Player player = PlayerFactory.makePlayer(name, age, height, weight, team, rating,
                         value, position, skills);
 
                 playerDatabase.addEntity(player);
