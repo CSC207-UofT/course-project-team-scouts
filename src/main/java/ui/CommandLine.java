@@ -32,7 +32,7 @@ public class CommandLine {
         users.add(new User("John", "123")); //adds a pre-defined user to list of users database
         LoginUseCase useCase = new LoginUseCase(users); //use case
         LoginController controller = new LoginController(useCase); //controller
-        adapter.dataDump("dataset(s)/players_20.csv", playerDatabase, teamDatabase);
+        adapter.processFile("dataset(s)/players_20.csv", playerDatabase, teamDatabase);
         runPrompts(controller);
     }
 

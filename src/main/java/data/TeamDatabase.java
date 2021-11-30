@@ -3,6 +3,9 @@ package data;
 import entities.Player;
 import entities.Team;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Responsible for storing Team Data as a list of Team entities
  */
@@ -34,5 +37,8 @@ public class TeamDatabase extends Database<Team> {
                 return;
             }
         }
+        // Team has not been found, we add a new team
+        Team team = new Team(teamName, new ArrayList<>(List.of(player)));
+        this.addEntity(team);
     }
 }

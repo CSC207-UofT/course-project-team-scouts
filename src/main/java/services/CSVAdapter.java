@@ -10,7 +10,6 @@ import entities.PlayerFactory;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -99,8 +98,7 @@ public class CSVAdapter implements InputAdapter {
      * @param databaseFile the path of the database file (CSV)
      */
     @Override
-    public void dataDump(String databaseFile, PlayerDatabase playerDatabase, TeamDatabase teamDatabase)
-            throws IOException {
+    public void processFile(String databaseFile, PlayerDatabase playerDatabase, TeamDatabase teamDatabase) {
         try {
             // Create fileReader and CSVReader objects
             FileReader fileReader = new FileReader(databaseFile);
@@ -111,34 +109,40 @@ public class CSVAdapter implements InputAdapter {
 
             // Iterate through each row and process it
             for (String[] row : entries) {
-
-                // list of teams accumulator
-                ArrayList<String> teams_accumulator = new ArrayList<>();
-
-                String name = row[2];
-                int age = stringToInt(row[4]);
-                double height = stringToDouble(row[6]);
-                double weight = stringToDouble(row[7]);
-                String team = row[9];
-
-                int rating = stringToInt(row[10]);
-                double value = stringToDouble(row[12]);
-                String position = isolatePosition(row[14]);
-
-                String[] skillAttributes = Arrays.copyOfRange(row, 44, 78);
-                HashMap<String, Integer> skills = makeHashMap(skillAttributes);
-
-                Player player = PlayerFactory.makePlayer(name, age, height, weight, team, rating,
-                        value, position, skills);
-
-                playerDatabase.addEntity(player);
-                updateTeamsDatabase(team, teams_accumulator, player, teamDatabase);
+                processRow(row, playerDatabase, teamDatabase);
             }
-
-        } catch (Exception e) {
+        } catch (IOException | CsvException e) {
             e.printStackTrace();
         }
+    }
 
+    /**
+     * The method responsible for reading each entry from a given row
+     * of the data and assigning it to specific variables to generate and add
+     * the player and the team to the database.
+     * @param values row to process
+     * @param playerDatabase player database to edit
+     * @param teamDatabase team database to edit
+     */
+    private void processRow(String[] values, PlayerDatabase playerDatabase, TeamDatabase teamDatabase) {
+        String name = values[2];
+        int age = stringToInt(values[4]);
+        double height = stringToDouble(values[6]);
+        double weight = stringToDouble(values[7]);
+        String team = values[9];
+
+        int rating = stringToInt(values[10]);
+        double value = stringToDouble(values[12]);
+        String position = isolatePosition(values[14]);
+
+        String[] skillAttributes = Arrays.copyOfRange(values, 44, 78);
+        HashMap<String, Integer> skills = makeHashMap(skillAttributes);
+
+        Player player = PlayerFactory.makePlayer(name, age, height, weight, team, rating,
+                value, position, skills);
+
+        playerDatabase.addEntity(player);
+        teamDatabase.updateRoster(team, player);
     }
 
 }
