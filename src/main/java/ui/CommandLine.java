@@ -1,77 +1,146 @@
 package ui;
 
+import data.Database;
 import data.PlayerDatabase;
 import data.TeamDatabase;
-import entities.User;
-import entities.UserList;
 import data.UserDatabase;
-import io.InputBuilder;
-import io.InputData;
-import io.LoginController;
-import io.LoginUseCase;
-import io.InputLogin;
+import io.*;
 import services.CSVAdapter;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.List;
 
 public class CommandLine {
+    // This boolean controls the running of the program (prompts will stop when true)
+    private static boolean stop = false;
 
     /**
      * The main method of this program. Instantiates necessary classes
      * and starts the command line interface.
      *
-     * @param args additional arguments.
-     * @throws IOException if the database file ("dataset(s)/players_20.csv")
-     *                     is missing
+     * @param args additional arguments
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         // Initialize adapter
         CSVAdapter adapter = new CSVAdapter();
 
         // Initialize databases
-        UserDatabase users = new UserDatabase();
-        PlayerDatabase playerDatabase = new PlayerDatabase();
-        TeamDatabase teamDatabase = new TeamDatabase();
+        Database<?>[] databases = ReadWriter.loadDatabases();
+        UserDatabase userDatabase = (UserDatabase) databases[0];
+        PlayerDatabase playerDatabase = (PlayerDatabase) databases[1];
+        TeamDatabase teamDatabase = (TeamDatabase) databases[2];
 
-        // Run login process
-        LoginUseCase useCase = new LoginUseCase(users); //use case
-        LoginController controller = new LoginController(useCase); //controller
-        adapter.processFile("dataset(s)/players_20.csv", playerDatabase, teamDatabase);
-        runPrompts(controller);
-    }
-
-    public static void runLoginPrompt() {
-        InputLogin inputLogin = new InputLogin();
-        try (inputLogin.run()) {
-
-        } catch (IOException e) {
-
+        // Check if the player database is empty, in which case we must use CSVAdapter to add players (and teams)
+        if (playerDatabase.getEntities().isEmpty()) {
+            adapter.processFile("dataset(s)/players_20.csv", playerDatabase, teamDatabase);
         }
-        controller.runLogin(username, password);
 
-        System.out.print("Would you like to search for players based on their name or attributes?" +
-                " (Please input 'name' or 'attributes'): ");
-        String s = reader.readLine();
-
-        try {
-            InputData inputClass = InputBuilder.getInputType(s);
-            inputClass.run();
-        } catch (NullPointerException e) {
-            System.out.println("Invalid Response");
-        }
+        // Run prompts
+        runPrompts(userDatabase, playerDatabase, teamDatabase);
     }
 
     /**
      * Runs through all user prompts
-     *
-     * @param controller the LoginController used to run the login process
-     *                   given a username and password
-     * @throws IOException method prone to IOException when taking input
      */
-    private static void runPrompts(LoginController controller) throws IOException {
+    private static void runPrompts(UserDatabase userDatabase, PlayerDatabase playerDatabase,
+                                   TeamDatabase teamDatabase) {
+        // Run the login prompt
+        runLoginPrompt(userDatabase);
+        while (!stop) {
+            // Run the search prompts
+            runSelectSearchPrompt(playerDatabase, teamDatabase);
+            // Once the user completes their search...
+            runContinuePrompt(userDatabase, playerDatabase, teamDatabase);
+        }
+    }
 
+    private static void runLoginPrompt(UserDatabase userDatabase) {
+        // Build the correct InputData class for this prompt
+        InputLogin inputLogin = (InputLogin) InputBuilder.getInputType(InputType.LOGIN_DETAILS);
+        // Print out instructions
+        System.out.println("Please enter your login details.");
+        System.out.println("If you enter a username that does not currently exist in the system, " +
+                "a new account with that name will be created.");
+        // Run the prompt
+        inputLogin.run(userDatabase);
+        // Decide what to do
+        while (inputLogin.loginResult == LoginUseCase.LoginResult.FAILURE) {
+            LoginPresenter.printFailedLogin();
+            // User must try to log in again
+            inputLogin.run(userDatabase);
+        }
+        if (inputLogin.loginResult == LoginUseCase.LoginResult.SUCCESS) {
+            LoginPresenter.printSuccessfulLogin(inputLogin.username);
+        } else {
+            LoginPresenter.printNoUser(inputLogin.username);
+        }
+    }
+
+    private static void runSelectSearchPrompt(PlayerDatabase playerDatabase, TeamDatabase teamDatabase) {
+        // Initialize new BufferedReader
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        // List of valid inputs for this prompt
+        List<String> searchTypes = Arrays.asList("players", "teams");
+
+        String searchType = null;
+        // This loops until we get a valid input ("players" or "teams")
+        while (!searchTypes.contains(searchType)) {
+            // Print out instructions
+            System.out.println("Would you like to search for players or for teams? " +
+                    "(please input 'players' or 'teams')");
+            // Allows user to repeat input if IOException occurs
+            while (true) {
+                try {
+                    searchType = reader.readLine();
+                    break;
+                } catch (IOException e) { System.out.println("An error occurred, please try again."); }
+            }
+        }
+
+        // TODO: Implement runPlayerSearchPrompt and runTeamSearchPrompt
+        // assert searchType != null;
+        // if (searchType.equals("players")) {
+        //     runPlayerSearchPrompt();
+        // } else {
+        //     runTeamSearchPrompt();
+        // }
+    }
+
+    private static void runContinuePrompt(UserDatabase userDatabase, PlayerDatabase playerDatabase,
+                                          TeamDatabase teamDatabase) {
+        // Initialize new BufferedReader
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        // List of valid inputs for this prompt
+        List<String> inputs = Arrays.asList("", "exit");
+
+        String input = null;
+        // This loops until we get a valid input ("exit" or "")
+        while (!inputs.contains(input)) {
+            // Print out instructions
+            System.out.println("Press enter if you would like to continue searching, " +
+                    "or type 'exit' if you would like to save and exit.");
+            // Allows user to repeat input if IOException occurs
+            while (true) {
+                try {
+                    input = reader.readLine();
+                    break;
+                } catch (IOException e) { System.out.println("An error occurred, please try again."); }
+            }
+        }
+
+        assert input != null;
+        if (input.equals("exit")) {
+            boolean saved = ReadWriter.saveDatabases(userDatabase, playerDatabase, teamDatabase);
+            if (saved) { stop = true; }
+            else {
+                System.out.println("An unknown error has occured! Unable to save!");
+            }
+        }
     }
 
     /**
