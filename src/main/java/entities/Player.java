@@ -10,7 +10,7 @@ public class Player {
     private int age;
     private final double height;
     private final double weight;
-    private final String team;
+    private String team;
     private final int rating;
     private final double value;
     private final String position;
@@ -105,5 +105,9 @@ public class Player {
 
     public void displayPos() {
         System.out.println("This player's position is " + getPosition());
+    }
+
+    public void updateTeam(String teamName) {
+        team = teamName;
     }
 }

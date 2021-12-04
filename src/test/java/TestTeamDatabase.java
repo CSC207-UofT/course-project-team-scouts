@@ -22,7 +22,8 @@ public class TestTeamDatabase {
         List<Player> roster = new ArrayList<>();
         roster.add(test_player);
         club = new Team("Fc Barcelona", roster);
-        TeamDatabase.addEntity("Fc Barcelona", roster);
+        TeamDatabase teamDatabase = new TeamDatabase();
+        teamDatabase.addEntity("Fc Barcelona", roster);
     }
 
     @Test

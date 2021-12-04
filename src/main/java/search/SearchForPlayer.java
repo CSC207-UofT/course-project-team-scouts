@@ -9,10 +9,10 @@ import java.util.List;
 import java.util.Locale;
 
 public class SearchForPlayer {
-    public static List<Player> searchPlayer(String target) {
+    public static List<Player> searchPlayer(PlayerDatabase playerDatabase, String target) {
         String lower_t = target.toLowerCase(Locale.ROOT);
 
-        List<Player> playerList = PlayerDatabase.getPlayers();
+        List<Player> playerList = playerDatabase.getEntities();
         List<Player> validPlayers = new ArrayList<>();
 
         for (Player p : playerList) {

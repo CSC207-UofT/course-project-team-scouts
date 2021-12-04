@@ -1,5 +1,7 @@
 package ui;
 
+import data.PlayerDatabase;
+import data.TeamDatabase;
 import entities.User;
 import entities.UserList;
 import io.InputBuilder;
@@ -25,10 +27,12 @@ public class CommandLine {
     public static void main(String[] args) throws IOException {
         CSVAdapter adapter = new CSVAdapter();
         UserList users = new UserList();
+        PlayerDatabase playerDatabase = new PlayerDatabase();
+        TeamDatabase teamDatabase = new TeamDatabase();
         users.add(new User("John", "123")); //adds a pre-defined user to list of users database
         LoginUseCase useCase = new LoginUseCase(users); //use case
         LoginController controller = new LoginController(useCase); //controller
-        adapter.dataDump("dataset(s)/players_20.csv");
+        adapter.processFile("dataset(s)/players_20.csv", playerDatabase, teamDatabase);
         runPrompts(controller);
     }
 

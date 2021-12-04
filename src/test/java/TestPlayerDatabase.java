@@ -11,36 +11,32 @@ public class TestPlayerDatabase {
 
     @Test
     public void testAddEntity() {
-        PlayerDatabase.add_entity(testPlayer);
-        assertTrue(PlayerDatabase.getPlayers().contains(testPlayer));
+        PlayerDatabase playerDatabase = new PlayerDatabase();
+        playerDatabase.addEntity(testPlayer);
+        assertTrue(playerDatabase.getPlayers().contains(testPlayer));
     }
 
     @Test
     public void testSetPlayers() {
         List<Player> footballers = new ArrayList<>();
+        PlayerDatabase playerDatabase = new PlayerDatabase();
         footballers.add(testPlayer);
-        PlayerDatabase.setPlayers(footballers);
-        assertEquals(footballers, PlayerDatabase.getPlayers());
+        playerDatabase.setPlayers(footballers);
+        assertEquals(footballers, playerDatabase.getPlayers());
     }
 
     @Test
     public void testGetPlayers() {
-        PlayerDatabase.setPlayers(new ArrayList<>());
+        PlayerDatabase playerDatabase = new PlayerDatabase();
+        playerDatabase.setPlayers(new ArrayList<>());
         List<Player> empty = new ArrayList<>();
-        assertEquals(PlayerDatabase.getPlayers(), empty);
+        assertEquals(playerDatabase.getPlayers(), empty);
 
         List<Player> footballers = new ArrayList<>();
         footballers.add(testPlayer);
-        assertNotEquals(PlayerDatabase.getPlayers(), footballers);
+        assertNotEquals(playerDatabase.getPlayers(), footballers);
 
         footballers.add(testPlayer);
-        assertNotEquals(PlayerDatabase.getPlayers(), footballers);
+        assertNotEquals(playerDatabase.getPlayers(), footballers);
     }
-
-    @After
-    public void tearDown(){
-        List<Player> empty = new ArrayList<>();
-        PlayerDatabase.setPlayers(empty);
-    }
-
 }
