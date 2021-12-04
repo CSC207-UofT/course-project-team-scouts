@@ -1,11 +1,12 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 /**
  * A player with his attributes and information.
  */
-public class Player {
+public class Player implements Serializable {
     /**
      * The name.
      */
@@ -25,7 +26,7 @@ public class Player {
     /**
      * The team.
      */
-    private final String team;
+    private String team;
     /**
      * The rating.
      */
@@ -195,5 +196,9 @@ public class Player {
      */
     public void displayPos() {
         System.out.println("This player's position is " + getPosition());
+    }
+
+    public void updateTeam(String teamName) {
+        team = teamName;
     }
 }

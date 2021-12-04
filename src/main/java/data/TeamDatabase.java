@@ -9,43 +9,25 @@ import java.util.List;
 /**
  * Responsible for storing Team Data as a list of Team entities
  */
-public class TeamDatabase {
-    private static List<Team> teams = new ArrayList<>();
-
-    /**
-     * Adds new team to Team database
-     *
-     * @param name    team name as string
-     * @param players arraylist of players on team
+public class TeamDatabase extends Database<Team> {
+    /** 
+     * Updates the given team's roster to include the given
+     * Player object. If team is not found, add the team with
+     * the given player.
+     * 
+     * @param teamName String representing team name
+     * @param player   Player object to be added to the team
      */
-    public static void addEntity(String name, List<Player> players) {
-        Team new_club = new Team(name, players);
-        teams.add(new_club);
-    }
-
-    public static void updateRoster(String t_name, Player player) {
-        for (Team t : teams) {
-            if (t.getTeamName().equals(t_name)) {
+    public void updateRoster(String teamName, Player player) {
+        for (Team t : entityList) {
+            if (t.getTeamName().equals(teamName)) {
                 t.addPlayer(player);
+                player.updateTeam(teamName);
+                return;
             }
         }
-    }
-
-    /**
-     * Setter for Teams
-     *
-     * @param teamList list of  entities
-     */
-    public static void setTeams(List<Team> teamList) {
-        teams = teamList;
-    }
-
-    /**
-     * Getter for Teams
-     *
-     * @return list of Team entities
-     */
-    public static List<Team> getTeams() {
-        return teams;
+        // Team has not been found, we add a new team
+        Team team = new Team(teamName, new ArrayList<>(List.of(player)));
+        this.addEntity(team);
     }
 }

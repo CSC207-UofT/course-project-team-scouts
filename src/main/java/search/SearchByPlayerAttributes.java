@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SearchByPlayerAttributes {
-    public static List<Player> searchPlayer(ArrayList<Integer> a) throws IOException {
+    public static List<Player> searchPlayer(PlayerDatabase playerDatabase, ArrayList<Integer> a) throws IOException {
         // we can add more values eventually
-        List<Player> playerList = PlayerDatabase.getPlayers();
+        List<Player> playerList = playerDatabase.getEntities();
         List<Player> validPlayers = new ArrayList<>();
         for (Player p : playerList) {
             int age = p.getAge();

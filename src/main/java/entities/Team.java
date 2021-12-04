@@ -1,9 +1,10 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Team {
+public class Team implements Serializable {
     private final String team_name;
     List<Player> players;
 
