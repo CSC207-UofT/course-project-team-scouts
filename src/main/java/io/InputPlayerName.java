@@ -1,12 +1,18 @@
 package io;
 
+import data.Database;
+import data.PlayerDatabase;
+import entities.Player;
 import search.SearchForPlayer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
-public class InputPlayerName implements InputData {
+public class InputPlayerName implements InputData<Player> {
+    // Instance variable storing the search results after a search by attributes is completed.
+    List<Player> searchResults;
 
     @Override
     public String getInput() throws IOException {
@@ -15,7 +21,7 @@ public class InputPlayerName implements InputData {
     }
 
     @Override
-    public void run() {
+    public void run(Database<Player> database) {
         String name = "";
         System.out.print("Enter a player's name: ");
         try {
@@ -26,8 +32,9 @@ public class InputPlayerName implements InputData {
 
         try {
             if (name != null) {
+                this.searchResults = SearchForPlayer.searchPlayer((PlayerDatabase) database, name);
                 PlayersPresenter pPresenter = new PlayersPresenter();
-                pPresenter.outputResults(SearchForPlayer.searchPlayer(name));
+                pPresenter.outputResults(searchResults);
             }
         } catch (Exception e) {
             System.out.println("Empty name.");

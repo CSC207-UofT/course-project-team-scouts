@@ -1,5 +1,8 @@
 package io;
 
+import data.Database;
+import data.PlayerDatabase;
+import entities.Player;
 import search.SearchByPlayerAttributes;
 
 import java.io.BufferedReader;
@@ -8,7 +11,9 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InputPlayerAttributes implements InputData {
+public class InputPlayerAttributes implements InputData<Player> {
+    // Instance variable storing the search results after a search by attributes is completed.
+    List<Player> searchResults;
 
     @Override
     public String getInput() throws IOException {
@@ -22,7 +27,7 @@ public class InputPlayerAttributes implements InputData {
      * falls under the range of the given categories.
      */
     @Override
-    public void run() {
+    public void run(Database<Player> database) {
         PlayerPropertiesIterator prompts = new PlayerPropertiesIterator();
         List<String> temp = new ArrayList<>();
 
@@ -46,8 +51,11 @@ public class InputPlayerAttributes implements InputData {
                 for (String s : temp) {
                     attributes.add(Integer.parseInt(s));
                 }
+
+                // Storing data in the search results and then outputting it to the screen.
+                this.searchResults = SearchByPlayerAttributes.searchPlayer((PlayerDatabase) database, attributes);
                 PlayersPresenter pPresenter = new PlayersPresenter();
-                pPresenter.outputResults(SearchByPlayerAttributes.searchPlayer(attributes));
+                pPresenter.outputResults(searchResults);
             }
         } catch (IndexOutOfBoundsException | IOException e) {
             System.out.println("Exiting.");
