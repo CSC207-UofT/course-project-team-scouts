@@ -3,8 +3,22 @@ package entities;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
-
+/**
+ * Factory class with makePlayer method that instantiates the player objects.
+ */
 public class PlayerFactory {
+    /**
+     * Returns the object of the type of player depending on the position.
+     * @param name the name
+     * @param age the age
+     * @param height the height
+     * @param weight the weight
+     * @param team the team
+     * @param rating the rating
+     * @param value the value
+     * @param position the position
+     * @param skills the skills
+     */
     public static Player makePlayer(String name, int age, double height, double weight,
                                     String team, int rating, double value, String position,
                                     HashMap<String, Integer> skills) {
