@@ -14,5 +14,5 @@ public interface InputAdapter {
      * @param databaseFile is a string representing path of the database file on the
      *                     local filesystem (e.g. "dataset(s)/players_20.csv")
      */
-    void processFile(String databaseFile, PlayerDatabase playerDatabase, TeamDatabase teamDatabase) throws IOException;
+    void processFile(String databaseFile, PlayerDatabase playerDatabase, TeamDatabase teamDatabase);
 }

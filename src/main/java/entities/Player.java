@@ -1,11 +1,12 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 /*
  * Class dealing w/ a player entity
  * */
-public class Player {
+public class Player implements Serializable {
     private String name;
     private int age;
     private final double height;

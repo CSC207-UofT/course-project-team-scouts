@@ -1,13 +1,13 @@
 package data;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Database superclass with subclasses that store team
- * and player databases.
+ * Database superclass used to store entities.
  */
-class Database<T> {
+public class Database<T> implements Serializable {
     protected List<T> entityList;
 
     public Database() {
