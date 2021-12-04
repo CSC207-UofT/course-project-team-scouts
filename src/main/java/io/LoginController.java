@@ -18,19 +18,8 @@ public class LoginController {
      * @param username the username
      * @param password the password attempt
      */
-    public void runLogin(String username, String password) {
+    public LoginUseCase.LoginResult runLogin(String username, String password) {
         // Note: hands off the work to the use case class.
-        LoginUseCase.LoginResult result = loginUseCase.logIn(username, password);
-        LoginPresenter presenter = new LoginPresenter();
-        switch (result) {
-            case SUCCESS:
-                // Should we be printing? How might you refactor this program
-                // to fit the Clean Architecture?
-                presenter.printSuccessfulLogin(username);
-            case FAILURE:
-                presenter.printFailedLogin();
-            case NO_SUCH_USER:
-                presenter.printNoUser(username);
-        }
+        return loginUseCase.logIn(username, password);
     }
 }

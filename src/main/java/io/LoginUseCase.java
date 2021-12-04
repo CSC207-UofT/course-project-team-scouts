@@ -2,7 +2,6 @@ package io;
 
 import data.UserDatabase;
 import entities.User;
-import java.io.IOException;
 
 public class LoginUseCase {
 
@@ -12,27 +11,16 @@ public class LoginUseCase {
     private final UserDatabase users;
 
     /**
-     * Serializes and deserializes list of users
-     */
-    ReadWriter readWriter = new ReadWriter();
-
-    /**
      * The "output" of this use case.
      */
     // Note: This could also be a fully-fledged class if we need to return
     // information to the controller.
     public enum LoginResult {
-        SUCCESS, FAILURE, NO_SUCH_USER // Should we do NO_SUCH_USER as well as SUCCESS and FAILURE?
+        SUCCESS, FAILURE, NO_SUCH_USER
     }
 
     public LoginUseCase(UserDatabase users) {
         this.users = users;
-        try {
-            String filepath = "dataset(s)/users.ser";
-            readWriter.saveToFile(filepath, users);
-        } catch (IOException e) {
-            System.out.println("User list did not save.");
-        }
     }
 
     /**
