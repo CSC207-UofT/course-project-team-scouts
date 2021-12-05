@@ -51,6 +51,9 @@
 - If we don't know what has caused an error, instead of our program halting, we tell the user that an unknown error has occurred and allow the user to continue using the program.
     - This avoids the loss of data (if the user has made unsaved changes).
     - This also avoids long, complicated error messages from being displayed.
+- We also tolerate some error in user inputs.
+    - For example, when searching by player attributes, the user should specify a range by separating two integer values with a single space, *e.g.* `21 45`.
+    - They may also input `  21           45` and get the exact same results.
 
 ### Principle 6: Low Physical Effort
 
