@@ -22,6 +22,30 @@ public class Defender extends Player {
                     double value, String position, HashMap<String, Integer> skills) {
         super(name, age, height, weight, team, rating, value, position, skills);
     }
+
+    /**
+     * Return defending attributes that all Defender subtype of Players must have.
+     */
+    @Override
+    public HashMap<String, Integer> getPositionSkills() {
+        HashMap<String, Integer> allSkills = super.getSkills();
+        HashMap<String, Integer> positionAttributes = new HashMap<String, Integer>();
+
+        String[] positionSkillAttributes = {"aggression", "interceptions",
+                "short passing", "long passing", "marking", "standing tackle",
+                "sliding tackle"};
+
+
+        for (String attribute : positionSkillAttributes) {
+            positionAttributes.put(attribute, allSkills.get(attribute));
+
+
+
+
+
+        }
+        return positionAttributes;
+    }
 }
 
 

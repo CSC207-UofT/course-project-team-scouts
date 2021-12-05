@@ -23,4 +23,23 @@ public class Goalkeeper extends Player {
                       double value, String position, HashMap<String, Integer> skills) {
         super(name, age, height, weight, team, rating, value, position, skills);
     }
+    @Override
+    public HashMap<String, Integer> getPositionSkills() {
+        HashMap<String, Integer> allSkills = super.getSkills();
+        HashMap<String, Integer> positionAttributes = new HashMap<String, Integer>();
+
+        String[] positionSkillAttributes = {"goalkeeping diving", "goalkeeping handling", "goalkeeping kicking",
+                "goalkeeping positioning", "goalkeeping reflexes"};
+
+
+        for (String attribute : positionSkillAttributes) {
+            positionAttributes.put(attribute, allSkills.get(attribute));
+
+
+
+
+
+        }
+        return positionAttributes;
+    }
 }
