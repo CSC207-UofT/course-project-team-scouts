@@ -1,5 +1,6 @@
 package io;
 
+import data.PlayerStatsCalculator;
 import entities.Player;
 import ui.CommandLine;
 
@@ -7,6 +8,10 @@ import java.util.HashMap;
 import java.util.List;
 
 public class PlayersPresenter implements PresentData<Player> {
+    /* Create an instance of PlayerStatsCalculator for the purpose of
+     aggregated statistics calculation. */
+    PlayerStatsCalculator calculator = new PlayerStatsCalculator();
+
     /**
      * Outputs the results of a search for players by their skill attributes
      * to the console in a tabular format. Does not return anything to the
@@ -16,6 +21,11 @@ public class PlayersPresenter implements PresentData<Player> {
      */
     @Override
     public void outputResults(List<Player> playerList) {
+        /* TODO: maybe add a logic check here if there is only one player, so
+            that we can maybe have an additional method for more verbose
+            output for only one player (like in the form of a list or t-chart
+            instead of a table).
+         */
         // Output the header of the table.
         printHeader(playerList);
 
@@ -32,15 +42,20 @@ public class PlayersPresenter implements PresentData<Player> {
     private void printRows(List<Player> players) {
         int playerCount = 0;
         for (Player p : players) {
-            // Build a row in the table corresponding to a given player and the
-            // values for their skill attributes.
+            /* Build a row in the table corresponding to a given player and the
+            values for their skill attributes. */
             StringBuilder playerRow = new StringBuilder();
 
-            // Only add the
+            /* Only output players with Latin characters in their name (other kinds of
+            characters break formatting) */
             if (!containsNonLatinCharacters(p.getName())) {
+                // Print Player name, age, and aggregated ratings first
                 playerRow.append(String.format("%40s", p.getName())).append("|");
                 playerRow.append(String.format("%20s", p.getAge())).append("|");
+                playerRow.append(String.format("%20s", calculator.generateOffensiveRating(p))).append("|");
+                playerRow.append(String.format("%20s", calculator.generateDefensiveRating(p))).append("|");
 
+                // Print user's individual skill attributes
                 for (Integer skillValue : p.getSkills().values()) {
                     playerRow.append(String.format("%25d", skillValue)).append("|");
                 }
@@ -51,15 +66,7 @@ public class PlayersPresenter implements PresentData<Player> {
 
             // Pause the output after 10 players each time, so the user can look
             // through the list of players properly.
-            if (playerCount % 10 == 0) {
-                try {
-                    CommandLine.resumeOutput();
-                } catch (Exception e) {
-                    // Even if user enters the wrong key, we can still let it
-                    // go to the next page of output.
-                    System.out.print("");
-                }
-            }
+            pauseOutput(playerCount);
         }
     }
 
@@ -76,11 +83,14 @@ public class PlayersPresenter implements PresentData<Player> {
             // can model the header for the table on this.
             HashMap<String, Integer> attributes = players.get(0).getSkills();
 
-            // Use all keys in HashMap as the column names for the table.
+            // Prefix the header with the most basic data about the player.
             StringBuilder header = new StringBuilder();
             header.append(String.format("%40s", "Name")).append("|");
             header.append(String.format("%20s", "Age")).append("|");
+            header.append(String.format("%20s", "Offensive Rating")).append("|");
+            header.append(String.format("%20s", "Defensive Rating")).append("|");
 
+            // Use the player's individual skill attributes to head the rest of the columns.
             for (String skill : attributes.keySet()) {
                 header.append(String.format("%25s", skill)).append("|");
             }
@@ -112,5 +122,25 @@ public class PlayersPresenter implements PresentData<Player> {
             }
         }
         return false;
+    }
+
+    /**
+     * Halts the presenter from outputting function after any multiple of
+     * 10 players have been output to the screen until user presses ENTER
+     * to resume it. Allows for pagination of output, so user can peruse small
+     * sets of players at their leisure, and are not overloaded with too many at once.
+     *
+     * @param playerCount the number of players that have been output to the console so far.
+     */
+    private void pauseOutput(int playerCount) {
+        if (playerCount % 10 == 0) {
+            try {
+                CommandLine.resumeOutput();
+            } catch (Exception e) {
+                // Even if user enters the wrong key, we can still let it
+                // go to the next page of output.
+                System.out.print("");
+            }
+        }
     }
 }
