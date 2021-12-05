@@ -17,7 +17,7 @@ class TeamPresenter implements PresentData<Team> {
     @Override
     public void outputResults(List<Team> teams) {
         for (Team t : teams) {
-            System.out.println("Team name: " + t.getTeamName());
+            System.out.println("Team name: " + t.getName());
             System.out.println("Overall Rating: " + calculator.generateOverallRating(t));
             System.out.println("Net worth: " + calculator.generateNetWorth(t));
             System.out.println("Number of players: " + t.getPlayers().size());

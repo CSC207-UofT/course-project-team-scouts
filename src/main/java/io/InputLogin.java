@@ -13,12 +13,6 @@ public class InputLogin implements InputData<User> {
     public String username;
 
     @Override
-    public String getInput() throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        return reader.readLine();
-    }
-
-    @Override
     public void run(Database<User> userDatabase) {
         System.out.println("Username: ");
         while (true) {

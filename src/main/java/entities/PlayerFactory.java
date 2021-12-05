@@ -19,8 +19,8 @@ public class PlayerFactory {
      * @param position the position
      * @param skills the skills
      */
-    public static Player makePlayer(String name, int age, double height, double weight,
-                                    String team, int rating, double value, String position,
+    public static Player makePlayer(String name, int age, int height, int weight,
+                                    String team, int rating, int value, String position,
                                     HashMap<String, Integer> skills) {
         Set<String> defender = new HashSet<>();
         defender.add("CB");

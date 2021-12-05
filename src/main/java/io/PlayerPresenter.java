@@ -52,7 +52,7 @@ class PlayerPresenter implements PresentData<Player> {
      * @param p the player for which detailed output is desired.
      */
     private void printSkillAttributes(Player p) {
-        HashMap<String, Integer> playerSkills = p.getPositionAttributes();
+        HashMap<String, Integer> playerSkills = p.getPositionSkills();
 
         for (Map.Entry<String, Integer> e : playerSkills.entrySet()) {
             String skill = e.getKey();

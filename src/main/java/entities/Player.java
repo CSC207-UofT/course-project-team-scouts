@@ -18,11 +18,11 @@ public class Player implements Serializable, Identifiable {
     /**
      * The height.
      */
-    private final double height;
+    private final int height;
     /**
      * The weight.
      */
-    private final double weight;
+    private final int weight;
     /**
      * The team.
      */
@@ -34,7 +34,7 @@ public class Player implements Serializable, Identifiable {
     /**
      * The value.
      */
-    private final double value;
+    private final int value;
     /**
      * The position.
      */
@@ -54,7 +54,7 @@ public class Player implements Serializable, Identifiable {
         this.weight = 0;
         this.team = null;
         this.rating = 0;
-        this.value = 0.0;
+        this.value = 0;
         this.position = null;
         this.skills = new HashMap<>();
     }
@@ -71,8 +71,8 @@ public class Player implements Serializable, Identifiable {
      * @param position the position
      * @param skills the skills
      */
-    public Player(String name, int age, double height, double weight, String team,
-                  int rating, double value, String position,
+    public Player(String name, int age, int height, int weight, String team,
+                  int rating, int value, String position,
                   HashMap<String, Integer> skills) {
         this.name = name;
         this.age = age;
@@ -108,14 +108,14 @@ public class Player implements Serializable, Identifiable {
     /**
      * Return the height of this player.
      */
-    public double getHeight() {
+    public int getHeight() {
         return height;
     }
 
     /**
      * Return the weight of this player.
      */
-    public double getWeight() {
+    public int getWeight() {
         return weight;
     }
 
@@ -129,7 +129,7 @@ public class Player implements Serializable, Identifiable {
     /**
      * Return the value of this player.
      */
-    public double getValue() {
+    public int getValue() {
         return value;
     }
 
@@ -207,7 +207,7 @@ public class Player implements Serializable, Identifiable {
      */
     public HashMap<String, Integer> getPositionSkills() {
         HashMap<String, Integer> allSkills = getSkills();
-        HashMap<String, Integer> positionAttributes = new HashMap<String, Integer>();
+        HashMap<String, Integer> positionAttributes = new HashMap<>();
 
         String[] positionSkillAttributes = {"crossing", "finishing",
                 "heading accuracy", "short passing",

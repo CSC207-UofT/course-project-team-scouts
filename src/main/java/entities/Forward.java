@@ -18,8 +18,8 @@ public class Forward extends Player {
      * @param position the position
      * @param skills the skills
      */
-    public Forward(String name, int age, double height, double weight, String team, int rating,
-                   double value, String position, HashMap<String, Integer> skills) {
+    public Forward(String name, int age, int height, int weight, String team, int rating,
+                   int value, String position, HashMap<String, Integer> skills) {
         super(name, age, height, weight, team, rating, value, position, skills);
 
 
@@ -31,7 +31,7 @@ public class Forward extends Player {
     @Override
     public HashMap<String, Integer> getPositionSkills(){
         HashMap<String, Integer> allSkills = super.getSkills();
-        HashMap<String, Integer> positionAttributes = new HashMap<String, Integer>();
+        HashMap<String, Integer> positionAttributes = new HashMap<>();
         String[] positionSkillAttributes = {"dribbling","finishing","sprint speed",
                 "short passing","crossing","ball control","fk accuracy"};
 

@@ -37,22 +37,6 @@ public class CSVAdapter implements InputAdapter {
     }
 
     /**
-     * Helper method that converts strings to doubles. Tries to catch NumberFormatException.
-     *
-     * @param doubleAsString csv string cell value
-     * @return value the sole parameter now as a double
-     */
-    public double stringToDouble(String doubleAsString) {
-        double value;
-        try {
-            value = Double.parseDouble(doubleAsString);
-        } catch (NumberFormatException e) {
-            value = 0.0;
-        }
-        return value;
-    }
-
-    /**
      * Returns a hashmap, mapping the string describing a player attribute to the value of
      * that players attribute as an int.
      *
@@ -127,12 +111,12 @@ public class CSVAdapter implements InputAdapter {
     private void processRow(String[] values, PlayerDatabase playerDatabase, TeamDatabase teamDatabase) {
         String name = values[2];
         int age = stringToInt(values[4]);
-        double height = stringToDouble(values[6]);
-        double weight = stringToDouble(values[7]);
+        int height = stringToInt(values[6]);
+        int weight = stringToInt(values[7]);
         String team = values[9];
 
         int rating = stringToInt(values[10]);
-        double value = stringToDouble(values[12]);
+        int value = stringToInt(values[12]);
         String position = isolatePosition(values[14]);
 
         String[] skillAttributes = Arrays.copyOfRange(values, 44, 78);

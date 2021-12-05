@@ -18,8 +18,8 @@ public class Midfielder extends Player {
      * @param position the position
      * @param skills the skills
      */
-    public Midfielder(String name, int age, double height, double weight, String team, int rating,
-                      double value, String position, HashMap<String, Integer> skills) {
+    public Midfielder(String name, int age, int height, int weight, String team, int rating,
+                      int value, String position, HashMap<String, Integer> skills) {
         super(name, age, height, weight, team, rating, value, position, skills);
 
     }
@@ -31,7 +31,7 @@ public class Midfielder extends Player {
     @Override
     public HashMap<String, Integer> getPositionSkills() {
         HashMap<String, Integer> allSkills = super.getSkills();
-        HashMap<String, Integer> positionAttributes = new HashMap<String, Integer>();
+        HashMap<String, Integer> positionAttributes = new HashMap<>();
 
         String[] positionSkillAttributes = {"dribbling","sprint speed","acceleration","volleys","positioning",
                 "short passing","long passing","ball control","fk accuracy"};

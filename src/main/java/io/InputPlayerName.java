@@ -1,9 +1,8 @@
 package io;
 
 import data.Database;
-import data.PlayerDatabase;
 import entities.Player;
-import search.SearchForPlayer;
+import search.SearchByName;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -32,7 +31,8 @@ public class InputPlayerName implements InputData<Player> {
 
         try {
             if (name != null) {
-                this.searchResults = SearchForPlayer.searchPlayer((PlayerDatabase) database, name);
+                SearchByName<Player> searchByName = new SearchByName<>();
+                this.searchResults = searchByName.search(database, name);
                 PlayersPresenter pPresenter = new PlayersPresenter();
                 pPresenter.outputResults(searchResults);
             }

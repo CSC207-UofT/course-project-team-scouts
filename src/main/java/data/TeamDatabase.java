@@ -20,7 +20,7 @@ public class TeamDatabase extends Database<Team> {
      */
     public void updateRoster(String teamName, Player player) {
         for (Team t : entityList) {
-            if (t.getTeamName().equals(teamName)) {
+            if (t.getName().equals(teamName)) {
                 t.addPlayer(player);
                 player.updateTeam(teamName);
                 return;
