@@ -14,30 +14,22 @@ public class InputPlayerName implements InputData<Player> {
     List<Player> searchResults;
 
     @Override
-    public String getInput() throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        return reader.readLine();
-    }
-
-    @Override
     public void run(Database<Player> database) {
-        String name = "";
+        String name;
         System.out.print("Enter a player's name: ");
-        try {
-            name = this.getInput();
-        } catch (IOException e) {
-            System.out.println("Invalid player name.");
-        }
-
-        try {
-            if (name != null) {
-                SearchByName<Player> searchByName = new SearchByName<>();
-                this.searchResults = searchByName.search(database, name);
-                PlayersPresenter pPresenter = new PlayersPresenter();
-                pPresenter.outputResults(searchResults);
+        while (true) {
+            try {
+                name = getInput();
+                break;
+            } catch (IOException e) {
+                System.out.println("An error occurred, please try again.\n");
             }
-        } catch (Exception e) {
-            System.out.println("Empty name.");
         }
+        
+        SearchByName<Player> searchByName = new SearchByName<>();
+        searchResults = searchByName.search(database, name.strip());
+
+        PlayersPresenter pPresenter = new PlayersPresenter();
+        pPresenter.outputResults(searchResults);
     }
 }
