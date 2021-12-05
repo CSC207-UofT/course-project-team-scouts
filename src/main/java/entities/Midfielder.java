@@ -23,4 +23,28 @@ public class Midfielder extends Player {
         super(name, age, height, weight, team, rating, value, position, skills);
 
     }
+
+    /**
+     * Return midfielding attributes that all Midfielder subtype of Players must have.
+     */
+
+    @Override
+    public HashMap<String, Integer> getPositionSkills() {
+        HashMap<String, Integer> allSkills = super.getSkills();
+        HashMap<String, Integer> positionAttributes = new HashMap<String, Integer>();
+
+        String[] positionSkillAttributes = {"dribbling","sprint speed","acceleration","volleys","positioning",
+                "short passing","long passing","ball control","fk accuracy"};
+
+
+        for (String attribute : positionSkillAttributes) {
+            positionAttributes.put(attribute, allSkills.get(attribute));
+
+
+
+
+
+        }
+        return positionAttributes;
+    }
 }
