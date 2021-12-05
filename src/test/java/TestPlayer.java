@@ -1,3 +1,4 @@
+import data.PlayerDatabase;
 import entities.Player;
 import org.junit.*;
 import services.CSVAdapter;
@@ -13,7 +14,9 @@ public class TestPlayer {
     @Before
     public void setUp() throws IOException {
         CSVAdapter adapter = new CSVAdapter();
-        adapter.dataDump("dataset(s)/players_20.csv");
+        PlayerDatabase playerdatabase = new PlayerDatabase();
+        data.TeamDatabase teamdatabase = new data.TeamDatabase();
+        adapter.processFile("dataset(s)/players_20.csv", playerdatabase, teamdatabase);
     }
 
     @Test
@@ -31,16 +34,12 @@ public class TestPlayer {
     public void TestDefaultHeight(){
         double height = testPlayer.getHeight();
         assertEquals(height, 0.0, 0);
-
-
     }
 
     @Test
     public void TestDefaultWeight(){
         double height = testPlayer.getWeight();
         assertEquals(height, 0.0, 0);
-
-
     }
 
     @Test
@@ -51,8 +50,12 @@ public class TestPlayer {
 
     @Test
     public void TestDefaultPosition(){
-
         assertNull(testPlayer.getPosition());
+    }
+    @Test
+    public void TestUpdateTeam(){
+        testPlayer.updateTeam("Scouts");
+        assertEquals(testPlayer.getTeam(), "Scouts");
     }
 
 
