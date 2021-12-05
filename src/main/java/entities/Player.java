@@ -6,7 +6,7 @@ import java.util.HashMap;
 /**
  * A player with his attributes and information.
  */
-public class Player implements Serializable {
+public class Player implements Serializable, Identifiable {
     /**
      * The name.
      */

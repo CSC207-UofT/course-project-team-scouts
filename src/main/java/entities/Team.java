@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Team implements Serializable {
+public class Team implements Serializable, Identifiable {
     private final String team_name;
     List<Player> players;
 
@@ -19,7 +19,7 @@ public class Team implements Serializable {
     }
 
 
-    public String getTeamName() {
+    public String getName() {
         return team_name;
     }
 
