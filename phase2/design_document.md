@@ -1,0 +1,124 @@
+# Phase 2 Design Document
+
+*Note: This document covers a lot of the same information as the [Phase 1 Design Document](https://github.com/CSC207-UofT/course-project-team-scouts/blob/main/phase1/design_document.md#packaging-strategy). In some sections, we include links to what we wrote in the previous phase to avoid reiterating.*
+
+- [Specification and Walkthrough](#specification-and-walkthrough)
+  - [Overview of Changes to Specification](#overview-of-changes-to-specification)
+- [Major Design Decisions](#major-design-decisions)
+- [Clean Architecture](#clean-architecture)
+- [SOLID Design](#solid-design)
+- [Packaging Strategy](#packaging-strategy)
+- [Design Patterns](#design-patterns)
+- [Progress Report](#progress-report)
+
+## Specification and Walkthrough
+
+See [`specification.md`](https://github.com/CSC207-UofT/course-project-team-scouts/blob/main/phase2/specification.md) for the updated, final specification.
+
+Also see [`walkthrough.md`](https://github.com/CSC207-UofT/course-project-team-scouts/blob/main/phase2/walkthrough.md) for the updated walkthrough which reflects the final specification.
+
+### Overview of Changes to Specification
+
+The following changes have been made from Phase 1 to Phase 2:
+
+<!-- TODO: Add summary of changes -->
+
+## Major Design Decisions
+
+Here is a summary of the major design decisions made over the course project (all phases):
+
+<!-- TODO: Add summary of design decisions (in addition to existing) -->
+
+- Created subclasses of player and implemented the **factory design pattern**
+  - All players have the same kinds of attributes in our database, but depending on the type of player (forward, defense, goalkeeper, etc.), not all of those attributes are very relevant.
+    - For example, when presenting a defender, we aren't interested in their goalkeeping abilities.
+  - To avoid multiple switch statements in our program, we use polymorphism instead, thus avoiding a [code smell](https://refactoring.guru/smells/switch-statements).
+    - We are automatically provided with the appropriate `Player` subclass by `PlayerFactory`, without needing to specify the exact class of the object that will be created.
+    - The `PlayerPresenter` method is overloaded to allow different outputs depending on the subclass of `Player` that we pass in.
+- Implemented the **builder design pattern** for the different types of searches
+  - The builder design pattern is primarily used when we want to use the same object building process to build different kind of objects. 
+  - Our code offers two ways to scout a player, one by searching for players by name and the other by searching for players by attributes. 
+  - The `Builder` class works like the brain, and decides which object to instantiate (or build), based on the input from the user. 
+- Replaced `Scout` with a `User` class
+  - We had always thought of `Scout`s as the users of the program, so the class name we had didn't accurately represent what we wanted the class to do.
+  - Our new `User` class allows for additional functionality that wouldn't make sense with the `Scout` class.
+    - *e.g.* a `Scout` shouldn't have a username and password if it is just another entity alongside players and teams.
+- Made our Business Data (entities) serializable
+  - One of the most important features included in the new specification is the ability to save the state of the program.
+    - Users should be able to keep track of scouting history and player shortlists.
+    - Any teams added by users should be kept in memory, as well as any changes made to player attributes.
+  - To enable saving state, we will be making all core entities serializable(`Player`s, `Team`s, `Users`, and the `Database` classes).
+    - `User` serialization has already been implemented, the rest is in progress.
+- Reworked our search/input classes (still in progress)
+  - This decision has more to do with usability than software design principles.
+  - We wanted to make sure that when searching by attribute, the user only needs to specify values for the attributes that they care about.
+  - We also wanted users to be able to specify a range of values if they want, or just specify a single value.
+  - Our previous design, which used `PlayerPropertiesIterator` and a text file with a list of attributes, didn't allow for this flexibility in input.
+
+## Clean Architecture
+
+Our CRC diagram gives an overview of how the different classes in our program fit into the layers of Clean Architecture. It also shows some of the major dependencies in our program.
+
+<!-- TODO: Add CRC diagram (image or link) -->
+
+Here is a written summary of how our project adheres to Clean Architecture:
+
+<!-- TODO: Add summary of Clean Architecture stuff -->
+
+## SOLID Design
+
+<!-- TODO: Update this section to include any new info/changes -->
+
+- Single Responsibility Principle
+  - For the most part, our code follows the Single Responsibility Principle fairly well. Almost all of our classes are broken down well, with each one of them handling a single concern. 
+    - For example, we have different search classes `SearchForPlayer` and `SearchByPlayerAttributes` for different kinds of search operations, thus avoiding a single class to handle two different kinds of search tasks. 
+  - One domain where our project might not follow the Single Responsibility Principle, is with our dataset. 
+    - Our classes, and our code in general, are highly dependent on the specific dataset we are using (`players_20.csv`). 
+    - If we changed this dataset to one which does not contain the same player attributes, then we would have to modify almost every class in our program.
+- Open/Closed Principle
+  - The entirety of our Phase 1 has been *extending* on our code from Phase 0 while minimizing any *modification* of our existing code. 
+    - Overall, our project has been open to extension while closed for modification, with some exceptions. 
+  - We have added features like a **new login system**, **team creation feature**, **adding the factory design pattern**. All of these added features have not required any existing classes to be modified very much.
+  - Other changes in our project, like **updating the search methodology** and **upgrading presenter classes**, *have* required changes to existing classes.
+    - This should happen less in Phase 2, when we have finalized the core functionality and are more focused on extending functionality.
+- Liskov Substitution Principle
+  - Our use of interfaces and parent classes allows many subtypes to be substituted for their parent classes.
+  - For example, the `Defender`, `Goalkeeper`, and other subclasses of `Player`, as well as `Player` itself, can all be added to `PlayerDatabase` using the `addEntity` method.
+      - The same is true for all the methods of `PlayersPresenter` and `PlayerStatsCalculator`.
+- Interface Segregation Principle
+  - The user is not forced to depend on methods it does not use in our code. 
+    - For instance, the `InputPlayerName` and `InputPlayerAttributes` classes extend the `InputData` interface, therefore, when a client wants to search for a player by name, it does not need to worry about inputting attributes.
+  - Additionally, all of our classes are specific enough that they only implement methods that they require, and we have avoided abstract classes or interfaces that enforce unnecessary methods.
+    - *e.g.* Our `InputAdapter` interface only requires a `dataDump` method, which takes in a database file, to be implemented. It is up to the concrete adapter class to decide what other methods (like `makeHashMap`) are necessary for proper functionality.
+- Dependency Inversion Principle
+  - We tried as much as possible to introduce layers of abstraction between higher level and lower level classes, mostly by using interfaces.
+  - For example, the `main` method of our program (in `CommandLine`) class could have depended directly on the concrete `CSVAdapter` class, but we applied Dependency Inversion by adding an interface (`InputAdapter`) between these classes.
+    - The lower level `CommandLine` (a UI class) depends on the `InputAdapter` interface, and the higher level `CSVAdapter` (a gateway class) implements this interface.
+
+## Packaging Strategy
+
+Our packaging strategy, "Packaging by Component," has not changed from Phase 1. Here is a snippet from the [Phase 1 Design Document](https://github.com/CSC207-UofT/course-project-team-scouts/blob/main/phase1/design_document.md#packaging-strategy):
+
+> There are many packaging strategies we could have chosen to apply to our project's file structure, however, we came to the conclusion that the Packaging by Component strategy would fit our project best. We came to this conclusion by process of elimination; we considered how each of the strategies learned in class would organize all of the files in the project before settling on packaging by component.
+>
+> [...]
+>
+> Thus, we settled on Packaging by Component. This strategy allowed us to put files that correspond to a single feature or function in our program, such as presentation or searching, into the same package. This would be the easiest to look at and search through to find specific files, while also making it clear what all the different features of our program are, and which files are responsible for providing them.
+
+## Design Patterns
+
+In the [Phase 1 Design Document](https://github.com/CSC207-UofT/course-project-team-scouts/blob/main/phase1/design_document.md#design-patterns), we discussed the different design patterns we have implemented (or not implemented). This includes:
+
+- **Adapter design pattern**, implemented using the `InputAdapter` interface and `CSVAdapter` class.
+- **Factory design pattern**, implemented using the `PlayerFactory` class.
+  - Now uses an enum, TODO TODO TODO.
+- **Builder design pattern**, implemented using the `InputBuilder` class
+  - Now uses an enum, `InputType`.
+  - Now creates additional product classes: TODO, TODO, TODO.
+- **Decorator design pattern**, *NOT* implemented since it was unnecessary.
+
+In Phase 2, we have not identified any additional design patterns that are applicable to our program.
+
+## Progress Report
+
+See [`phase2/progress_report.md`](https://github.com/CSC207-UofT/course-project-team-scouts/blob/main/phase2/progress_report.md).
