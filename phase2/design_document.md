@@ -1,6 +1,6 @@
 # Phase 2 Design Document
 
-*Note: This document covers a lot of the same information as the [Phase 1 Design Document](https://github.com/CSC207-UofT/course-project-team-scouts/blob/main/phase1/design_document.md#packaging-strategy). In some sections, we include links to what we wrote in the previous phase to avoid reiterating.*
+*Note: This document covers a lot of the same information as the [Phase 1 Design Document](https://github.com/CSC207-UofT/course-project-team-scouts/blob/main/phase1/design_document.md#packaging-strategy). In some sections, we include links to what we wrote in the previous phase to keep things concise.*
 
 - [Specification and Walkthrough](#specification-and-walkthrough)
   - [Overview of Changes to Specification](#overview-of-changes-to-specification)
@@ -13,19 +13,15 @@
 
 ## Specification and Walkthrough
 
-See [`specification.md`](https://github.com/CSC207-UofT/course-project-team-scouts/blob/main/phase2/specification.md) for the updated, final specification.
+See [`specification.md`](https://github.com/CSC207-UofT/course-project-team-scouts/blob/main/phase2/specification.md) for the final specification.
 
-Also see [`walkthrough.md`](https://github.com/CSC207-UofT/course-project-team-scouts/blob/main/phase2/walkthrough.md) for the updated walkthrough which reflects the final specification.
+Also see [`walkthrough.md`](https://github.com/CSC207-UofT/course-project-team-scouts/blob/main/phase2/walkthrough.md) for the walkthrough which reflects the final specification.
 
-### Overview of Changes to Specification
-
-The following changes have been made from Phase 1 to Phase 2:
-
-<!-- TODO: Add summary of changes -->
+*Note: Both documents have not changed since Phase 1. Our focus in Phase 2 was to implement everything in the specification, rather than broaden our scope further.*
 
 ## Major Design Decisions
 
-Here is a summary of the major design decisions made over the course project (all phases):
+Here is a summary of the major design decisions (including Phase 1 and Phase 2):
 
 <!-- TODO: Add summary of design decisions (in addition to existing) -->
 
