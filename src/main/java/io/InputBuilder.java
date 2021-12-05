@@ -13,9 +13,9 @@ public class InputBuilder {
             case LOGIN_DETAILS:
                 return new InputLogin();
             case PLAYER_NAME:
-//                return new InputPlayerName();
+                return new InputPlayerName();
             case PLAYER_ATTRIBUTES:
-//                return new InputPlayerAttributes();
+                return new InputPlayerAttributes();
             case TEAM_NAME:
                 // TODO: Add InputTeamName class
             case TEAM_ATTRIBUTES:

@@ -101,13 +101,48 @@ public class CommandLine {
             }
         }
 
-        // TODO: Implement runPlayerSearchPrompt and runTeamSearchPrompt
-        // assert searchType != null;
-        // if (searchType.equals("players")) {
-        //     runPlayerSearchPrompt();
-        // } else {
-        //     runTeamSearchPrompt();
-        // }
+         assert searchType != null;
+         if (searchType.equals("players")) {
+             runPlayerSearchPrompt(playerDatabase);
+         } else {
+             runTeamSearchPrompt(teamDatabase);
+         }
+    }
+
+    private static void runPlayerSearchPrompt(PlayerDatabase playerDatabase) {
+        // Initialize new BufferedReader
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        // List of valid inputs for this prompt
+        List<String> searchTypes = Arrays.asList("name", "attributes");
+
+        String searchType = null;
+        // This loops until we get a valid input ("name" or "attributes")
+        while (!searchTypes.contains(searchType)) {
+            // Print out instructions
+            System.out.println("Would you like to search by name or by attributes? " +
+                    "(please input 'name' or 'attributes')");
+            // Allows user to repeat input if IOException occurs
+            while (true) {
+                try {
+                    searchType = reader.readLine();
+                    break;
+                } catch (IOException e) { System.out.println("An error occurred, please try again."); }
+            }
+        }
+
+        assert searchType != null;
+        if (searchType.equals("name")) {
+            InputPlayerName inputPlayerName = new InputPlayerName();
+            inputPlayerName.run(playerDatabase);
+        } else {
+            InputPlayerAttributes inputPlayerAttributes = new InputPlayerAttributes();
+            inputPlayerAttributes.run(playerDatabase);
+        }
+
+    }
+
+    private static void runTeamSearchPrompt(TeamDatabase teamDatabase) {
     }
 
     private static void runContinuePrompt(UserDatabase userDatabase, PlayerDatabase playerDatabase,
