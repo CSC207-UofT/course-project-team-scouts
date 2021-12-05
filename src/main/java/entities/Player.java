@@ -201,4 +201,27 @@ public class Player implements Serializable, Identifiable {
     public void updateTeam(String teamName) {
         team = teamName;
     }
+
+    /**
+     * Return generic attributes that all players have irrespective of their subtype.
+     */
+    public HashMap<String, Integer> getPositionSkills() {
+        HashMap<String, Integer> allSkills = getSkills();
+        HashMap<String, Integer> positionAttributes = new HashMap<String, Integer>();
+
+        String[] positionSkillAttributes = {"crossing", "finishing",
+                "heading accuracy", "short passing",
+                "volleys"};
+
+
+        for (String attribute : positionSkillAttributes) {
+            positionAttributes.put(attribute, allSkills.get(attribute));
+
+
+
+
+
+        }
+        return positionAttributes;
+    }
 }
