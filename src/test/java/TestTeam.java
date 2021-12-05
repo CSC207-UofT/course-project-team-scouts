@@ -1,7 +1,9 @@
+import data.PlayerDatabase;
 import entities.Player;
 import entities.Team;
 import org.junit.Before;
 import org.junit.Test;
+import services.CSVAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,13 +13,17 @@ import static org.junit.Assert.*;
 public class TestTeam {
 
     Team club;
-    Player test_player;
+    Player testPlayer;
 
     @Before
     public void setup(){
-        test_player = new Player();
+        testPlayer = new Player();
+        CSVAdapter adapter = new CSVAdapter();
+        PlayerDatabase playerdatabase = new PlayerDatabase();
+        data.TeamDatabase teamdatabase = new data.TeamDatabase();
+        adapter.processFile("dataset(s)/players_20.csv", playerdatabase, teamdatabase);
         List<Player> roster = new ArrayList<>();
-        roster.add(test_player);
+        roster.add(testPlayer);
         club = new Team("Fc Barcelona", roster);
     }
 
@@ -29,13 +35,20 @@ public class TestTeam {
 
     @Test
     public void testAddPlayer() {
-        club.addPlayer(test_player);
+        club.addPlayer(testPlayer);
         assertEquals(2, club.getPlayers().size());
     }
 
     @Test
     public void testGetPlayers() {
-        assertEquals(1, club.getPlayers().size());
+        Player testPlayerOne;
+        testPlayerOne = new Player();
+        Player testPlayerTwo;
+        testPlayerTwo = new Player();
+        club.addPlayer(testPlayerOne);
+        club.addPlayer(testPlayerTwo);
+        assertEquals(3, club.getPlayers().size());
     }
+
 
 }
