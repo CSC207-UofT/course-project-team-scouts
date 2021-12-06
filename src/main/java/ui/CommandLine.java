@@ -38,6 +38,9 @@ public class CommandLine {
             adapter.processFile("dataset(s)/players_20.csv", playerDatabase, teamDatabase);
         }
 
+        // Print welcome message
+        System.out.println("Welcome to the Team Scout's scouting program!\n");
+
         // Run prompts
         runPrompts(userDatabase, playerDatabase, teamDatabase);
     }
@@ -50,8 +53,12 @@ public class CommandLine {
         // Run the login prompt
         runLoginPrompt(userDatabase);
         while (!stop) {
+            // Print spacing
+            System.out.println("\n" + "=".repeat(128) + "\n");
             // Run the search prompts
             runSelectSearchPrompt(playerDatabase, teamDatabase);
+            // Print spacing
+            System.out.println("\n" + "=".repeat(128) + "\n");
             // Once the user completes their search...
             runContinuePrompt(userDatabase, playerDatabase, teamDatabase);
         }
@@ -63,7 +70,7 @@ public class CommandLine {
         // Print out instructions
         System.out.println("Please enter your login details.");
         System.out.println("If you enter a username that does not currently exist in the system, " +
-                "a new account with that name will be created.");
+                "a new account with that name will be created.\n");
         // Run the prompt
         inputLogin.run(userDatabase);
         // Decide what to do
@@ -157,7 +164,7 @@ public class CommandLine {
         // This loops until we get a valid input ("exit" or "")
         while (!inputs.contains(input)) {
             // Print out instructions
-            System.out.println("Press enter if you would like to continue searching, " +
+            System.out.println("Press Enter if you would like to continue searching, " +
                     "or type 'exit' if you would like to save and exit.");
             // Allows user to repeat input if IOException occurs
             while (true) {
