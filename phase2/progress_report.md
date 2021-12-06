@@ -61,7 +61,7 @@ Implemented new user functionality and `Database` superclass with Tobey, and imp
 
 ### Matthew
 
-Implemented the `PlayerPresenter` class to display more detailed output for a single player, and worked on the `TeamPresenter` class. Also helped with the implementation of the input and searching functionality of the program by extending it to work with `Team` entities as well (by implementing the classes `InputTeamName`, `InputTeamRating`, and `SearchByTeamRating` PR [#56](https://github.com/CSC207-UofT/course-project-team-scouts/pull/56])). These specific additions were crucial in fulfilling the basic functionality that was first defined in our specification, while also increasing the utility of the program to users. In the future, I would like to potentially create a GUI for the user interface, that allows users to enter in their search input more easily and see the results of their searches in a more visually pleasing fashion.
+Implemented the `PlayerPresenter` class to display more detailed output for a single player. Also helped with the implementation of the input and searching functionality of the program by extending it to work with `Team` entities as well (by implementing the classes `InputTeamName`, `InputTeamRating`, and `SearchByTeamRating` PR [#56](https://github.com/CSC207-UofT/course-project-team-scouts/pull/56])). These specific additions were crucial in fulfilling the basic functionality that was first defined in our specification, while also increasing the utility of the program to users. In the future, I would like to potentially create a GUI for the user interface, that allows users to enter in their search input more easily and see the results of their searches in a more visually pleasing fashion.
 
 ### Michael 
 
