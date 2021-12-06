@@ -3,8 +3,9 @@
 *Note: This document covers a lot of the same information as the [Phase 1 Design Document](https://github.com/CSC207-UofT/course-project-team-scouts/blob/main/phase1/design_document.md#packaging-strategy). In some sections, we include links to what we wrote in the previous phase to keep things concise.*
 
 - [Specification and Walkthrough](#specification-and-walkthrough)
-  - [Overview of Changes to Specification](#overview-of-changes-to-specification)
 - [Major Design Decisions](#major-design-decisions)
+  - [Phase 1](#phase-1)
+  - [Phase 2](#phase-2)
 - [Clean Architecture](#clean-architecture)
 - [SOLID Design](#solid-design)
 - [Packaging Strategy](#packaging-strategy)
