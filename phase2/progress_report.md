@@ -66,6 +66,7 @@ TODO: Make sure to add a link to a significant pull request that you had a part 
 -->
 
 ### Aditya
+Added changes to Player, Goalkeeper, Defender, Midfielder and Forward classes in order for them to work with the PlayerPresenter class to output separate attributes for each player when viewed individually, corresponding to their position on the field. Furthermore, I added functionality that would help view a player's attributes individually after a list of players is returned by the search algorithm. (PR [#46](https://github.com/CSC207-UofT/course-project-team-scouts/pull/48) and [#58](https://github.com/CSC207-UofT/course-project-team-scouts/pull/58)). This contribution ,in my opinion, was very significant as it helps the application implement a key feature that every scouting application is expected to have. I  helped Kaartik with refactoring some of the code and and also helped him with some parts of the design document. I also helped writing tests for the project. In the future I would like to implement the functionality that would help generate an automated team of 11 players using the attributes input by the user.
 
 ### Daniel
 
