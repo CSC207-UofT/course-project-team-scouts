@@ -34,8 +34,6 @@
 
 ### Principle 4: Perceptible Information
 
-<!-- TODO: Make sure to implement the stuff in this section! -->
-
 - Some features of our program, like searching for players by their attributes, can result in large amounts of information being returned. We have taken steps to ensure that the output is still legible and easy to comprehend.
     - For example, when outputting a list of players, the players' names, ratings, skills, etc. get displayed in a table rather than in lines of comma-separated values.
     - If the user is interested in a particular attribute, they only need to look at the corresponding column for that attribute.
@@ -62,7 +60,8 @@
     - This means that they will not have to go through all the program's prompts every single time, which would be especially useful for an attributes query.
 - To minimize physical effort, we could allow users to choose options by specifying a number, rather than typing out the full action that they want to perform.
     - For example, when we ask the user to pick between searching for players and searching for teams, we can present the options like so:
-        ```Would you like to search for players or for teams? Please enter the number corresponding to your choice:
+        ```
+        Would you like to search for players or for teams? Please enter the number corresponding to your choice:
         1 - Players
         2 - Teams
         ```
