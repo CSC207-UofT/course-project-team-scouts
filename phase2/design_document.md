@@ -61,6 +61,8 @@ Our CRC diagram gives an overview of how the different classes in our program fi
 <!-- TODO: Add CRC diagram (image or link) -->
 
 Here is a written summary of how our project adheres to Clean Architecture:
+Ever since the inception of our project, we have worked to make our project and code adhere to the norms of Clean Architecture. 
+To start with, our project doesn't heavily rely on any particular framework, this has allowed us to **independently expand** the domain of our project after each phase and not forced us to stay within the constraints of a framework. We have upgraded our UI without having to make significant changes in our core functionality, thus indicating that our code is somewhat **independent of UI**. Our code is very **testable** and can be tested without UI or a webserver. By avoiding **long method** code smell, we have a lot of small methods in our project, hence we can test each and every small functionality of our code.
 
 <!-- TODO: Add summary of Clean Architecture stuff -->
 
