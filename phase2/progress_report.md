@@ -20,7 +20,7 @@ One of the major changes in this phase of the project was the **creation of a `D
 2. We were also in the process of enabling serialization of our databases and entities. 
   - If we make our `Database` superclass serializable, then all subclasses will also automatically become serializable, and the methods that load and save data (in `ReadWriter`) will work with any instance of `Database`.
 
-We also decided that using generics for this class would be a good idea, as it enables us to store any object and use the methods defined in the superclass. For example, `UserDatabase` extends `Database<User>`, so all of its methods work on `User` objects. This is one way in which the decision to make a `Database` superclass has already paid off; It only took a few lines of code to have a fully working, serializable database for storing players.
+We also decided that using generics for this class would be a good idea, as it enables us to store any object and use the methods defined in the superclass. For example, `UserDatabase` extends `Database<User>`, so all of its methods work on `User` objects. This is one way in which the decision to make a `Database` superclass with generics has already paid off; It only took a few lines of code to have a fully working, serializable database for storing players.
 
 While implementing the new `Database` superclass, we also decided to eliminate the "staticness" from all database classes. Previously, each database had a public static list of entities that could be accessed from anywhere in the program. This came with a few problems:
 

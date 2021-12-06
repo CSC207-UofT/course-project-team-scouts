@@ -21,8 +21,6 @@ Also see [`walkthrough.md`](https://github.com/CSC207-UofT/course-project-team-s
 
 ## Major Design Decisions
 
-Below is a summary of the major design decisions (including Phase 1 and Phase 2).
-
 ### Phase 1
 
 *Note: All of these decisions were mentioned in the [previous phase](../phase1/design_document.md#major_design_decisions), but many were a work in progress. Now they have all been implemented, and some of the details have changed slightly.*
@@ -48,6 +46,14 @@ Below is a summary of the major design decisions (including Phase 1 and Phase 2)
   - We also wanted users to be able to specify a range of values if they want, or just specify a single value.
   - Our previous design, which used `PlayerPropertiesIterator` and a text file with a list of attributes, didn't allow for this flexibility in input.
 
+### Phase 2
+
+- Created a `Database` superclass
+  - *TODO: Explanation*
+- Made use of generics with multiple classes
+- Made all database classes less static
+- Removed some responsibility from `CSVAdapter`
+
 ## Clean Architecture
 
 Our CRC diagram gives an overview of how the different classes in our program fit into the layers of Clean Architecture. It also shows some of the major dependencies in our program.
@@ -69,11 +75,11 @@ Here is a written summary of how our project adheres to Clean Architecture:
     - Our classes, and our code in general, are highly dependent on the specific dataset we are using (`players_20.csv`). 
     - If we changed this dataset to one which does not contain the same player attributes, then we would have to modify almost every class in our program.
 - Open/Closed Principle
-  - The entirety of our Phase 1 has been *extending* on our code from Phase 0 while minimizing any *modification* of our existing code. 
+  - In both Phase 1 and 2, we have focused on *extending* our code from Phase 0 while minimizing any *modification* of our existing code. 
     - Overall, our project has been open to extension while closed for modification, with some exceptions. 
-  - We have added features like a **new login system**, **team creation feature**, **adding the factory design pattern**. All of these added features have not required any existing classes to be modified very much.
-  - Other changes in our project, like **updating the search methodology** and **upgrading presenter classes**, *have* required changes to existing classes.
-    - This should happen less in Phase 2, when we have finalized the core functionality and are more focused on extending functionality.
+  - We have added features like a **new login system**, **team creation feature**, and the ability to **save the state of the program**. All of these added features have not required existing classes to be modified very much.
+  - Other changes in our project, like **updating the search methodology**, **upgrading presenter classes**, and especially **implementing the `Database` superclass**, *have* required changes to existing classes.
+    - However, these changes will make future extensions easier. For example, if we were to add other entities to our program like coaches or managers, having the generic `Database` superclass would be really helpful.
 - Liskov Substitution Principle
   - Our use of interfaces and parent classes allows many subtypes to be substituted for their parent classes.
   - For example, the `Defender`, `Goalkeeper`, and other subclasses of `Player`, as well as `Player` itself, can all be added to `PlayerDatabase` using the `addEntity` method.
@@ -82,7 +88,7 @@ Here is a written summary of how our project adheres to Clean Architecture:
   - The user is not forced to depend on methods it does not use in our code. 
     - For instance, the `InputPlayerName` and `InputPlayerAttributes` classes extend the `InputData` interface, therefore, when a client wants to search for a player by name, it does not need to worry about inputting attributes.
   - Additionally, all of our classes are specific enough that they only implement methods that they require, and we have avoided abstract classes or interfaces that enforce unnecessary methods.
-    - *e.g.* Our `InputAdapter` interface only requires a `dataDump` method, which takes in a database file, to be implemented. It is up to the concrete adapter class to decide what other methods (like `makeHashMap`) are necessary for proper functionality.
+    - *e.g.* Our `InputAdapter` interface only requires a `processFile` method, which takes in a database file, to be implemented. It is up to the concrete adapter class to decide what other methods (like `processRow` and `makeHashMap`) are necessary for proper functionality.
 - Dependency Inversion Principle
   - We tried as much as possible to introduce layers of abstraction between higher level and lower level classes, mostly by using interfaces.
   - For example, the `main` method of our program (in `CommandLine`) class could have depended directly on the concrete `CSVAdapter` class, but we applied Dependency Inversion by adding an interface (`InputAdapter`) between these classes.
@@ -100,14 +106,13 @@ Our packaging strategy, "Packaging by Component," has not changed from Phase 1. 
 
 ## Design Patterns
 
-In the [Phase 1 Design Document](https://github.com/CSC207-UofT/course-project-team-scouts/blob/main/phase1/design_document.md#design-patterns), we discussed the different design patterns we have implemented (or not implemented). This includes:
+In the [Phase 1 Design Document](https://github.com/CSC207-UofT/course-project-team-scouts/blob/main/phase1/design_document.md#design-patterns) (click for more details), we discussed the different design patterns we have implemented or considered. This includes:
 
 - **Adapter design pattern**, implemented using the `InputAdapter` interface and `CSVAdapter` class.
 - **Factory design pattern**, implemented using the `PlayerFactory` class.
-  - Now uses an enum, TODO TODO TODO.
 - **Builder design pattern**, implemented using the `InputBuilder` class
   - Now uses an enum, `InputType`.
-  - Now creates additional product classes: TODO, TODO, TODO.
+  - Now creates additional product classes: `InputLogin`, `InputTeamName`, `InputTeamAttributes`.
 - **Decorator design pattern**, *NOT* implemented since it was unnecessary.
 
 In Phase 2, we have not identified any additional design patterns that are applicable to our program.
