@@ -4,6 +4,7 @@ import data.Database;
 import data.PlayerDatabase;
 import data.TeamDatabase;
 import data.UserDatabase;
+import entities.Player;
 import io.*;
 import services.CSVAdapter;
 
@@ -104,16 +105,18 @@ public class CommandLine {
                 try {
                     searchType = reader.readLine();
                     break;
-                } catch (IOException e) { System.out.println("An error occurred, please try again."); }
+                } catch (IOException e) {
+                    System.out.println("An error occurred, please try again.");
+                }
             }
         }
 
-         assert searchType != null;
-         if (searchType.equals("players")) {
-             runPlayerSearchPrompt(playerDatabase);
-         } else {
-             runTeamSearchPrompt(teamDatabase);
-         }
+        assert searchType != null;
+        if (searchType.equals("players")) {
+            runPlayerSearchPrompt(playerDatabase);
+        } else {
+            runTeamSearchPrompt(teamDatabase);
+        }
     }
 
     private static void runPlayerSearchPrompt(PlayerDatabase playerDatabase) {
@@ -134,7 +137,9 @@ public class CommandLine {
                 try {
                     searchType = reader.readLine();
                     break;
-                } catch (IOException e) { System.out.println("An error occurred, please try again."); }
+                } catch (IOException e) {
+                    System.out.println("An error occurred, please try again.");
+                }
             }
         }
 
@@ -199,16 +204,19 @@ public class CommandLine {
                 try {
                     input = reader.readLine();
                     break;
-                } catch (IOException e) { System.out.println("An error occurred, please try again."); }
+                } catch (IOException e) {
+                    System.out.println("An error occurred, please try again.");
+                }
             }
         }
 
         assert input != null;
         if (input.equals("exit")) {
             boolean saved = ReadWriter.saveDatabases(userDatabase, playerDatabase, teamDatabase);
-            if (saved) { stop = true; }
-            else {
-                System.out.println("An unknown error has occured! Unable to save!");
+            if (saved) {
+                stop = true;
+            } else {
+                System.out.println("An unknown error has occurred! Unable to save!");
             }
         }
     }
@@ -222,7 +230,44 @@ public class CommandLine {
     public static void resumeOutput() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        System.out.print("Press ENTER in order to get the next page of players: ");
+        System.out.print("Press ENTER");
         reader.readLine();
     }
-}
+
+
+    /**
+     * Asks the user to either choose to view a player individually or view the next page
+     * Used primarily by presenter classes.
+     *
+     * @throws IOException user may enter the wrong key.
+     */
+    public static String userChoiceOutput() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.print("Press 'player' to view a player individually or 'Next' to view the next page: ");
+        String userChoice = reader.readLine();
+        assert userChoice != null;
+
+        return userChoice;
+    }
+
+
+        /**
+         * Asks the user for the ID of the player to view individually
+         * Used primarily by presenter classes.
+         *
+         * @throws IOException user may enter the wrong key.
+         */
+
+    public static String individualPlayerOutput () throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.print("Enter Player ID ");
+
+
+        return reader.readLine();
+
+        }
+    }
+
+
