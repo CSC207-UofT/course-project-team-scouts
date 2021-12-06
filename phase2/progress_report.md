@@ -50,4 +50,4 @@ Made minor changes to Player, CsvAdapter classes to enable search by attributes 
 
 ### Tobey
 
-Implemented the `Database` superclass along with it's subclasses `PlayerDatabase`, `TeamDatabase`, and `UserDatabase` with Daniel. In light of this, we had revamped how we work with our data. Additionally, assisted with the creation and implementation of our `User` entities and how they would play a part in our program. Currently working to finish up implementing the ability for User's to create teams with our current layout of data and flow of our program.
+Implemented the `Database` superclass along with it's subclasses `PlayerDatabase`, `TeamDatabase`, and `UserDatabase` with Daniel (PR [#38](https://github.com/CSC207-UofT/course-project-team-scouts/pull/38)). In light of this, we had revamped how we work with our data. Additionally, assisted with the creation and implementation of our `User` entities and how they would play a part in our program. Currently working to finish up implementing the ability for User's to create teams with our current layout of data and flow of our program.
