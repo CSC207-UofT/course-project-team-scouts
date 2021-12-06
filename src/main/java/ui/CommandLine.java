@@ -139,10 +139,38 @@ public class CommandLine {
             InputPlayerAttributes inputPlayerAttributes = new InputPlayerAttributes();
             inputPlayerAttributes.run(playerDatabase);
         }
-
     }
 
     private static void runTeamSearchPrompt(TeamDatabase teamDatabase) {
+        // Initialize new BufferedReader
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        // List of valid inputs for this prompt
+        List<String> searchTypes = Arrays.asList("name", "ratings");
+
+        String searchType = null;
+        // This loops until we get a valid input ("name" or "attributes")
+        while (!searchTypes.contains(searchType)) {
+            // Print out instructions
+            System.out.println("Would you like to search by name or by ratings? " +
+                    "(please input 'name' or 'ratings')");
+            // Allows user to repeat input if IOException occurs
+            while (true) {
+                try {
+                    searchType = reader.readLine();
+                    break;
+                } catch (IOException e) { System.out.println("An error occurred, please try again."); }
+            }
+        }
+
+        assert searchType != null;
+        if (searchType.equals("name")) {
+            InputTeamName inputTeamName = new InputTeamName();
+            inputTeamName.run(teamDatabase);
+        } else {
+            InputTeamRating inputTeamRating = new InputTeamRating();
+            inputTeamRating.run(teamDatabase);
+        }
     }
 
     private static void runContinuePrompt(UserDatabase userDatabase, PlayerDatabase playerDatabase,
