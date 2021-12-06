@@ -46,7 +46,7 @@ Implemented new user functionality and `Database` superclass with Tobey, and imp
 
 ### Michael 
 
-Made minor changes to Player, CsvAdapter classes to enable search by attributes funcitonality. Reimplemented the SearchForPlayer and SearchByAttributes classes to allow them to interact appropriately with new implementation of databases that can now be serialized. Implemented SearchByAttributes to enable Player searching using attributes as outlined by our specificication. Contributed to user interface and searching use case design decisions [#44](https://github.com/CSC207-UofT/course-project-team-scouts/pull/44). In the future I would like to add database editing funtionality like the ability to add, remove or edit players and teams so the progrma is still useful even after the current databse becomes outdated.
+Made minor changes to Player, CsvAdapter classes to enable search by attributes funcitonality. Reimplemented the SearchForPlayer and SearchByAttributes classes to allow them to interact appropriately with new implementation of databases that can now be serialized. Implemented SearchByAttributes to enable Player searching using attributes as outlined by our specificication. Contributed to user interface and searching use case design decisions (PR [#44](https://github.com/CSC207-UofT/course-project-team-scouts/pull/44)). In the future I would like to add database editing funtionality like the ability to add, remove or edit players and teams so the progrma is still useful even after the current databse becomes outdated.
 
 ### Tobey
 
