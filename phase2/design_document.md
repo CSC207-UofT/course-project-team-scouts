@@ -17,37 +17,34 @@ See [`specification.md`](https://github.com/CSC207-UofT/course-project-team-scou
 
 Also see [`walkthrough.md`](https://github.com/CSC207-UofT/course-project-team-scouts/blob/main/phase2/walkthrough.md) for the walkthrough which reflects the final specification.
 
-*Note: Both documents have not changed since Phase 1. Our focus in Phase 2 was to implement everything in the specification, rather than broaden our scope further.*
+*Note: Both documents have not changed very much since Phase 1. Our focus in Phase 2 was to implement everything in the specification, rather than broaden our scope further.*
 
 ## Major Design Decisions
 
-Here is a summary of the major design decisions (including Phase 1 and Phase 2):
+Below is a summary of the major design decisions (including Phase 1 and Phase 2).
 
-<!-- TODO: Add summary of design decisions (in addition to existing) -->
+### Phase 1
+
+*Note: All of these decisions were mentioned in the [previous phase](../phase1/design_document.md#major_design_decisions), but many were a work in progress. Now they have all been implemented, and some of the details have changed slightly.*
 
 - Created subclasses of player and implemented the **factory design pattern**
   - All players have the same kinds of attributes in our database, but depending on the type of player (forward, defense, goalkeeper, etc.), not all of those attributes are very relevant.
-    - For example, when presenting a defender, we aren't interested in their goalkeeping abilities.
+    - For example, when presenting a single defender, we aren't interested in their goalkeeping abilities.
   - To avoid multiple switch statements in our program, we use polymorphism instead, thus avoiding a [code smell](https://refactoring.guru/smells/switch-statements).
     - We are automatically provided with the appropriate `Player` subclass by `PlayerFactory`, without needing to specify the exact class of the object that will be created.
-    - The `PlayerPresenter` method is overloaded to allow different outputs depending on the subclass of `Player` that we pass in.
-- Implemented the **builder design pattern** for the different types of searches
-  - The builder design pattern is primarily used when we want to use the same object building process to build different kind of objects. 
-  - Our code offers two ways to scout a player, one by searching for players by name and the other by searching for players by attributes. 
-  - The `Builder` class works like the brain, and decides which object to instantiate (or build), based on the input from the user. 
+    - Each type of player has a unique `getPositionSkills` method that returns the skills (and associated values) that are most relevant to that type of player.
+- Implemented the **builder design pattern** for the different types of inputs/searches
+  - Our program offers two ways to search for players (by name or attributes), and the `InputBuilder` class decides which type of input to build based on the user's search preference. 
 - Replaced `Scout` with a `User` class
-  - We had always thought of `Scout`s as the users of the program, so the class name we had didn't accurately represent what we wanted the class to do.
   - Our new `User` class allows for additional functionality that wouldn't make sense with the `Scout` class.
     - *e.g.* a `Scout` shouldn't have a username and password if it is just another entity alongside players and teams.
 - Made our Business Data (entities) serializable
   - One of the most important features included in the new specification is the ability to save the state of the program.
-    - Users should be able to keep track of scouting history and player shortlists.
+    - User profiles should be preserved across multiple runs of the program.
     - Any teams added by users should be kept in memory, as well as any changes made to player attributes.
-  - To enable saving state, we will be making all core entities serializable(`Player`s, `Team`s, `Users`, and the `Database` classes).
-    - `User` serialization has already been implemented, the rest is in progress.
-- Reworked our search/input classes (still in progress)
-  - This decision has more to do with usability than software design principles.
-  - We wanted to make sure that when searching by attribute, the user only needs to specify values for the attributes that they care about.
+  - To enable saving state, we have made all core entities serializable(`Player`s, `Team`s, `Users`, as well as the `Database` classes).
+- Reworked our search/input classes
+  - We wanted to make sure that when searching by attribute, the user only needs to specify values for the attributes that they care about (*e.g.* only defensive attributes).
   - We also wanted users to be able to specify a range of values if they want, or just specify a single value.
   - Our previous design, which used `PlayerPropertiesIterator` and a text file with a list of attributes, didn't allow for this flexibility in input.
 
