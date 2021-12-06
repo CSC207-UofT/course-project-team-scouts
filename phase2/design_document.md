@@ -23,7 +23,7 @@ Also see [`walkthrough.md`](https://github.com/CSC207-UofT/course-project-team-s
 
 ### Phase 1
 
-*Note: All of these decisions were mentioned in the [previous phase](../phase1/design_document.md#major_design_decisions), but many were a work in progress. Now they have all been implemented, and some of the details have changed slightly.*
+*Note: All of these decisions were mentioned in the [previous phase](../phase1/design_document.md#major_design_decisions), but many were a work in progress. Now they have all been implemented, and some details have changed slightly.*
 
 - Created subclasses of player and implemented the **factory design pattern**
   - All players have the same kinds of attributes in our database, but depending on the type of player (forward, defense, goalkeeper, etc.), not all of those attributes are very relevant.
@@ -48,11 +48,25 @@ Also see [`walkthrough.md`](https://github.com/CSC207-UofT/course-project-team-s
 
 ### Phase 2
 
+*Note: The [Progress Report](#progress-report) includes additional details about these design decisions.*
+
 - Created a `Database` superclass
-  - We have created a `DataBase` superclass, which has the `addEntity`, `setEntities` and `getEntities`. The `TeamDatabase` and `PlayerDatabase` extend this class. Both of these classes have similar characteristcs, but in different contexts. Hence, making a parent class (`Database`), allows these child classes to access and utilise the methods of `DataBase` classes to their own unique functionality. 
+  - This new class has the methods `addEntity`, `setEntities` and `getEntities`. It also has an instance variable called `entityList` that keeps track of whatever objects are stored in the database.
+  - The `TeamDatabase`, `PlayerDatabase`, and `UserDatabase` subclasses extend this class, thus inheriting the core functionality from the superclass.
+  - The `TeamDatabase` and `UserDatabase` require specific functionality that is not shared with the other database classes, so they implement their own methods as necessary (*e.g.* `getUser()`).
 - Made use of generics with multiple classes
+  - Our new `Database` superclass uses generics, which allows subclasses to choose the specific type of object that they wish to store. For example, `PlayerDatabase` extends `Database<Player>`, which allows it to store only `Player` objects. 
+    - Generics also ensure that the methods of the subclasses only accept or return a specific object. For example, `PlayerDatabase.setEntities()` will only take a list of `Player`s, not `User`s or `Team`s.
+  - We have also used generics in `SearchByName`, which allows us to search for either `Player`s or `Team`s without writing extra code.
+    - The object it searches for depends on how we initialize the class. For example, `SearchByName<Player> searchByName = new SearchByName<>();` will initialize a class that allows for player searching, and so the `search()` method will only accept a `PlayerDatabase` to search from.
 - Made all database classes less static
+  - Previously, each database had a public static list of entities that could be accessed from anywhere in the program.
+  - This made testing more difficult, bugs more likely, and serialization impossible.
+  - Now, each database has its own instance variable - a list of entities stored - and this variable can only be accessed by methods which take the database as an argument.
 - Removed some responsibility from `CSVAdapter`
+  - Previously, `CSVAdapter` was responsible for keeping track of the teams that have been added to the `TeamDatabase`.
+    - Now, this logic has been extracted and put into the `TeamDatabase` class itself, thus reducing complexity.
+  - We also eliminated the need for `stringToDouble()` by making all of `Player`'s attributes into integers, since there are no decimal values in our external database file.
 
 ## Clean Architecture
 
@@ -60,11 +74,12 @@ Our CRC diagram gives an overview of how the different classes in our program fi
 
 <!-- TODO: Add CRC diagram (image or link) -->
 
-Here is a written summary of how our project adheres to Clean Architecture:
-Ever since the inception of our project, we have worked to make our project and code adhere to the norms of Clean Architecture. 
-To start with, our project doesn't heavily rely on any particular framework, this has allowed us to **independently expand** the domain of our project after each phase and not forced us to stay within the constraints of a framework. We have upgraded our UI without having to make significant changes in our core functionality, thus indicating that our code is somewhat **independent of UI**. Our code is very **testable** and can be tested without UI or a webserver. By avoiding **long method** code smell, we have a lot of small methods in our project, hence we can test each and every small functionality of our code.
+Ever since the inception of our project, we have worked to make our project and code adhere to the rules of Clean Architecture. 
+To start with, our project doesn't rely on a rigid framework, which has allowed us to independently **expand the domain of our project** after each phase and not forced us to stay within certain constraints. This is mostly a consequence of keeping everything within a specific layer of Clean Architecture and adhering to dependency rules. 
 
-<!-- TODO: Add summary of Clean Architecture stuff -->
+For example, our core entities do not depend on our use case classes like the `Database` subclasses. Instead, the opposite is true. Additionally, if we *were* to make changes to the core entities, we still wouldn't have to modify our databases because they were implemented using generics. Another example of this is that we have substantially upgraded our UI without having to make significant changes to our core functionality in use cases and entity classes. This demonstrates that the outer layer of our program, where the UI resides, is highly **independent from the inner layers** of our program. This is the essence of Clean Architecture: **reducing dependencies** and allowing for **easy modification and extension**. 
+
+A final example of how our code adheres to Clean Architecture is that each aspect of our program is **easily testable**, and can be tested independently from other aspects of the program, like the UI or external database. We have avoided (as much as possible) the **long method code smell**, so each method in our program has a very specific role. Hence we can test each and every small functionality of our code. This also helps in making our program easily extendable: new functionality can be implemented with additional small methods, rather than modifying huge existing methods.
 
 ## SOLID Design
 
