@@ -49,7 +49,7 @@ Also see [`walkthrough.md`](https://github.com/CSC207-UofT/course-project-team-s
 ### Phase 2
 
 - Created a `Database` superclass
-  - *TODO: Explanation*
+  - We have created a `DataBase` superclass, which has the `addEntity`, `setEntities` and `getEntities`. The `TeamDatabase` and `PlayerDatabase` extend this class. Both of these classes have similar characteristcs, but in different contexts. Hence, making a parent class (`Database`), allows these child classes to access and utilise the methods of `Database` classes to their own unique functionality. 
 - Made use of generics with multiple classes
 - Made all database classes less static
 - Removed some responsibility from `CSVAdapter`
