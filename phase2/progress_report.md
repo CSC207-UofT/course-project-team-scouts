@@ -20,7 +20,7 @@ One of the major changes in this phase of the project was the **creation of a `D
 2. We were also in the process of enabling serialization of our databases and entities. 
   - If we make our `Database` superclass serializable, then all subclasses will also automatically become serializable, and the methods that load and save data (in `ReadWriter`) will work with any instance of `Database`.
 
-We also decided that using generics for this class would be a good idea, as it enables us to store any object and use the methods defined in the superclass. For example, `UserDatabase` extends `Database<User>`, so all of its methods work on `User` objects. This is one way in which the decision to make a `Database` superclass with generics has already paid off; It only took a few lines of code to have a fully working, serializable database for storing players.
+We also decided that using generics for this class would be a good idea, as it enables us to store any object and use the methods defined in the superclass. For example, `UserDatabase` extends `Database<User>`, so all of its methods work on `User` objects. This is one way in which the decision to make a `Database` superclass with generics **has already paid off**; It only took a few lines of code to have a fully working, serializable database for storing players.
 
 While implementing the new `Database` superclass, we also decided to eliminate the "staticness" from all database classes. Previously, each database had a public static list of entities that could be accessed from anywhere in the program. This came with a few problems:
 
@@ -30,15 +30,25 @@ While implementing the new `Database` superclass, we also decided to eliminate t
 
 In our current design, each database (`Player`/`Team`/`UserDatabase`) gets initialized when the program starts up. If there are existing `.ser` files for these databases, they will be loaded into the program. Otherwise, empty `Database` objects are created and added to by `CSVAdapter` (and `LoginUseCase`). Any classes or methods that used to access the static variable now require `Database` objects to be passed as arguments instead.
 
-In addition to using generics in `Database`, we also applied them to one of our search classes, `SearchByName`. Our previous design would have required separate classes `SearchByPlayerName` and `SearchByTeamName` to enable searching of `Player`s and `Team`s, since the search methods would have different parameters. For example, `SearchByPlayerName.search()` would return a `List<Player>`, while `SearchByTeamName.search()` would return a `List<Team>`. (Alternatively, we could've used overloading, but this would still result in duplicated code.) With our new design, `SearchByName.search()` returns a generic `List<T>`, and the type of `T` will depend on how we initialize the `SearchByName` class.
+In addition to using generics in `Database`, we also applied them to one of our search classes, `SearchByName`. Our previous design would have required separate classes `SearchByPlayerName` and `SearchByTeamName` to enable searching of `Player`s and `Team`s, since the search methods would have different parameters. For example, `SearchByPlayerName.search()` would return a `List<Player>`, while `SearchByTeamName.search()` would return a `List<Team>`. (Alternatively, we could've used overloading, but this would still result in duplicated code.) With our new design, `SearchByName.search()` returns a generic `List<T>`, and the type of `T` will depend on how we initialize the `SearchByName` class. This design decision will also **make future expansion of our program easier**, and it **minimizes the amount of duplicated code**.
 
-- Simplifying `CSVAdapter` (extracting logic)
+Our final major change that has made things easier is that we have simplified `CSVAdapter`. For one, we removed the `stringToDouble()` method after realizing that none of the values in our database are decimal values. We also removed the need for `updateTeamsDatabase()` by putting all of this logic in the `TeamDatabase` class. This means that our adapter class will no longer have to keep track of the teams it has added to the database, which eliminates a lot of complexity from the class. The main benefit of extracting logic out of `CSVAdapter` is that if we ever need to switch out our dataset, there is much less to reimplement in whatever concrete `InputAdapter` class we create. It also makes `CSVAdapter` **much easier to read, understand, and test**, simply because it has less responsibilities and variables to keep track of.
 
 ## Questions and Concerns
 
-- Too many classes? Packaging strategy not working?
-- Databases being passed through multiple layers?
+- Limitations of our packaging strategy
+  - In Phase 1, we decided to package by component and create six different packages: `data`, `entities`, `io`, `search`, `services`, and `ui`.
+  - Now that we've added even more classes, each package is becoming quite bloated and it is becoming difficult to locate classes in our program.
+  - Also, some of our classes also seem to be in the wrong place. For example, the `StatsCalculator` classes are together with the `Database` classes, even though they have no interaction with one another.
+  - Over the next couple of days, we will reconsider the packages we have made and possibly create more granular packages that better describe the classes inside them.
+- Databases are being down passed through multiple layers
+  - Our `Database` classes are first initialized in the `main()` method of our program, which is stored in the outer layer (`CommandLine`). 
+  - Now that we have made the databases non-static, we have to pass each one as an argument to whatever methods are reading from them/adding to them. This includes methods in the controller and use case layers.
+    - This means that instances of `Database` are constantly travelling throughout our program, which can lead to issues (possibly a violation of Clean Architecture?).
 - Too much responsibility given to `CommandLine`?
+  - Now that our UI and inputs have become more complex and we have added safety mechanisms so no errors occur in the program, our `CommandLine` class has increased in length.
+  - We have tried to break up the complexity by keeping as much logic as possible in the `Input` classes, and if that wasn't possible, we tried our best to break things up into separate methods.
+  - In the future, it would probably be a good idea to create new UI classes that will handle the inputs that happen before we actually use the `Input` classes
 - Trying to avoid dependency in wrong direction w/ entities and `StatsCalculator` -> means we have to calculate stats every single time we search
 - A lot of duplicated code in input functions
   - Tried to resolve with the default `getInput` method, but there is still some duplication (esp. `InputPlayerAttributes`)
@@ -55,9 +65,10 @@ TODO: Make sure to add a link to a significant pull request that you had a part 
 
 ### Daniel
 
-Implemented new user functionality and `Database` superclass with Tobey, and implemented serialization of databases, players, teams, and users (PR [#38](https://github.com/CSC207-UofT/course-project-team-scouts/pull/38) and [#39](https://github.com/CSC207-UofT/course-project-team-scouts/pull/39)). These contributions were essential for **satisfying our specification** (*e.g.* logging in and saving state) and for **improving our testing** (no longer using static, global variables). Re-implemented `InputPlayerAttributes` according to updated specification from last phase. Refactored a lot of our code to support new features and simplify code. Contributed to user interface design decisions. Wrote and finalized much of the documentation (esp. the Accessibility Report). In the future, I would like to refactor the program and add more documentation so others can expand on our code if they desire.
+Implemented new user functionality and `Database` superclass with Tobey, and implemented serialization of databases, players, teams, and users (PR [#38](https://github.com/CSC207-UofT/course-project-team-scouts/pull/38) and [#39](https://github.com/CSC207-UofT/course-project-team-scouts/pull/39)). These contributions were essential for **satisfying our specification** (*e.g.* logging in and saving state) and for **improving our testing** (no longer using static, global variables). Re-implemented `InputPlayerAttributes` according to updated specification from last phase. Refactored a lot of our code to support new features and simplify code. Contributed to user interface design decisions. Wrote and finalized much of the documentation (esp. the Accessibility Report). In the future, I would like to refactor the program and add more documentation so it's easier for others to expand on our code.
 
 ### Kaartik
+
 Refactored and added documentation to `Player` and its subclasses along with `Team`. Rewrote and added few tests, in accordance to the changes and additions in `processFile`. Helped Aditya enhance the functionality of the presenter classes. Introduced the Clean Arch Diagram. I Implemented and introduced the Factory Design Pattern in our project with `PlayerFactory`, `Player` and its subclasses. (PR [#6](https://github.com/CSC207-UofT/course-project-team-scouts/pull/6)) (PR [#40](https://github.com/CSC207-UofT/course-project-team-scouts/pull/40)). The following addition was a key feature of our project, as it helped instantiate appropriate objects (which are used in various parts of our project) without exposing the creation logic to client. In the future I would like to introduce a more enhanced GUI, and also possibly add a feature of calculating the potential chemistry of a scouted player in a team. 
 
 ### Matthew
