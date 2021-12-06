@@ -70,9 +70,9 @@ Also see [`walkthrough.md`](https://github.com/CSC207-UofT/course-project-team-s
 
 ## Clean Architecture
 
-Our CRC diagram gives an overview of how the different classes in our program fit into the layers of Clean Architecture. It also shows some of the major dependencies in our program.
+The following diagram gives an overview of how the different classes in our program fit into the layers of Clean Architecture. The [alternate version](images/ca_diagram_dependencies.png) also shows some of the dependencies in our program.
 
-<!-- TODO: Add CRC diagram (image or link) -->
+![](images/ca_diagram.png)
 
 Ever since the inception of our project, we have worked to make our project and code adhere to the rules of Clean Architecture. 
 To start with, our project doesn't rely on a rigid framework, which has allowed us to independently **expand the domain of our project** after each phase and not forced us to stay within certain constraints. This is mostly a consequence of keeping everything within a specific layer of Clean Architecture and adhering to dependency rules. 
