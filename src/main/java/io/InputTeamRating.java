@@ -14,7 +14,7 @@ public class InputTeamRating implements InputData<Team> {
     List<Team> searchResults;
 
     @Override
-    public void run(Database<Team> database) {
+    public void run(Database<Team> database) throws IOException {
         // Display prompt to user.
         System.out.println("Which team rating would you like to include in your search? " +
                 "(Enter the number corresponding to your choice)");

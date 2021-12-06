@@ -1,5 +1,6 @@
 package io;
 
+import java.io.IOException;
 import java.util.List;
 
 /*
@@ -7,5 +8,5 @@ import java.util.List;
  * presenter class that handles player/team data must have.
  */
 public interface PresentData<T> {
-    void outputResults(List<T> resultsList);
+    void outputResults(List<T> resultsList) throws IOException;
 }
