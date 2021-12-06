@@ -33,7 +33,7 @@ public class InputTeamName implements InputData<Team> {
             if (teamName != null) {
                 SearchByName<Team> searchByName = new SearchByName<>();
                 this.searchResults = searchByName.search(database, teamName);
-                TeamPresenter tPresenter = new TeamPresenter();
+                TeamsPresenter tPresenter = new TeamsPresenter();
                 tPresenter.outputResults(searchResults);
             }
         } catch (Exception e) {

@@ -2,7 +2,6 @@ package io;
 
 import data.Database;
 import data.TeamDatabase;
-import entities.Player;
 import entities.Team;
 import org.javatuples.Pair;
 import search.SearchByTeamRating;
@@ -69,7 +68,7 @@ public class InputTeamRating implements InputData<Team> {
         }
 
         searchResults = SearchByTeamRating.search((TeamDatabase) database, ratings, type);
-        TeamPresenter teamPresenter = new TeamPresenter();
+        TeamsPresenter teamPresenter = new TeamsPresenter();
         teamPresenter.outputResults(searchResults);
     }
 
