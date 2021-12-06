@@ -39,10 +39,10 @@ In addition to using generics in `Database`, we also applied them to one of our 
 - Too many classes? Packaging strategy not working?
 - Databases being passed through multiple layers?
 - Too much responsibility given to `CommandLine`?
-- Trying to avoid dependency in wrong direction w/ entities and `StatsCalculator` -> means we have to calculate stats every single time we search
-- A lot of duplicated code in input functions
+- In order to avoid the dependency in wrong direction with the entities and `StatsCalculator`, we end up making our code calculate the statistcics, everytime we search.
+- A lot of duplicated code in input functions - We have a good number of input classes, that cover various input cases - inputting player name, team name, player attributes, or team ratings. These classes share a lot of common code. For instance the `InputPlayerAttributes` and `InputTeamRating`, share a lot of common input functionality, from the `run` methods to the `switch` cases (to get the correct input prompt) to the maps. Thus in our input classes we see sequence of codes, that occur more than once. 
   - Tried to resolve with the default `getInput` method, but there is still some duplication (esp. `InputPlayerAttributes`)
-- Fuzziness of search functions can lead to bad results with shorter names
+- Fuzziness of search functions can lead to bad results with shorter names - Althought implementing the fuzzy search has its benefits, but not having a high accuracy means that we can potentially get a lot of unrelated and undesired players with short names(depending on the column of names we used) when we search.  
 
 ## Group Member Roles
 
