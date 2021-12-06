@@ -37,15 +37,16 @@ public class InputPlayerAttributes implements InputData<Player> {
         String searchType;
         while (true) {
             try {
+                System.out.print("Selection (1-4): ");
                 searchType = getInput();
                 // If the input is valid, break out of while loop
                 if (searchTypes.contains(searchType.strip())) { break; }
                 else {
                     // Input is not valid, the loop will run again
-                    System.out.println("'" + searchType + "' is not a valid input. Please try again.");
+                    System.out.println("'" + searchType + "' is not a valid input. Please try again.\n");
                 }
             } catch (IOException e) {
-                System.out.println("An error occurred, please try again.");
+                System.out.println("An error occurred, please try again.\n");
             }
         }
 
@@ -117,8 +118,8 @@ public class InputPlayerAttributes implements InputData<Player> {
         while (true) {
             try {
                 // Print instructions
-                System.out.println("Please enter a value or range of values for the attribute '"
-                        + attribute + "'. You can also press enter to skip.");
+                System.out.println("\nEnter a value or range of values for the attribute '"
+                        + attribute.toUpperCase() + "'. You can also press Enter to skip.");
                 System.out.println("(Values must be integers >= 0. If specifying a range, " +
                         "separate the two values with a space.)");
                 // Get user input
@@ -132,7 +133,7 @@ public class InputPlayerAttributes implements InputData<Player> {
                 }
                 else {
                     // Input is not valid, the loop will run again
-                    System.out.println("'" + input + "' is not a valid input. Please try again.");
+                    System.out.println("'" + input.strip() + "' is not a valid input. Please try again.");
                 }
             } catch (IOException e) {
                 System.out.println("An error occurred, please try again.");

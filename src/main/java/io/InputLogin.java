@@ -14,24 +14,24 @@ public class InputLogin implements InputData<User> {
 
     @Override
     public void run(Database<User> userDatabase) {
-        System.out.println("Username: ");
+        System.out.print("Username: ");
         while (true) {
             try {
                 username = getInput();
                 break;
             } catch (IOException e) {
-                System.out.println("An error occurred, please try again.");
+                System.out.println("An error occurred, please try again.\n");
             }
         }
 
-        System.out.println("Password: ");
+        System.out.print("Password: ");
         String password;
         while (true) {
             try {
                 password = getInput();
                 break;
             } catch (IOException e) {
-                System.out.println("An error occurred, please try again.");
+                System.out.println("An error occurred, please try again.\n");
             }
         }
 
