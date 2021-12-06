@@ -7,10 +7,6 @@ import java.util.List;
 
 public class TeamStatsCalculator extends StatsCalculator<Team> {
     PlayerStatsCalculator playerCalc = new PlayerStatsCalculator();
-//    private enum skillType {
-//        OVERALL, OFFENSIVE,
-//        DEFENSIVE, GOALKEEPING
-//    }
 
     /**
      * Generates an overall offensive rating for a Team. Accomplishes this by making
@@ -83,21 +79,4 @@ public class TeamStatsCalculator extends StatsCalculator<Team> {
 
         return valueSum;
     }
-// No obvious way to refactor this without overcomplicating!
-//    private int (List<Player> players, skillType type) {
-//        int ratingSum = 0;
-//
-//        if (type == skillType.OVERALL) {
-//
-//        } else if (type == skillType.OFFENSIVE) {
-//
-//        } else if (type == skillType.DEFENSIVE) {
-//
-//        } else {
-//            // skillType must be GOALKEEPING
-//        }
-//        for (Player p : players) {
-//            ratingSum += p.getRating();
-//        }
-//    }
 }

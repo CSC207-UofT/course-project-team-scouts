@@ -4,9 +4,7 @@ import data.Database;
 import entities.Player;
 import search.SearchByName;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.List;
 
 public class InputPlayerName implements InputData<Player> {
@@ -25,7 +23,7 @@ public class InputPlayerName implements InputData<Player> {
                 System.out.println("An error occurred, please try again.\n");
             }
         }
-        
+
         SearchByName<Player> searchByName = new SearchByName<>();
         searchResults = searchByName.search(database, name.strip());
 

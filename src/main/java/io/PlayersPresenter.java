@@ -25,7 +25,11 @@ public class PlayersPresenter implements PresentData<Player> {
             that we can maybe have an additional method for more verbose
             output for only one player (like in the form of a list or t-chart
             instead of a table).
-         */
+        */
+        if (playerList.isEmpty()) {
+            System.out.println("No matching players found.");
+            return;
+        }
         // Output the header of the table.
         printHeader(playerList);
 
