@@ -44,6 +44,8 @@ Implemented new user functionality and `Database` superclass with Tobey, and imp
 
 ### Matthew
 
+Implemented the `PlayerPresenter` class to display more detailed output for a single player, and worked on the `TeamPresenter` class. Also helped with the implementation of the input and searching functionality of the program by extending it to work with `Team` entities as well (by implementing the classes `InputTeamName`, `InputTeamRating`, and `SearchByTeamRating` PR [#56](https://github.com/CSC207-UofT/course-project-team-scouts/pull/56])). These specific additions were crucial in fulfilling the basic functionality that was first defined in our specification, while also increasing the utility of the program to users. In the future, I would like to potentially create a GUI for the user interface, that allows users to enter in their search input more easily and see the results of their searches in a more visually pleasing fashion.
+
 ### Michael 
 
 Made minor changes to Player, CsvAdapter classes to enable search by attributes funcitonality. Reimplemented the SearchForPlayer and SearchByAttributes classes to allow them to interact appropriately with new implementation of databases that can now be serialized. Implemented SearchByAttributes to enable Player searching using attributes as outlined by our specificication. Contributed to user interface and searching use case design decisions (PR [#44](https://github.com/CSC207-UofT/course-project-team-scouts/pull/44)). In the future I would like to add database editing funtionality like the ability to add, remove or edit players and teams so the progrma is still useful even after the current databse becomes outdated.
