@@ -12,9 +12,26 @@
 
 ## The Good Parts
 
-- `Database` superclass w/ generics
-- Making databases non-static
-- `Identifiable` interface
+One of the major changes in this phase of the project was the **creation of a `Database` superclass**. Our TA, Ethan, asked us about having a superclass during our first presentation, but at the time, we didn't see much utility in it. However, after discussing it further, we decided that it would be a great idea for a few reasons:
+
+1. We were in the process of designing our `User` and `UserDatabase` classes, and noticed that it would share a lot of functionality with our other database classes, `PlayerDatabase` and `TeamDatabase`.
+  - Rather than duplicating code, it made more sense to inherit the identical functionality from a common superclass.
+  - Also, if we were to ever extend our program and add other entities like coaches or managers, having the superclass would be really helpful. This helps our program adhere to the Open/Closed Principle.
+2. We were also in the process of enabling serialization of our databases and entities. 
+  - If we make our `Database` superclass serializable, then all subclasses will also automatically become serializable, and the methods that load and save data (in `ReadWriter`) will work with any instance of `Database`.
+
+We also decided that using generics for this class would be a good idea, as it enables us to store any object and use the methods defined in the superclass. For example, `UserDatabase` extends `Database<User>`, so all of its methods work on `User` objects. This is one way in which the decision to make a `Database` superclass has already paid off; It only took a few lines of code to have a fully working, serializable database for storing players.
+
+While implementing the new `Database` superclass, we also decided to eliminate the "staticness" from all database classes. Previously, each database had a public static list of entities that could be accessed from anywhere in the program. This came with a few problems:
+
+1. When you have "global data," such as a public static list, it is very easy to lose track of which methods are modifying that data. This makes bugs more likely and bug fixing more difficult. It also increases the chance that we will accidentally change data that we don't intend to change.
+2. Static variables can make testing very tedious. To make sure that the operations in one test don't affect the next test, we have to make sure to reset the value of the static variable at the end of every single test.
+3. Java simply does not allow static data to be written to a `.ser` file, which would make the serialization of our databases impossible.
+
+In our current design, each database (`Player`/`Team`/`UserDatabase`) gets initialized when the program starts up. If there are existing `.ser` files for these databases, they will be loaded into the program. Otherwise, empty `Database` objects are created and added to by `CSVAdapter` (and `LoginUseCase`). Any classes or methods that used to access the static variable now require `Database` objects to be passed as arguments instead.
+
+In addition to using generics in `Database`, we also applied them to one of our search classes, `SearchByName`. Our previous design would have required separate classes `SearchByPlayerName` and `SearchByTeamName` to enable searching of `Player`s and `Team`s, since the search methods would have different parameters. For example, `SearchByPlayerName.search()` would return a `List<Player>`, while `SearchByTeamName.search()` would return a `List<Team>`. (Alternatively, we could've used overloading, but this would still result in duplicated code.) With our new design, `SearchByName.search()` returns a generic `List<T>`, and the type of `T` will depend on how we initialize the `SearchByName` class.
+
 - Simplifying `CSVAdapter` (extracting logic)
 
 ## Questions and Concerns
