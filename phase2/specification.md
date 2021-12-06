@@ -11,7 +11,7 @@ Each team also has its own attributes, including **name** and **number of player
 The application should maintain a database of **users** (scouts).
 User entities will keep track of the **team they are scouting for**, their scouting **history**, 
 and the **type** of scout that they are (player scout or tactical scout).
-Users may also choose to **create a new team** to scout for, rather than choosing an existing team.
+Each user is **given their own team** to scout for and add players to.
 
 The applications first crucial task is to **download and organize the external database** into usable Java objects, 
 so that players and teams can be easily accessed when searched for. 
