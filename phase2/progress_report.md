@@ -48,11 +48,13 @@ Our final major change that has made things easier is that we have simplified `C
 - Too much responsibility given to `CommandLine`?
   - Now that our UI and inputs have become more complex and we have added safety mechanisms so no errors occur in the program, our `CommandLine` class has increased in length.
   - We have tried to break up the complexity by keeping as much logic as possible in the `Input` classes, and if that wasn't possible, we tried our best to break things up into separate methods.
-  - In the future, it would probably be a good idea to create new UI classes that will handle the inputs that happen before we actually use the `Input` classes
-- Trying to avoid dependency in wrong direction w/ entities and `StatsCalculator` -> means we have to calculate stats every single time we search
+  - In the future, it would probably be a good idea to create new UI classes that will handle the inputs that happen before we actually use the `Input` classes.
+- In order to avoid the dependency in wrong direction with the entities and `StatsCalculator`, we end up making our code calculate the statistcics, everytime we search.
 - A lot of duplicated code in input functions
-  - Tried to resolve with the default `getInput` method, but there is still some duplication (esp. `InputPlayerAttributes`)
-- Fuzziness of search functions can lead to bad results with shorter names
+  - We have a good number of input classes, that cover various input cases, *e.g.* inputting player name, team name, player attributes, or team ratings. These classes share a lot of common code. 
+  - For instance the `InputPlayerAttributes` and `InputTeamRating`, share a lot of common input functionality, from the `run` methods to the `switch` cases (to get the correct input prompt) to the maps. Thus in our input classes we see sequence of codes, that occur more than once. 
+  - We tried to resolve this with the default `getInput` method in the `InputData` interface, but there is still some duplication (especially in `InputPlayerAttributes`).
+- Fuzziness of search functions can lead to bad results with shorter names - Althought implementing the fuzzy search has its benefits, but not having a high accuracy means that we can potentially get a lot of unrelated and undesired players with short names(depending on the column of names we used) when we search.  
 
 ## Group Member Roles
 
@@ -77,7 +79,7 @@ Implemented the `PlayerPresenter` class to display more detailed output for a si
 
 ### Michael 
 
-Made minor changes to Player, CsvAdapter classes to enable search by attributes funcitonality. Reimplemented the SearchForPlayer and SearchByAttributes classes to allow them to interact appropriately with new implementation of databases that can now be serialized. Implemented SearchByAttributes to enable Player searching using attributes as outlined by our specificication. Contributed to user interface and searching use case design decisions (PR [#44](https://github.com/CSC207-UofT/course-project-team-scouts/pull/44)). In the future I would like to add database editing funtionality like the ability to add, remove or edit players and teams so the progrma is still useful even after the current databse becomes outdated.
+Made minor changes to Player, CsvAdapter classes to enable search by attributes funcitonality. Reimplemented the SearchForPlayer and SearchByAttributes classes to allow them to interact appropriately with new implementation of databases that can now be serialized. Implemented SearchByAttributes to enable Player searching using attributes as outlined by our specificication  (PR [#44](https://github.com/CSC207-UofT/course-project-team-scouts/pull/44)). Contributed to user interface and searching use case design decisions. In the future I would like to add database editing funtionality like the ability to add, remove or edit players and teams so the progrma is still useful even after the current databse becomes outdated.
 
 ### Tobey
 
