@@ -24,7 +24,7 @@ public class CommandLine {
      *
      * @param args additional arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // Initialize adapter
         CSVAdapter adapter = new CSVAdapter();
 
@@ -50,7 +50,7 @@ public class CommandLine {
      * Runs through all user prompts
      */
     private static void runPrompts(UserDatabase userDatabase, PlayerDatabase playerDatabase,
-                                   TeamDatabase teamDatabase) {
+                                   TeamDatabase teamDatabase) throws IOException {
         // Run the login prompt
         runLoginPrompt(userDatabase);
         while (!stop) {
@@ -87,7 +87,7 @@ public class CommandLine {
         }
     }
 
-    private static void runSelectSearchPrompt(PlayerDatabase playerDatabase, TeamDatabase teamDatabase) {
+    private static void runSelectSearchPrompt(PlayerDatabase playerDatabase, TeamDatabase teamDatabase) throws IOException {
         // Initialize new BufferedReader
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -153,7 +153,7 @@ public class CommandLine {
         }
     }
 
-    private static void runTeamSearchPrompt(TeamDatabase teamDatabase) {
+    private static void runTeamSearchPrompt(TeamDatabase teamDatabase) throws IOException {
         // Initialize new BufferedReader
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -244,7 +244,8 @@ public class CommandLine {
     public static String userChoiceOutput() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        System.out.print("Press 'player' to view a player individually or 'Next' to view the next page: ");
+        System.out.print("Press 'player' to view a player individually, 'menu' to return to the menu" +
+                " or 'Next' to view the next page: ");
         String userChoice = reader.readLine();
         assert userChoice != null;
 
@@ -268,6 +269,41 @@ public class CommandLine {
         return reader.readLine();
 
         }
+
+    /**
+     * Asks the user to either choose to view a team individually or return to menu
+     * Used primarily by presenter classes.
+     *
+     * @throws IOException user may enter the wrong key.
+     */
+
+    public static String userChoiceOutputTeams() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.print("Press 'team' to view a team individually or 'Next' to return to the menu: ");
+        String userChoice = reader.readLine();
+        assert userChoice != null;
+
+        return userChoice;
+    }
+
+    /**
+     * Asks the user for the ID of the team to view individually
+     * Used primarily by presenter classes.
+     *
+     * @throws IOException user may enter the wrong key.
+     */
+
+
+    public static String individualTeamOutput() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.print("Enter Team ID ");
+
+
+        return reader.readLine();
+
+    }
     }
 
 

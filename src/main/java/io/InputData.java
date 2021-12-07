@@ -12,5 +12,5 @@ public interface InputData<T> {
         return reader.readLine();
     }
 
-    void run(Database<T> database);
+    void run(Database<T> database) throws IOException;
 }

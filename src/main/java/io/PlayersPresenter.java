@@ -153,7 +153,11 @@ public class PlayersPresenter implements PresentData<Player> {
                     displayPlayer(players);
                     return true;
 
-                } else {
+                }
+                else if(userChoice.equals("menu")){
+                    return true;
+                }
+                else {
                     CommandLine.resumeOutput();
                     return false;
                 }
