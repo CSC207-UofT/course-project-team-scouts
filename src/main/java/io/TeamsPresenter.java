@@ -31,9 +31,13 @@ class TeamsPresenter implements PresentData<Team> {
                 System.out.println("Net worth: " + calculator.generateNetWorth(t));
                 System.out.println("Number of players: " + t.getPlayers().size());
                 System.out.println("=".repeat(48));
+
+                teamCount++;
             }
+
+            // Only let user view individual team if teams have been found.
+            pauseOutput(teams);
         }
-        pauseOutput(teams);
     }
 
     /**
