@@ -2,6 +2,7 @@ package services;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
+import com.opencsv.exceptions.CsvException;
 import data.PlayerDatabase;
 import data.TeamDatabase;
 import entities.Player;
@@ -9,7 +10,6 @@ import entities.PlayerFactory;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -37,42 +37,6 @@ public class CSVAdapter implements InputAdapter {
     }
 
     /**
-     * Helper method that converts strings to doubles. Tries to catch NumberFormatException.
-     *
-     * @param doubleAsString csv string cell value
-     * @return value the sole parameter now as a double
-     */
-    public double stringToDouble(String doubleAsString) {
-        double value;
-        try {
-            value = Double.parseDouble(doubleAsString);
-        } catch (NumberFormatException e) {
-            value = 0.0;
-        }
-        return value;
-    }
-
-    /**
-     * Helper method that checks if a Team is already in the Team database.
-     * Adds it if not, updates it with player if it is.
-     *
-     * @param t_name team name as string
-     * @param teams  collection of team names as string so far
-     * @param player a Player object that belongs to this team
-     */
-    public void updateTeamsDatabase(String t_name, ArrayList<String> teams, Player player) {
-        if (teams.contains(t_name)) {
-            TeamDatabase.updateRoster(t_name, player);
-        } else {
-            teams.add(t_name);
-            List<Player> roster = new ArrayList<>();
-            roster.add(player);
-            TeamDatabase.addEntity(t_name, roster);
-        }
-    }
-
-
-    /**
      * Returns a hashmap, mapping the string describing a player attribute to the value of
      * that players attribute as an int.
      *
@@ -87,8 +51,8 @@ public class CSVAdapter implements InputAdapter {
                 "fk accuracy", "long passing",
                 "ball control", "acceleration", "sprint speed",
                 "agility", "reactions", "balance",
-                "shot_power", "jumping", "stamina", "strength",
-                "long_shots", "aggression", "interceptions",
+                "shot power", "jumping", "stamina", "strength",
+                "long shots", "aggression", "interceptions",
                 "positioning", "vision", "penalties",
                 "composure", "marking", "standing tackle",
                 "sliding tackle", "goalkeeping diving", "goalkeeping handling",
@@ -118,46 +82,52 @@ public class CSVAdapter implements InputAdapter {
      * @param databaseFile the path of the database file (CSV)
      */
     @Override
-    public void dataDump(String databaseFile) throws IOException {
+    public void processFile(String databaseFile, PlayerDatabase playerDatabase, TeamDatabase teamDatabase) {
         try {
-            // Create fileReader and CsvReader objects
+            // Create fileReader and CSVReader objects
             FileReader fileReader = new FileReader(databaseFile);
             CSVReader csvReader = new CSVReaderBuilder(fileReader).withSkipLines(1).build();
 
             // Read all the data at once into a list of string arrays
             List<String[]> entries = csvReader.readAll();
 
-            // Iterate through each row representing a player, reformat player data and
-            // pass it to PlayerFactory, update database with new player
+            // Iterate through each row and process it
             for (String[] row : entries) {
-
-                // list of teams accumulator
-                ArrayList<String> teams_accumulator = new ArrayList<>();
-
-                String name = row[2];
-                int age = stringToInt(row[4]);
-                double height = stringToDouble(row[6]);
-                double weight = stringToDouble(row[7]);
-                String team = row[9];
-
-                int rating = stringToInt(row[10]);
-                double value = stringToDouble(row[12]);
-                String position = isolatePosition(row[14]);
-
-                String[] skillAttributes = Arrays.copyOfRange(row, 44, 78);
-                HashMap<String, Integer> skills = makeHashMap(skillAttributes);
-
-                Player player = PlayerFactory.makePlayer(name, age, height, weight, team, rating,
-                        value, position, skills);
-
-                PlayerDatabase.add_entity(player);
-                updateTeamsDatabase(team, teams_accumulator, player);
+                processRow(row, playerDatabase, teamDatabase);
             }
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException | CsvException e) {
+            System.out.println("An error has occurred while loading in player/team data!");
+            System.out.println("Please ensure that 'players_20.csv' is located in the 'dataset(s)' folder.");
         }
+    }
 
+    /**
+     * The method responsible for reading each entry from a given row
+     * of the data and assigning it to specific variables to generate and add
+     * the player and the team to the database.
+     * @param values row to process
+     * @param playerDatabase player database to edit
+     * @param teamDatabase team database to edit
+     */
+    private void processRow(String[] values, PlayerDatabase playerDatabase, TeamDatabase teamDatabase) {
+        String name = values[2];
+        int age = stringToInt(values[4]);
+        int height = stringToInt(values[6]);
+        int weight = stringToInt(values[7]);
+        String team = values[9];
+
+        int rating = stringToInt(values[10]);
+        int value = stringToInt(values[12]);
+        String position = isolatePosition(values[14]);
+
+        String[] skillAttributes = Arrays.copyOfRange(values, 44, 78);
+        HashMap<String, Integer> skills = makeHashMap(skillAttributes);
+
+        Player player = PlayerFactory.makePlayer(name, age, height, weight, team, rating,
+                value, position, skills);
+
+        playerDatabase.addEntity(player);
+        teamDatabase.updateRoster(team, player);
     }
 
 }

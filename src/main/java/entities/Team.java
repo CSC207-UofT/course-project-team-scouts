@@ -1,25 +1,25 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Team {
-    private final String team_name;
+public class Team implements Serializable, Identifiable {
+    private final String teamName;
     List<Player> players;
 
     public Team() {
-        this.team_name = "";
+        this.teamName = "";
         this.players = new ArrayList<>();
     }
 
-    public Team(String team_name, List<Player> players) {
-        this.team_name = team_name;
+    public Team(String teamName, List<Player> players) {
+        this.teamName = teamName;
         this.players = players;
     }
 
-
-    public String getTeamName() {
-        return team_name;
+    public String getName() {
+        return teamName;
     }
 
     public void addPlayer(Player player) {
@@ -29,5 +29,4 @@ public class Team {
     public List<Player> getPlayers() {
         return players;
     }
-
 }

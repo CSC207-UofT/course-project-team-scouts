@@ -1,7 +1,6 @@
 import entities.Player;
 import entities.Team;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,33 +8,45 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class TestTeam {
-
-    Team club;
-    Player test_player;
+    Team testTeam;
 
     @Before
     public void setup(){
-        test_player = new Player();
-        List<Player> roster = new ArrayList<>();
-        roster.add(test_player);
-        club = new Team("Fc Barcelona", roster);
+        Player testPlayer = new Player();
+        List<Player> players = new ArrayList<>();
+        players.add(testPlayer);
+        this.testTeam = new Team("Scouts", players);
     }
-
 
     @Test
     public void testGetTeamName() {
-        assertEquals("Fc Barcelona", club.getTeamName());
+        String expectedTeamName = "Scouts";
+        String actualTeamName = testTeam.getName();
+        assertEquals(expectedTeamName, actualTeamName);
     }
 
     @Test
     public void testAddPlayer() {
-        club.addPlayer(test_player);
-        assertEquals(2, club.getPlayers().size());
+        Player testPlayer = new Player();
+        List<Player> players = new ArrayList<>();
+        players.add(testPlayer);
+        players.add(testPlayer);
+
+        Team expectedTeam = new Team("Scouts", players);
+
+        this.testTeam.addPlayer(testPlayer);
+        Team actualTeam = this.testTeam;
+
+        assertEquals(expectedTeam.getPlayers().size(), actualTeam.getPlayers().size());
     }
 
     @Test
     public void testGetPlayers() {
-        assertEquals(1, club.getPlayers().size());
-    }
+        List<Player> expectedPlayers = new ArrayList<>();
+        expectedPlayers.add(new Player());
 
+        List<Player> actualPlayers = this.testTeam.getPlayers();
+
+        assertSame(expectedPlayers.size(), actualPlayers.size());
+    }
 }

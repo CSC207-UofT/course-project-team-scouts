@@ -1,38 +1,26 @@
 package io;
 
+import data.UserDatabase;
 import entities.User;
-import entities.UserList;
-import java.io.IOException;
 
-public class LoginUseCase implements LoginInputBoundary {
+public class LoginUseCase {
 
     /**
      * List of users organized by username
      */
-    private final UserList users;
+    private final UserDatabase users;
 
     /**
-     *Serializes and deserializes list of users
-     */
-    UserReadWriter readWriter = new UserReadWriter();
-
-    /**
-     * / The "output" of this use case.
+     * The "output" of this use case.
      */
     // Note: This could also be a fully-fledged class if we need to return
     // information to the controller.
     public enum LoginResult {
-        SUCCESS, FAILURE, NO_SUCH_USER // Should we do NO_SUCH_USER as well as SUCCESS and FAILURE?
+        SUCCESS, FAILURE, NO_SUCH_USER
     }
 
-    public LoginUseCase(UserList users) {
+    public LoginUseCase(UserDatabase users) {
         this.users = users;
-        try {
-            String filepath = "dataset(s)/users.ser";
-            readWriter.saveToFile(filepath, users);
-        } catch (IOException e) {
-            System.out.println("User list did not save.");
-        }
     }
 
     /**
@@ -44,7 +32,7 @@ public class LoginUseCase implements LoginInputBoundary {
     public LoginResult logIn(String username, String password) {
         User user = users.getUser(username);
         if (user == null) {
-            users.add(new User(username, password));
+            users.addEntity(new User(username, password));
             return LoginResult.NO_SUCH_USER;
         }
         else if (user.passwordMatches(password)) {
