@@ -162,7 +162,7 @@ public class InputPlayerAttributes implements InputData<Player> {
             // User has entered 1 value, we use that as the min. and use the default max.
             if (splitInputInts.length == 1) { return new Pair<>(splitInputInts[0], 250); }
             // User has entered 2 values, we use those as the min. and max.
-            else if (splitInputInts.length == 2) { return new Pair<>(splitInputInts[0], 250); }
+            else if (splitInputInts.length == 2) { return new Pair<>(splitInputInts[0], splitInputInts[1]); }
             // User has entered more than 2 values
             return null;
         }
