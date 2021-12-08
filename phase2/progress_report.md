@@ -36,6 +36,8 @@ Our final major change that has made things easier is that we have simplified `C
 
 ## Questions and Concerns
 
+*Note: There are additional unresolved questions/issues that we have not had the time to address which you can view on the [project repository](https://github.com/CSC207-UofT/course-project-team-scouts/issues).*
+
 - Limitations of our packaging strategy
   - In Phase 1, we decided to package by component and create six different packages: `data`, `entities`, `io`, `search`, `services`, and `ui`.
   - Now that we've added even more classes, each package is becoming quite bloated and it is becoming difficult to locate classes in our program.
