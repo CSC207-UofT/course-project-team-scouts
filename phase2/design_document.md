@@ -122,6 +122,17 @@ Our packaging strategy, "Packaging by Component," has not changed from Phase 1. 
 >
 > Thus, we settled on Packaging by Component. This strategy allowed us to put files that correspond to a single feature or function in our program, such as presentation or searching, into the same package. This would be the easiest to look at and search through to find specific files, while also making it clear what all the different features of our program are, and which files are responsible for providing them.
 
+However, we have introduced new subpackages, moved some classes around, and developed more justification for the way things are:
+- The `data` package contains classes that are involved with storing data (`Database` classes), or creating new data from existing data (`StatsCalculator` classes).
+  - `UserDatabase` (previously `UserList`) is no longer found in `entities`, and has been moved to `data`.
+- `io` has been further subdivided into `input` and `output` for better organization.
+  - All `Input*` classes can be found in `io.input`, and all presenter classes can be found in `io.output`.
+  - `LoginUseCase` and `LoginController` do not directly accept user input, but they work hand in hand with `InputLogin`, so these classes have been kept in the `io` module.
+    - We could introduce a `login` package, but this would add a lot more separation between `InputLogin` and the associated controller/use case.
+- `ReadWriter` has been moved to `services` to be with `CSVAdapter` and `InputAdapter`.
+  - These three classes are involved in accessing files in the filesystem, so it makes sense to group them together.
+  - They are also accesed fairly infrequently (_i.e._ only when the program opens or closes), and play a "service" role for the other classes.
+
 ## Design Patterns
 
 In the [Phase 1 Design Document](https://github.com/CSC207-UofT/course-project-team-scouts/blob/main/phase1/design_document.md#design-patterns) (click for more details), we discussed the different design patterns we have implemented or considered. This includes:
