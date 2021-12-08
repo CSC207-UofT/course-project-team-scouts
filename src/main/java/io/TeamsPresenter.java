@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class TeamsPresenter implements PresentData<Team> {
-    TeamStatsCalculator calculator = new TeamStatsCalculator();
+    final TeamStatsCalculator calculator = new TeamStatsCalculator();
 
     /**
      * Prints a well-formatted description of the key features of a list of
@@ -43,10 +43,9 @@ public class TeamsPresenter implements PresentData<Team> {
     /**
      * Pauses the output and asks the user if they want to view a team individually
      *
-     *
      * @param teams the teams returned from a search.
      */
-    private void pauseOutput (List<Team> teams) {
+    private void pauseOutput(List<Team> teams) {
         try {
             String userChoice = CommandLine.userChoiceOutputTeams();
 
@@ -58,18 +57,13 @@ public class TeamsPresenter implements PresentData<Team> {
                 outputPlayers(teamId, teams);
 
 
-
-
-
-            }
-            else {
-                System.out.println("");
+            } else {
+                System.out.println();
 
             }
 
-        }
-        catch (IOException e){
-            System.out.println("");
+        } catch (IOException e) {
+            System.out.println();
 
         }
 
@@ -79,11 +73,10 @@ public class TeamsPresenter implements PresentData<Team> {
     /**
      * Pauses the output and asks the user if they want to view a team individually
      *
-     *
-     * @param teams list of teams returned by search
+     * @param teams  list of teams returned by search
      * @param teamId the ID of the team to be viewed individually
      */
-    private void outputPlayers (int teamId, List<Team> teams)  {
+    private void outputPlayers(int teamId, List<Team> teams) {
         PlayersPresenter playersPresenter = new PlayersPresenter();
         Team team = teams.get(teamId);
         List<Player> players = team.getPlayers();

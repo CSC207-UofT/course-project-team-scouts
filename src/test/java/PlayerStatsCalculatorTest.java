@@ -1,13 +1,12 @@
 import data.PlayerStatsCalculator;
 import entities.Player;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class PlayerStatsCalculatorTest {
     private PlayerStatsCalculator calc;
@@ -17,25 +16,21 @@ public class PlayerStatsCalculatorTest {
     public void setUp() {
         calc = new PlayerStatsCalculator();
         defaultSkills = new HashMap<>();
-        String[] skillTypes = {"crossing" ,"finishing",
-                "heading accuracy","short passing",
-                "volleys","dribbling" ,"curve",
+        String[] skillTypes = {"crossing", "finishing",
+                "heading accuracy", "short passing",
+                "volleys", "dribbling", "curve",
                 "fk accuracy", "long passing",
-                "ball control", "acceleration" , "sprint speed",
+                "ball control", "acceleration", "sprint speed",
                 "agility", "reactions", "balance",
                 "shot_power", "jumping", "stamina", "strength",
                 "long_shots", "aggression", "interceptions",
                 "positioning", "vision", "penalties",
-                "composure","marking","standing tackle",
-                "sliding tackle","goalkeeping diving","goalkeeping handling",
-                "goalkeeping kicking","goalkeeping positioning","goalkeeping reflexes"};
-        for (int i = 0; i <= skillTypes.length - 1; i = i + 1){
+                "composure", "marking", "standing tackle",
+                "sliding tackle", "goalkeeping diving", "goalkeeping handling",
+                "goalkeeping kicking", "goalkeeping positioning", "goalkeeping reflexes"};
+        for (int i = 0; i <= skillTypes.length - 1; i = i + 1) {
             defaultSkills.put(skillTypes[i], 10);
         }
-    }
-
-    @After
-    public void tearDown() {
     }
 
     @Test

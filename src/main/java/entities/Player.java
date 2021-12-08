@@ -8,14 +8,6 @@ import java.util.HashMap;
  */
 public class Player implements Serializable, Identifiable {
     /**
-     * The name.
-     */
-    private String name;
-    /**
-     * The age.
-     */
-    private int age;
-    /**
      * The height.
      */
     private final int height;
@@ -23,10 +15,6 @@ public class Player implements Serializable, Identifiable {
      * The weight.
      */
     private final int weight;
-    /**
-     * The team.
-     */
-    private String team;
     /**
      * The rating.
      */
@@ -43,6 +31,18 @@ public class Player implements Serializable, Identifiable {
      * Hashmap of skill name to skill value
      */
     private final HashMap<String, Integer> skills;
+    /**
+     * The name.
+     */
+    private String name;
+    /**
+     * The age.
+     */
+    private int age;
+    /**
+     * The team.
+     */
+    private String team;
 
     /**
      * Default constructor
@@ -58,18 +58,19 @@ public class Player implements Serializable, Identifiable {
         this.position = null;
         this.skills = new HashMap<>();
     }
+
     /**
      * A new player with attributes and information.
      *
-     * @param name the name
-     * @param age the age
-     * @param height the height
-     * @param weight the weight
-     * @param team the team
-     * @param rating the rating
-     * @param value the value
+     * @param name     the name
+     * @param age      the age
+     * @param height   the height
+     * @param weight   the weight
+     * @param team     the team
+     * @param rating   the rating
+     * @param value    the value
      * @param position the position
-     * @param skills the skills
+     * @param skills   the skills
      */
     public Player(String name, int age, int height, int weight, String team,
                   int rating, int value, String position,
@@ -84,6 +85,7 @@ public class Player implements Serializable, Identifiable {
         this.position = position;
         this.skills = skills;
     }
+
     /**
      * Return the hashmap of this player's skills.
      */
@@ -99,10 +101,28 @@ public class Player implements Serializable, Identifiable {
     }
 
     /**
+     * Set the name of the player.
+     *
+     * @param namePlayer the name.
+     */
+    public void setName(String namePlayer) {
+        name = namePlayer;
+    }
+
+    /**
      * Return the age of this player.
      */
     public int getAge() {
         return age;
+    }
+
+    /**
+     * Set the age of the player.
+     *
+     * @param agePlayer the age.
+     */
+    public void setAge(int agePlayer) {
+        age = agePlayer;
     }
 
     /**
@@ -134,50 +154,6 @@ public class Player implements Serializable, Identifiable {
     }
 
     /**
-     * Return the strength of this player.
-     */
-    public int getStrength() {
-        return skills.get("strength");
-    }
-
-    /**
-     * Return the stamina of this player.
-     */
-    public int getStamina() {
-        return skills.get("stamina");
-    }
-
-    /**
-     * Set the name of the player.
-     * @param namePlayer the name.
-     */
-    public void setName(String namePlayer) {
-        name = namePlayer;
-    }
-
-    /**
-     * Set the age of the player.
-     * @param agePlayer the age.
-     */
-    public void setAge(int agePlayer) {
-        age = agePlayer;
-    }
-
-    /**
-     * Display player's name.
-     */
-    public void displayName() {
-        System.out.println("This player's position is " + getName());
-    }
-
-    /**
-     * Display player's age.
-     */
-    public void displayAge() {
-        System.out.println("This player's age is " + getAge());
-    }
-
-    /**
      * Return player's team.
      */
     public String getTeam() {
@@ -189,13 +165,6 @@ public class Player implements Serializable, Identifiable {
      */
     public String getPosition() {
         return position;
-    }
-
-    /**
-     * Display player's position.
-     */
-    public void displayPos() {
-        System.out.println("This player's position is " + getPosition());
     }
 
     public void updateTeam(String teamName) {

@@ -10,11 +10,11 @@ import java.util.List;
  * Responsible for storing Team Data as a list of Team entities
  */
 public class TeamDatabase extends Database<Team> {
-    /** 
+    /**
      * Updates the given team's roster to include the given
      * Player object. If team is not found, add the team with
      * the given player.
-     * 
+     *
      * @param teamName String representing team name
      * @param player   Player object to be added to the team
      */

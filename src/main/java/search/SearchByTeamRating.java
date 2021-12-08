@@ -20,16 +20,14 @@ public class SearchByTeamRating {
 
         for (Team t : teamList) {
             Map<String, Number> attributes = teamRatings(t, ratingType);
-            boolean validTeam = addTeam(attributes, queries);
+            boolean isValid = SearchHelper.validEntity(attributes, queries);
 
-            if (validTeam) {
-                validTeams.add(t);
-            }
+            if (isValid) validTeams.add(t);
         }
         return validTeams;
     }
 
-    public static Map<String,Number> teamRatings(Team team, RatingType ratingType){
+    public static Map<String, Number> teamRatings(Team team, RatingType ratingType) {
         TeamStatsCalculator calculator = new TeamStatsCalculator();
         Map<String, Number> ratings = new HashMap<>();
 
@@ -54,15 +52,5 @@ public class SearchByTeamRating {
         }
 
         return ratings;
-    }
-
-    public static boolean addTeam(Map<String, Number> ratings, Map<String, Pair<Number, Number>> queries){
-        for (Map.Entry<String, Pair<Number, Number>> entry: queries.entrySet()){
-            int val = (int) ratings.get(entry.getKey());
-            int min = (int) entry.getValue().getValue0();
-            int max = (int) entry.getValue().getValue1();
-            if (!((min <= val) & (val <= max))){ return false;}
-        }
-        return true;
     }
 }

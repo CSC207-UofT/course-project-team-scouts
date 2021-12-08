@@ -10,21 +10,13 @@ public class LoginUseCase {
      */
     private final UserDatabase users;
 
-    /**
-     * The "output" of this use case.
-     */
-    // Note: This could also be a fully-fledged class if we need to return
-    // information to the controller.
-    public enum LoginResult {
-        SUCCESS, FAILURE, NO_SUCH_USER
-    }
-
     public LoginUseCase(UserDatabase users) {
         this.users = users;
     }
 
     /**
      * Run the login use case.
+     *
      * @param username the username
      * @param password the password attempt
      * @return whether the attempt matches the password associated with username
@@ -34,12 +26,20 @@ public class LoginUseCase {
         if (user == null) {
             users.addEntity(new User(username, password));
             return LoginResult.NO_SUCH_USER;
-        }
-        else if (user.passwordMatches(password)) {
+        } else if (user.passwordMatches(password)) {
             return LoginResult.SUCCESS;
         } else {
             return LoginResult.FAILURE;
         }
+    }
+
+    /**
+     * The "output" of this use case.
+     */
+    // Note: This could also be a fully-fledged class if we need to return
+    // information to the controller.
+    public enum LoginResult {
+        SUCCESS, FAILURE, NO_SUCH_USER
     }
 }
 

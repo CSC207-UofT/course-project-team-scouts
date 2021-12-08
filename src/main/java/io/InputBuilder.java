@@ -17,11 +17,11 @@ public class InputBuilder {
             case PLAYER_ATTRIBUTES:
                 return new InputPlayerAttributes();
             case TEAM_NAME:
-                // TODO: Add InputTeamName class
-            case TEAM_ATTRIBUTES:
-                // TODO: Add InputTeamAttributes class
+                return new InputTeamName();
+            case TEAM_RATINGS:
+                return new InputTeamRating();
             default:
-                return new InputLogin();
+                return null;
         }
     }
 }

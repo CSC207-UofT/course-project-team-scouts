@@ -5,6 +5,7 @@ import entities.User;
 public class UserDatabase extends Database<User> {
     /**
      * Gets a specific user from the user database
+     *
      * @param username a users username
      * @return a user if the user was found, null otherwise
      */

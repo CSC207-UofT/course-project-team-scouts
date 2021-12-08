@@ -4,9 +4,9 @@ import data.Database;
 import data.PlayerDatabase;
 import data.TeamDatabase;
 import data.UserDatabase;
-import entities.Player;
 import io.*;
 import services.CSVAdapter;
+import services.InputAdapter;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -26,7 +26,7 @@ public class CommandLine {
      */
     public static void main(String[] args) {
         // Initialize adapter
-        CSVAdapter adapter = new CSVAdapter();
+        InputAdapter adapter = new CSVAdapter();
 
         // Initialize databases
         Database<?>[] databases = ReadWriter.loadDatabases();
@@ -73,6 +73,7 @@ public class CommandLine {
         System.out.println("If you enter a username that does not currently exist in the system, " +
                 "a new account with that name will be created.\n");
         // Run the prompt
+        assert inputLogin != null;
         inputLogin.run(userDatabase);
         // Decide what to do
         while (inputLogin.loginResult == LoginUseCase.LoginResult.FAILURE) {
@@ -171,7 +172,9 @@ public class CommandLine {
                 try {
                     searchType = reader.readLine();
                     break;
-                } catch (IOException e) { System.out.println("An error occurred, please try again."); }
+                } catch (IOException e) {
+                    System.out.println("An error occurred, please try again.");
+                }
             }
         }
 
@@ -253,14 +256,14 @@ public class CommandLine {
     }
 
 
-        /**
-         * Asks the user for the ID of the player to view individually
-         * Used primarily by presenter classes.
-         *
-         * @throws IOException user may enter the wrong key.
-         */
+    /**
+     * Asks the user for the ID of the player to view individually
+     * Used primarily by presenter classes.
+     *
+     * @throws IOException user may enter the wrong key.
+     */
 
-    public static String individualPlayerOutput () throws IOException {
+    public static String individualPlayerOutput() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         System.out.print("Enter Player ID ");
@@ -268,7 +271,7 @@ public class CommandLine {
 
         return reader.readLine();
 
-        }
+    }
 
     /**
      * Asks the user to either choose to view a team individually or return to menu
@@ -304,6 +307,6 @@ public class CommandLine {
         return reader.readLine();
 
     }
-    }
+}
 
 

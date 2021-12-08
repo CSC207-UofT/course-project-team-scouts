@@ -1,17 +1,11 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Team implements Serializable, Identifiable {
+    final List<Player> players;
     private final String teamName;
-    List<Player> players;
-
-    public Team() {
-        this.teamName = "";
-        this.players = new ArrayList<>();
-    }
 
     public Team(String teamName, List<Player> players) {
         this.teamName = teamName;

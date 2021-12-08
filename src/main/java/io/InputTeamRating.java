@@ -7,7 +7,10 @@ import org.javatuples.Pair;
 import search.SearchByTeamRating;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class InputTeamRating implements InputData<Team> {
     // Storing the results of a search in a list.
@@ -32,8 +35,9 @@ public class InputTeamRating implements InputData<Team> {
             try {
                 searchType = getInput();
                 // If the input is valid, break out of while loop
-                if (searchTypes.contains(searchType.strip())) { break; }
-                else {
+                if (searchTypes.contains(searchType.strip())) {
+                    break;
+                } else {
                     // Input is not valid, the loop will run again
                     System.out.println("'" + searchType + "' is not a valid input. Please try again.");
                 }
@@ -47,23 +51,23 @@ public class InputTeamRating implements InputData<Team> {
         RatingType type;
         switch (searchType) {
             case "2":
-                ratings = inputOffensive(database);
+                ratings = inputOffensive();
                 type = RatingType.OFFENSIVE;
                 break;
             case "3":
-                ratings = inputDefensive(database);
+                ratings = inputDefensive();
                 type = RatingType.DEFENSIVE;
                 break;
             case "4":
-                ratings = inputNetWorth(database);
+                ratings = inputNetWorth();
                 type = RatingType.NET_WORTH;
                 break;
             case "5":
-                ratings = inputAll(database);
+                ratings = inputAll();
                 type = RatingType.ALL;
                 break;
             default:
-                ratings = inputOverall(database);
+                ratings = inputOverall();
                 type = RatingType.OVERALL;
         }
 
@@ -72,7 +76,7 @@ public class InputTeamRating implements InputData<Team> {
         teamPresenter.outputResults(searchResults);
     }
 
-    private Map<String, Pair<Number, Number>> inputOverall(Database<Team> database) {
+    private Map<String, Pair<Number, Number>> inputOverall() {
         String[] ratingNames = new String[]{"Overall Rating"};
         Map<String, Pair<Number, Number>> ratings = new HashMap<>();
         for (String rating : ratingNames) {
@@ -81,7 +85,7 @@ public class InputTeamRating implements InputData<Team> {
         return ratings;
     }
 
-    private Map<String, Pair<Number, Number>> inputOffensive(Database<Team> database) {
+    private Map<String, Pair<Number, Number>> inputOffensive() {
         String[] ratingNames = new String[]{"Offensive Rating"};
         Map<String, Pair<Number, Number>> ratings = new HashMap<>();
         for (String rating : ratingNames) {
@@ -90,7 +94,7 @@ public class InputTeamRating implements InputData<Team> {
         return ratings;
     }
 
-    private Map<String, Pair<Number, Number>> inputDefensive(Database<Team> database) {
+    private Map<String, Pair<Number, Number>> inputDefensive() {
         String[] ratingNames = new String[]{"Defensive Rating"};
         Map<String, Pair<Number, Number>> ratings = new HashMap<>();
         for (String rating : ratingNames) {
@@ -99,7 +103,7 @@ public class InputTeamRating implements InputData<Team> {
         return ratings;
     }
 
-    private Map<String, Pair<Number, Number>> inputNetWorth(Database<Team> database) {
+    private Map<String, Pair<Number, Number>> inputNetWorth() {
         String[] ratingNames = new String[]{"Net Worth"};
         Map<String, Pair<Number, Number>> ratings = new HashMap<>();
         for (String rating : ratingNames) {
@@ -108,7 +112,7 @@ public class InputTeamRating implements InputData<Team> {
         return ratings;
     }
 
-    private Map<String, Pair<Number, Number>> inputAll(Database<Team> database) {
+    private Map<String, Pair<Number, Number>> inputAll() {
         String[] ratingNames = new String[]{"Overall Rating", "Offensive Rating",
                 "Defensive Rating", "Net Worth"};
         Map<String, Pair<Number, Number>> ratings = new HashMap<>();
@@ -134,8 +138,7 @@ public class InputTeamRating implements InputData<Team> {
                 if (formattedInput != null) {
                     ratings.put(rating, formattedInput); // Add this value to the mapping of attributes
                     break; // Break out of the while loop
-                }
-                else {
+                } else {
                     // Input is not valid, the loop will run again
                     System.out.println("'" + input + "' is not a valid input. Please try again.");
                 }
@@ -149,26 +152,11 @@ public class InputTeamRating implements InputData<Team> {
         // Remove leading and trailing space
         input = input.strip();
         // If the input was empty, return the default min. and max.
-        if (input.equals("")) { return new Pair<>(0, 100); }
-        else {
+        if (input.equals("")) {
+            return new Pair<>(0, 100);
+        } else {
             // Split the input string into separate strings
-            String[] splitInput = input.split(" ");
-            int[] splitInputInts = new int[splitInput.length];
-            try {
-                for (int i = 0 ; i < splitInput.length ; i++) {
-                    // Convert the input to an integer
-                    splitInputInts[i] = Integer.parseInt(splitInput[i]);
-                }
-            } catch (NumberFormatException e) {
-                // User has input something other than an integer
-                return null;
-            }
-            // User has entered 1 value, we use that as the min. and use the default max.
-            if (splitInputInts.length == 1) { return new Pair<>(splitInputInts[0], 100); }
-            // User has entered 2 values, we use those as the min. and max.
-            else if (splitInputInts.length == 2) { return new Pair<>(splitInputInts[0], splitInputInts[1]); }
-            // User has entered more than 2 values
-            return null;
+            return InputHelper.splitInput(input);
         }
     }
 

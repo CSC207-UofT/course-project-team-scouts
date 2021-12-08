@@ -1,15 +1,17 @@
 import data.UserDatabase;
 import entities.User;
 import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class TestUserDatabase {
 
-    String username = "Don Paul Gries";
-    String password = "SolidClean";
-    User user = new User(username, password);
+    final String username = "Don Paul Gries";
+    final String password = "SolidClean";
+    final User user = new User(username, password);
 
     @Test
     public void getUserKnownUser() {

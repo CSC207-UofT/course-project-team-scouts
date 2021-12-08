@@ -1,17 +1,19 @@
 import entities.Player;
 import entities.Team;
-import org.junit.*;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
 
 public class TestTeam {
     Team testTeam;
 
     @Before
-    public void setup(){
+    public void setup() {
         Player testPlayer = new Player();
         List<Player> players = new ArrayList<>();
         players.add(testPlayer);

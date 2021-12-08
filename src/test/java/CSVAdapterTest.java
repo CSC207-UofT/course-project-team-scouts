@@ -1,25 +1,20 @@
 import data.PlayerDatabase;
 import data.TeamDatabase;
-import entities.Player;
-import entities.Team;
 import org.junit.Before;
 import org.junit.Test;
 import services.CSVAdapter;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class CSVAdapterTest {
     CSVAdapter adapter;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         adapter = new CSVAdapter();
     }
 
@@ -43,22 +38,23 @@ public class CSVAdapterTest {
     public void testMakeHashMap() {
         String[] testArray = new String[35];
         HashMap<String, Integer> hashMapTest = new HashMap<>();
-        String[] skillTypes = {"crossing" ,"finishing",
-                "heading accuracy","short passing",
-                "volleys","dribbling" ,"curve",
+        String[] skillTypes = {"crossing", "finishing",
+                "heading accuracy", "short passing",
+                "volleys", "dribbling", "curve",
                 "fk accuracy", "long passing",
-                "ball control", "acceleration" , "sprint speed",
+                "ball control", "acceleration", "sprint speed",
                 "agility", "reactions", "balance",
                 "shot power", "jumping", "stamina", "strength",
                 "long shots", "aggression", "interceptions",
                 "positioning", "vision", "penalties",
-                "composure","marking","standing tackle",
-                "sliding tackle","goalkeeping diving","goalkeeping handling",
-                "goalkeeping kicking","goalkeeping positioning","goalkeeping reflexes"};
+                "composure", "marking", "standing tackle",
+                "sliding tackle", "goalkeeping diving", "goalkeeping handling",
+                "goalkeeping kicking", "goalkeeping positioning", "goalkeeping reflexes"};
 
-        for (int i = 0; i <= skillTypes.length - 1; i = i + 1){
+        for (int i = 0; i <= skillTypes.length - 1; i = i + 1) {
             hashMapTest.put(skillTypes[i], i);
-            testArray[i] = String.valueOf(i);}
+            testArray[i] = String.valueOf(i);
+        }
 
         assertEquals(hashMapTest, adapter.makeHashMap(testArray));
     }
@@ -82,7 +78,7 @@ public class CSVAdapterTest {
         TeamDatabase teamDatabase = new TeamDatabase();
         adapter.processFile("not_a_file.csv", playerDatabase, teamDatabase);
         assertEquals("An error has occurred while loading in player/team data!\r\n" +
-                "Please ensure that 'players_20.csv' is located in the 'dataset(s)' folder.\r\n",
+                        "Please ensure that 'players_20.csv' is located in the 'dataset(s)' folder.\r\n",
                 outContent.toString());
     }
 }
