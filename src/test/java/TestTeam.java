@@ -1,9 +1,6 @@
-import data.PlayerDatabase;
 import entities.Player;
 import entities.Team;
-import org.junit.Before;
-import org.junit.Test;
-import services.CSVAdapter;
+import org.junit.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,44 +8,45 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class TestTeam {
-
-    Team club;
-    Player testPlayer;
+    Team testTeam;
 
     @Before
     public void setup(){
-        testPlayer = new Player();
-        CSVAdapter adapter = new CSVAdapter();
-        PlayerDatabase playerdatabase = new PlayerDatabase();
-        data.TeamDatabase teamdatabase = new data.TeamDatabase();
-        adapter.processFile("dataset(s)/players_20.csv", playerdatabase, teamdatabase);
-        List<Player> roster = new ArrayList<>();
-        roster.add(testPlayer);
-        club = new Team("Fc Barcelona", roster);
+        Player testPlayer = new Player();
+        List<Player> players = new ArrayList<>();
+        players.add(testPlayer);
+        this.testTeam = new Team("Scouts", players);
     }
-
 
     @Test
     public void testGetTeamName() {
-        assertEquals("Fc Barcelona", club.getTeamName());
+        String expectedTeamName = "Scouts";
+        String actualTeamName = testTeam.getName();
+        assertEquals(expectedTeamName, actualTeamName);
     }
 
     @Test
     public void testAddPlayer() {
-        club.addPlayer(testPlayer);
-        assertEquals(2, club.getPlayers().size());
+        Player testPlayer = new Player();
+        List<Player> players = new ArrayList<>();
+        players.add(testPlayer);
+        players.add(testPlayer);
+
+        Team expectedTeam = new Team("Scouts", players);
+
+        this.testTeam.addPlayer(testPlayer);
+        Team actualTeam = this.testTeam;
+
+        assertEquals(expectedTeam.getPlayers().size(), actualTeam.getPlayers().size());
     }
 
     @Test
     public void testGetPlayers() {
-        Player testPlayerOne;
-        testPlayerOne = new Player();
-        Player testPlayerTwo;
-        testPlayerTwo = new Player();
-        club.addPlayer(testPlayerOne);
-        club.addPlayer(testPlayerTwo);
-        assertEquals(3, club.getPlayers().size());
+        List<Player> expectedPlayers = new ArrayList<>();
+        expectedPlayers.add(new Player());
+
+        List<Player> actualPlayers = this.testTeam.getPlayers();
+
+        assertSame(expectedPlayers.size(), actualPlayers.size());
     }
-
-
 }

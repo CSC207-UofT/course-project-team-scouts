@@ -213,14 +213,8 @@ public class Player implements Serializable, Identifiable {
                 "heading accuracy", "short passing",
                 "volleys"};
 
-
         for (String attribute : positionSkillAttributes) {
             positionAttributes.put(attribute, allSkills.get(attribute));
-
-
-
-
-
         }
         return positionAttributes;
     }

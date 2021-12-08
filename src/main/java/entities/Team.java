@@ -5,22 +5,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Team implements Serializable, Identifiable {
-    private final String team_name;
+    private final String teamName;
     List<Player> players;
 
     public Team() {
-        this.team_name = "";
+        this.teamName = "";
         this.players = new ArrayList<>();
     }
 
-    public Team(String team_name, List<Player> players) {
-        this.team_name = team_name;
+    public Team(String teamName, List<Player> players) {
+        this.teamName = teamName;
         this.players = players;
     }
 
-
     public String getName() {
-        return team_name;
+        return teamName;
     }
 
     public void addPlayer(Player player) {
@@ -30,5 +29,4 @@ public class Team implements Serializable, Identifiable {
     public List<Player> getPlayers() {
         return players;
     }
-
 }
