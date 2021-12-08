@@ -23,11 +23,11 @@ public class TeamPresenterTest {
 
     https://www.baeldung.com/java-testing-system-out-println
      */
-    private HashMap<String, Integer> defaultSkills;
-    private TeamsPresenter presenter;
-    private final PrintStream standardOut = System.out;
-    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-    private List<Team> searchResults;
+    HashMap<String, Integer> defaultSkills;
+    TeamsPresenter presenter;
+    final PrintStream standardOut = System.out;
+    final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+    List<Team> searchResults;
 
     @Before
     public void setUp() {
@@ -71,7 +71,7 @@ public class TeamPresenterTest {
         // Call outputResults to have the code run, then we capture it's output for assertion.
         // If there are no players,
         assertEquals(
-                "================================================\n" + "No matching teams found.\n", outputStreamCaptor.toString());
+                "================================================\r\n" + "No matching teams found.\r\n", outputStreamCaptor.toString());
     }
 //    @Test
 //    public void testOutputResultsWithTeam() {

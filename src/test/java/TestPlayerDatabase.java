@@ -32,6 +32,7 @@ public class TestPlayerDatabase {
         assertTrue(playerDatabase.getEntities().isEmpty());
         List<Player> footballers = new ArrayList<>();
         footballers.add(testPlayer);
-        assertSame(footballers, playerDatabase.getEntities());
+        playerDatabase.addEntity(testPlayer);
+        assertEquals(footballers, playerDatabase.getEntities());
     }
 }
