@@ -3,6 +3,14 @@ package io;
 import org.javatuples.Pair;
 
 public class InputHelper {
+    /**
+     * Splits single string of user input from console into a pair
+     * of numbers for when user is prompted to provide a minimum
+     * and maximum value for a search or query.
+     *
+     * @param input the string of min and max values entered by user.
+     * @return a Pair collection of two numbers, the first representing a min and the second representing a max.
+     */
     public static Pair<Number, Number> splitInput(String input) {
         String[] splitInput = input.split(" ");
         int[] splitInputInts = new int[splitInput.length];

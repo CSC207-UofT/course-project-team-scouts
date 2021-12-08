@@ -23,11 +23,6 @@ public class PlayersPresenter implements PresentData<Player> {
      */
     @Override
     public void outputResults(List<Player> playerList) {
-        /* TODO: maybe add a logic check here if there is only one player, so
-            that we can maybe have an additional method for more verbose
-            output for only one player (like in the form of a list or t-chart
-            instead of a table).
-        */
         if (playerList.isEmpty()) {
             System.out.println("No matching players found.");
             return;

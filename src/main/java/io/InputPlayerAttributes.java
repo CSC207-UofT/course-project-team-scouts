@@ -72,6 +72,12 @@ public class InputPlayerAttributes implements InputData<Player> {
         playersPresenter.outputResults(searchResults);
     }
 
+    /**
+     * Establishes a collection of all the attributes that are relevant to any "Forward"
+     * player, and maps each attribute to a range in skill level that the user desires.
+     *
+     * @return a map of "forward" attributes to range of corresponding skill level for each.
+     */
     private Map<String, Pair<Number, Number>> inputForward() {
         String[] forwardAttributes = new String[]{"age", "height", "weight", "sprint speed", "acceleration",
                 "strength", "stamina", "finishing", "composure", "volleys", "curve", "shot power", "long shots",
@@ -83,6 +89,12 @@ public class InputPlayerAttributes implements InputData<Player> {
         return attributes;
     }
 
+    /**
+     * Establishes a collection of all the attributes that are relevant to any "Midfield"
+     * player, and maps each attribute to a range in skill level that the user desires.
+     *
+     * @return a map of "midfield" attributes to range of corresponding skill level for each.
+     */
     private Map<String, Pair<Number, Number>> inputMidfield() {
         String[] midfieldAttributes = new String[]{"age", "height", "weight", "sprint speed", "acceleration",
                 "strength", "stamina", "short passing", "long passing", "crossing", "vision", "dribbling",
@@ -94,6 +106,12 @@ public class InputPlayerAttributes implements InputData<Player> {
         return attributes;
     }
 
+    /**
+     * Establishes a collection of all the attributes that are relevant to any "Defense"
+     * player, and maps each attribute to a range in skill level that the user desires.
+     *
+     * @return a map of "defense" attributes to range of corresponding skill level for each.
+     */
     private Map<String, Pair<Number, Number>> inputDefense() {
         String[] defenseAttributes = new String[]{"age", "height", "weight", "sprint speed", "acceleration",
                 "strength", "stamina", "jumping", "heading accuracy", "aggression", "interceptions", "positioning",
@@ -105,6 +123,12 @@ public class InputPlayerAttributes implements InputData<Player> {
         return attributes;
     }
 
+    /**
+     * Establishes a collection of all the attributes that are relevant to any "Goalkeeper"
+     * and maps each attribute to a range in skill level that the user desires.
+     *
+     * @return a map of "goalkeeping" attributes to range of corresponding skill level for each.
+     */
     private Map<String, Pair<Number, Number>> inputGoalkeeping() {
         String[] goalkeepingAttributes = new String[]{"age", "height", "weight", "long passing", "goalkeeping diving",
                 "goalkeeping handling", "goalkeeping kicking", "goalkeeping positioning", "goalkeeping reflexes"};
@@ -115,6 +139,14 @@ public class InputPlayerAttributes implements InputData<Player> {
         return attributes;
     }
 
+    /**
+     * Loops over all the attributes for a player of a specific position, prompting
+     * user to enter desired minimum and maximum values for each, and mutating the Map of
+     * attributes to skill ranges for each.
+     *
+     * @param attributes a Map of attributes to skill ranges for players of a specific position.
+     * @param attribute a specific attribute in the list of attributes relevant to a certain position.
+     */
     private void loopOverAttributes(Map<String, Pair<Number, Number>> attributes, String attribute) {
         while (true) {
             try {
@@ -141,6 +173,13 @@ public class InputPlayerAttributes implements InputData<Player> {
         }
     }
 
+    /**
+     * Packages the minimum and maximum values for a particular attribute of a player
+     * chosen by the user into a tuple of two values (a Pair).
+     *
+     * @param input the line of input corresponding to a range entered by user.
+     * @return a Pair of two numbers corresponding to the min. and max. values for an attribute.
+     */
     private Pair<Number, Number> getTuple(String input) {
         // Remove leading and trailing space
         input = input.strip();

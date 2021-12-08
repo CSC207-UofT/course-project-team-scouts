@@ -10,6 +10,14 @@ public class InputLogin implements InputData<User> {
     public LoginUseCase.LoginResult loginResult;
     public String username;
 
+    /**
+     * Runs two separate prompts in the command line, the first asking for the
+     * user's username, and the second asking for the user's password. Forwards
+     * user input and database of users along to the login use case and stores
+     * the result of the login attempt.
+     *
+     * @param userDatabase database of existing users in the program so far.
+     */
     @Override
     public void run(Database<User> userDatabase) {
         System.out.print("Username: ");

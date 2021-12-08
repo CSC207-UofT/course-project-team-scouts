@@ -8,6 +8,12 @@ package io;
 public class LoginController {
     final LoginUseCase loginUseCase;
 
+    /**
+     * Takes in the login use case established in an input method, and stores
+     * it as an instance variable of this class.
+     *
+     * @param useCase the login use case for the program's login functionality.
+     */
     public LoginController(LoginUseCase useCase) {
         loginUseCase = useCase;
     }
