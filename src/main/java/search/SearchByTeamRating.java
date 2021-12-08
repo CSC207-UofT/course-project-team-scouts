@@ -13,6 +13,16 @@ import java.util.Map;
 
 public class SearchByTeamRating {
 
+    /**
+     * Searches the database of existing Teams in the program for all
+     * those that match the conditions provided by the user in their specific
+     * query.
+     *
+     * @param teamDatabase a database of all existing Teams in the program.
+     * @param queries a map of Team ratings to the user's desired value ranges for each.
+     * @param ratingType the type/combination of team ratings that the user is considering in their search.
+     * @return the list of Team entities that match the user's search.
+     */
     public static List<Team> search(TeamDatabase teamDatabase,
                                     Map<String, Pair<Number, Number>> queries, RatingType ratingType) {
         List<Team> teamList = teamDatabase.getEntities();
@@ -27,6 +37,14 @@ public class SearchByTeamRating {
         return validTeams;
     }
 
+    /**
+     * Generates a Map of all the specific team ratings considered by the user to
+     * their specific values for the given team provided as an argument.
+     *
+     * @param team a single team in the database.
+     * @param ratingType the type/combination of Team ratings the user is considering in their search.
+     * @return a Map of Team ratings to their calculated values for a specific team.
+     */
     public static Map<String, Number> teamRatings(Team team, RatingType ratingType) {
         TeamStatsCalculator calculator = new TeamStatsCalculator();
         Map<String, Number> ratings = new HashMap<>();

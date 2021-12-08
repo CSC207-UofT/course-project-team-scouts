@@ -16,6 +16,11 @@ public class InputTeamRating implements InputData<Team> {
     // Storing the results of a search in a list.
     List<Team> searchResults;
 
+    /**
+     * Provides prompts to user for each rating that for which teams will be searched on.
+     * Also accepts user input for each prompt and outputs each Team that
+     * falls under the range of the given categories.
+     */
     @Override
     public void run(Database<Team> database) {
         // Display prompt to user.
@@ -76,6 +81,12 @@ public class InputTeamRating implements InputData<Team> {
         teamPresenter.outputResults(searchResults);
     }
 
+    /**
+     * Establishes a collection of the ratings needed to calculate the Overall rating
+     * of a team, and maps each rating to the range that the user desires any Team to have.
+     *
+     * @return a map of ratings to the corresponding range for each.
+     */
     private Map<String, Pair<Number, Number>> inputOverall() {
         String[] ratingNames = new String[]{"Overall Rating"};
         Map<String, Pair<Number, Number>> ratings = new HashMap<>();
@@ -85,6 +96,12 @@ public class InputTeamRating implements InputData<Team> {
         return ratings;
     }
 
+    /**
+     * Establishes a collection of the ratings needed to calculate the Offensive rating
+     * of a team, and maps each rating to the range that the user desires any Team to have.
+     *
+     * @return a map of ratings to the corresponding range for each.
+     */
     private Map<String, Pair<Number, Number>> inputOffensive() {
         String[] ratingNames = new String[]{"Offensive Rating"};
         Map<String, Pair<Number, Number>> ratings = new HashMap<>();
@@ -94,6 +111,12 @@ public class InputTeamRating implements InputData<Team> {
         return ratings;
     }
 
+    /**
+     * Establishes a collection of the ratings needed to calculate the Defensive rating
+     * of a team, and maps each rating to the range that the user desires any Team to have.
+     *
+     * @return a map of ratings to the corresponding range for each.
+     */
     private Map<String, Pair<Number, Number>> inputDefensive() {
         String[] ratingNames = new String[]{"Defensive Rating"};
         Map<String, Pair<Number, Number>> ratings = new HashMap<>();
@@ -103,6 +126,12 @@ public class InputTeamRating implements InputData<Team> {
         return ratings;
     }
 
+    /**
+     * Establishes a collection of the ratings needed to calculate the Net Worth
+     * of a team, and maps each rating to the range that the user desires any Team to have.
+     *
+     * @return a map of ratings to the corresponding range for each.
+     */
     private Map<String, Pair<Number, Number>> inputNetWorth() {
         String[] ratingNames = new String[]{"Net Worth"};
         Map<String, Pair<Number, Number>> ratings = new HashMap<>();
@@ -112,6 +141,12 @@ public class InputTeamRating implements InputData<Team> {
         return ratings;
     }
 
+    /**
+     * Establishes a collection of the ratings needed to calculate All possible ratings
+     * of a team, and maps each rating to the range that the user desires any Team to have.
+     *
+     * @return a map of ratings to the corresponding range for each.
+     */
     private Map<String, Pair<Number, Number>> inputAll() {
         String[] ratingNames = new String[]{"Overall Rating", "Offensive Rating",
                 "Defensive Rating", "Net Worth"};
@@ -122,6 +157,14 @@ public class InputTeamRating implements InputData<Team> {
         return ratings;
     }
 
+    /**
+     * Loops over all the ratings which the user has chosen to consider in their search, prompting
+     * them to enter desired minimum and maximum values for each, and mutating the Map of
+     * ratings to value ranges for each.
+     *
+     * @param ratings a Map of ratings to corresponding value range for each.
+     * @param rating a specific type of rating in the list of ratings chosen by user.
+     */
     private void loopOverRatings(Map<String, Pair<Number, Number>> ratings, String rating) {
         while (true) {
             try {
@@ -148,6 +191,13 @@ public class InputTeamRating implements InputData<Team> {
         }
     }
 
+    /**
+     * Packages the minimum and maximum values for a particular Team rating
+     * chosen by the user into a tuple of two values (a Pair).
+     *
+     * @param input the line of input corresponding to a range entered by user.
+     * @return a Pair of two numbers corresponding to the min. and max. values for a given rating.
+     */
     private Pair<Number, Number> getTuple(String input) {
         // Remove leading and trailing space
         input = input.strip();
