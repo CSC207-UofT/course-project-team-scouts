@@ -1,6 +1,6 @@
 import data.PlayerDatabase;
 import entities.Player;
-import org.junit.*;
+import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.Assert.*;
@@ -13,30 +13,25 @@ public class TestPlayerDatabase {
     public void testAddEntity() {
         PlayerDatabase playerDatabase = new PlayerDatabase();
         playerDatabase.addEntity(testPlayer);
-        assertTrue(playerDatabase.getPlayers().contains(testPlayer));
+        assertEquals(1, playerDatabase.getEntities().size());
+        assertSame(testPlayer, playerDatabase.getEntities().get(0));
     }
 
     @Test
-    public void testSetPlayers() {
+    public void testSetEntities() {
         List<Player> footballers = new ArrayList<>();
         PlayerDatabase playerDatabase = new PlayerDatabase();
         footballers.add(testPlayer);
-        playerDatabase.setPlayers(footballers);
-        assertEquals(footballers, playerDatabase.getPlayers());
+        playerDatabase.setEntities(footballers);
+        assertSame(footballers, playerDatabase.getEntities());
     }
 
     @Test
-    public void testGetPlayers() {
+    public void testGetEntities() {
         PlayerDatabase playerDatabase = new PlayerDatabase();
-        playerDatabase.setPlayers(new ArrayList<>());
-        List<Player> empty = new ArrayList<>();
-        assertEquals(playerDatabase.getPlayers(), empty);
-
+        assertTrue(playerDatabase.getEntities().isEmpty());
         List<Player> footballers = new ArrayList<>();
         footballers.add(testPlayer);
-        assertNotEquals(playerDatabase.getPlayers(), footballers);
-
-        footballers.add(testPlayer);
-        assertNotEquals(playerDatabase.getPlayers(), footballers);
+        assertSame(footballers, playerDatabase.getEntities());
     }
 }
