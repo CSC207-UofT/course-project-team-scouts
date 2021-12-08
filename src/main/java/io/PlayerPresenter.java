@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-class PlayerPresenter implements PresentData<Player> {
+public class PlayerPresenter implements PresentData<Player> {
     /* Create an instance of PlayerStatsCalculator for the purpose of
      aggregated statistics calculation. */
     PlayerStatsCalculator calculator = new PlayerStatsCalculator();

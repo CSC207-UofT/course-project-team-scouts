@@ -8,7 +8,7 @@ import ui.CommandLine;
 import java.io.IOException;
 import java.util.List;
 
-class TeamsPresenter implements PresentData<Team> {
+public class TeamsPresenter implements PresentData<Team> {
     TeamStatsCalculator calculator = new TeamStatsCalculator();
 
     /**
