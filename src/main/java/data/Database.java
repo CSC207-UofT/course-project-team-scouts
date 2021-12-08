@@ -22,16 +22,6 @@ public class Database<T> implements Serializable {
     public void addEntity(T entity) {
         entityList.add(entity);
     }
-    
-    /** 
-     * Sets the list of entities in the database to
-     * the given list
-     * 
-     * @param entities list of entity objects
-     */
-    public void setEntities(List<T> entities) {
-        entityList = entities;
-    }
 
     /**
      * Returns a list of enities in the database
@@ -40,5 +30,15 @@ public class Database<T> implements Serializable {
      */
     public List<T> getEntities() {
         return entityList;
+    }
+
+    /**
+     * Sets the list of entities in the database to
+     * the given list
+     *
+     * @param entities list of entity objects
+     */
+    public void setEntities(List<T> entities) {
+        entityList = entities;
     }
 }

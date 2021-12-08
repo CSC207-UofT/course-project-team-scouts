@@ -1,15 +1,12 @@
 import data.PlayerDatabase;
 import data.TeamDatabase;
 import entities.Player;
-import entities.Team;
 import org.javatuples.Pair;
 import org.junit.Before;
 import org.junit.Test;
-import search.SearchByName;
 import search.SearchByPlayerAttributes;
 import services.CSVAdapter;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,7 +33,7 @@ public class SearchByPlayerAttributesTest {
         queries.put("weight", new Pair<>(0, 250));
         queries.put("height", new Pair<>(0, 250));
         List<Player> result = SearchByPlayerAttributes.search(playerDatabase, queries);
-        assert(result.size() == 3);
+        assert (result.size() == 3);
     }
 
     @Test
@@ -46,7 +43,7 @@ public class SearchByPlayerAttributesTest {
         queries.put("weight", new Pair<>(0, 250));
         queries.put("height", new Pair<>(0, 250));
         List<Player> result = SearchByPlayerAttributes.search(playerDatabase, queries);
-        assert(result.size() == 1);
+        assert (result.size() == 1);
         assertEquals(result.get(0).getName(), "Cristiano Ronaldo");
     }
 
@@ -57,7 +54,7 @@ public class SearchByPlayerAttributesTest {
         queries.put("weight", new Pair<>(0, 250));
         queries.put("height", new Pair<>(175, 187));
         List<Player> result = SearchByPlayerAttributes.search(playerDatabase, queries);
-        assert(result.size() == 1);
+        assert (result.size() == 1);
         assertEquals(result.get(0).getName(), "Cristiano Ronaldo");
     }
 }

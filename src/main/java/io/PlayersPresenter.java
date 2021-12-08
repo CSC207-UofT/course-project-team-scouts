@@ -12,7 +12,7 @@ import java.util.List;
 public class PlayersPresenter implements PresentData<Player> {
     /* Create an instance of PlayerStatsCalculator for the purpose of
      aggregated statistics calculation. */
-    PlayerStatsCalculator calculator = new PlayerStatsCalculator();
+    final PlayerStatsCalculator calculator = new PlayerStatsCalculator();
 
     /**
      * Outputs the results of a search for players by their skill attributes
@@ -73,7 +73,7 @@ public class PlayersPresenter implements PresentData<Player> {
 
             // Pause the output after 10 players each time, so the user can look
             // through the list of players properly.
-            if (pauseOutput(playerCount, players)){
+            if (pauseOutput(playerCount, players)) {
                 break;
             }
         }
@@ -144,7 +144,7 @@ public class PlayersPresenter implements PresentData<Player> {
      *
      * @param playerCount the number of players that have been output to the console so far.
      */
-    private boolean pauseOutput(int playerCount, List<Player> players)  {
+    private boolean pauseOutput(int playerCount, List<Player> players) {
         if (playerCount % 10 == 0) {
             try {
                 String userChoice = CommandLine.userChoiceOutput();
@@ -153,11 +153,9 @@ public class PlayersPresenter implements PresentData<Player> {
                     displayPlayer(players);
                     return true;
 
-                }
-                else if(userChoice.equals("menu")){
+                } else if (userChoice.equals("menu")) {
                     return true;
-                }
-                else {
+                } else {
                     CommandLine.resumeOutput();
                     return false;
                 }
@@ -178,14 +176,12 @@ public class PlayersPresenter implements PresentData<Player> {
      */
 
 
-
-
-    private void displayPlayer(List<Player> players)  {
+    private void displayPlayer(List<Player> players) {
         try {
             String userChoice = CommandLine.individualPlayerOutput();
             int playerID = Integer.parseInt(userChoice);
 
-            List<Player> playersDisplayed = new ArrayList<Player>() ;
+            List<Player> playersDisplayed = new ArrayList<>();
 
             playersDisplayed.add(players.get(playerID));
 

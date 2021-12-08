@@ -3,14 +3,14 @@ package io;
 import data.Database;
 import data.PlayerDatabase;
 import entities.Player;
+import org.javatuples.Pair;
 import search.SearchByPlayerAttributes;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.*;
-
-import org.javatuples.Pair;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class InputPlayerAttributes implements InputData<Player> {
     // Instance variable storing the search results after a search by attributes is completed.
@@ -40,8 +40,9 @@ public class InputPlayerAttributes implements InputData<Player> {
                 System.out.print("Selection (1-4): ");
                 searchType = getInput();
                 // If the input is valid, break out of while loop
-                if (searchTypes.contains(searchType.strip())) { break; }
-                else {
+                if (searchTypes.contains(searchType.strip())) {
+                    break;
+                } else {
                     // Input is not valid, the loop will run again
                     System.out.println("'" + searchType + "' is not a valid input. Please try again.\n");
                 }
@@ -54,16 +55,16 @@ public class InputPlayerAttributes implements InputData<Player> {
         Map<String, Pair<Number, Number>> attributes;
         switch (searchType) {
             case "2":
-                attributes = inputMidfield(database);
+                attributes = inputMidfield();
                 break;
             case "3":
-                attributes = inputDefense(database);
+                attributes = inputDefense();
                 break;
             case "4":
-                attributes = inputGoalkeeping(database);
+                attributes = inputGoalkeeping();
                 break;
             default:
-                attributes = inputForward(database);
+                attributes = inputForward();
         }
 
         searchResults = SearchByPlayerAttributes.search((PlayerDatabase) database, attributes);
@@ -71,9 +72,9 @@ public class InputPlayerAttributes implements InputData<Player> {
         playersPresenter.outputResults(searchResults);
     }
 
-    private Map<String, Pair<Number, Number>> inputForward(Database<Player> database) {
-        String[] forwardAttributes = new String[]{"age", "height", "weight", "sprint speed",  "acceleration",
-                "strength", "stamina",  "finishing", "composure", "volleys", "curve", "shot power", "long shots",
+    private Map<String, Pair<Number, Number>> inputForward() {
+        String[] forwardAttributes = new String[]{"age", "height", "weight", "sprint speed", "acceleration",
+                "strength", "stamina", "finishing", "composure", "volleys", "curve", "shot power", "long shots",
                 "heading accuracy", "jumping", "fk accuracy", "penalties", "reactions"};
         Map<String, Pair<Number, Number>> attributes = new HashMap<>();
         for (String attribute : forwardAttributes) {
@@ -82,10 +83,10 @@ public class InputPlayerAttributes implements InputData<Player> {
         return attributes;
     }
 
-    private Map<String, Pair<Number, Number>> inputMidfield(Database<Player> database) {
-        String[] midfieldAttributes = new String[]{"age", "height", "weight", "sprint speed",  "acceleration",
-                "strength", "stamina",  "short passing", "long passing", "crossing", "vision", "dribbling",
-                "ball control",  "curve", "fk accuracy", "agility", "reactions", "balance"};
+    private Map<String, Pair<Number, Number>> inputMidfield() {
+        String[] midfieldAttributes = new String[]{"age", "height", "weight", "sprint speed", "acceleration",
+                "strength", "stamina", "short passing", "long passing", "crossing", "vision", "dribbling",
+                "ball control", "curve", "fk accuracy", "agility", "reactions", "balance"};
         Map<String, Pair<Number, Number>> attributes = new HashMap<>();
         for (String attribute : midfieldAttributes) {
             loopOverAttributes(attributes, attribute);
@@ -93,9 +94,9 @@ public class InputPlayerAttributes implements InputData<Player> {
         return attributes;
     }
 
-    private Map<String, Pair<Number, Number>> inputDefense(Database<Player> database) {
+    private Map<String, Pair<Number, Number>> inputDefense() {
         String[] defenseAttributes = new String[]{"age", "height", "weight", "sprint speed", "acceleration",
-                "strength", "stamina", "jumping", "heading accuracy",  "aggression", "interceptions", "positioning",
+                "strength", "stamina", "jumping", "heading accuracy", "aggression", "interceptions", "positioning",
                 "marking", "standing tackle", "sliding tackle"};
         Map<String, Pair<Number, Number>> attributes = new HashMap<>();
         for (String attribute : defenseAttributes) {
@@ -104,7 +105,7 @@ public class InputPlayerAttributes implements InputData<Player> {
         return attributes;
     }
 
-    private Map<String, Pair<Number, Number>> inputGoalkeeping(Database<Player> database) {
+    private Map<String, Pair<Number, Number>> inputGoalkeeping() {
         String[] goalkeepingAttributes = new String[]{"age", "height", "weight", "long passing", "goalkeeping diving",
                 "goalkeeping handling", "goalkeeping kicking", "goalkeeping positioning", "goalkeeping reflexes"};
         Map<String, Pair<Number, Number>> attributes = new HashMap<>();
@@ -130,8 +131,7 @@ public class InputPlayerAttributes implements InputData<Player> {
                 if (formattedInput != null) {
                     attributes.put(attribute, formattedInput); // Add this value to the mapping of attributes
                     break; // Break out of the while loop
-                }
-                else {
+                } else {
                     // Input is not valid, the loop will run again
                     System.out.println("'" + input.strip() + "' is not a valid input. Please try again.");
                 }
@@ -145,26 +145,11 @@ public class InputPlayerAttributes implements InputData<Player> {
         // Remove leading and trailing space
         input = input.strip();
         // If the input was empty, return the default min. and max.
-        if (input.equals("")) { return new Pair<>(0, 250); }
-        else {
+        if (input.equals("")) {
+            return new Pair<>(0, 250);
+        } else {
             // Split the input string into separate strings
-            String[] splitInput = input.split(" ");
-            int[] splitInputInts = new int[splitInput.length];
-            try {
-                for (int i = 0 ; i < splitInput.length ; i++) {
-                    // Convert the input to an integer
-                    splitInputInts[i] = Integer.parseInt(splitInput[i]);
-                }
-            } catch (NumberFormatException e) {
-                // User has input something other than an integer
-                return null;
-            }
-            // User has entered 1 value, we use that as the min. and use the default max.
-            if (splitInputInts.length == 1) { return new Pair<>(splitInputInts[0], 250); }
-            // User has entered 2 values, we use those as the min. and max.
-            else if (splitInputInts.length == 2) { return new Pair<>(splitInputInts[0], splitInputInts[1]); }
-            // User has entered more than 2 values
-            return null;
+            return InputHelper.splitInput(input);
         }
     }
 }

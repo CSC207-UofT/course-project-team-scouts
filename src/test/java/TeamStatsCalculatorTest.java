@@ -1,6 +1,6 @@
 import data.TeamStatsCalculator;
-import entities.Team;
 import entities.Player;
+import entities.Team;
 import junit.framework.TestCase;
 
 import java.util.Arrays;
@@ -36,7 +36,7 @@ public class TeamStatsCalculatorTest extends TestCase {
         defensiveSkills = new String[]{"balance", "strength", "marking", "standing tackle",
                 "sliding tackle"};
 
-        for (int i = 0; i <= skillTypes.length - 1; i = i + 1){
+        for (int i = 0; i <= skillTypes.length - 1; i = i + 1) {
             if (Arrays.asList(offensiveSkills).contains(skillTypes[i])) {
                 sampleSkills.put(skillTypes[i], 25);
             } else if (Arrays.asList(defensiveSkills).contains(skillTypes[i])) {

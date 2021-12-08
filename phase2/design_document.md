@@ -24,7 +24,7 @@ Also see [`walkthrough.md`](https://github.com/CSC207-UofT/course-project-team-s
 
 ### Phase 1
 
-*Note: All of these decisions were mentioned in the [previous phase](../phase1/design_document.md#major_design_decisions), but many were a work in progress. Now they have all been implemented, and some details have changed slightly.*
+*Note: All of these decisions were mentioned in the [previous phase](../phase1/design_document.md#major-design-decisions), but many were a work in progress. Now they have all been implemented, and some details have changed slightly.*
 
 - Created subclasses of player and implemented the **factory design pattern**
   - All players have the same kinds of attributes in our database, but depending on the type of player (forward, defense, goalkeeper, etc.), not all of those attributes are very relevant.

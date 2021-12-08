@@ -1,12 +1,10 @@
 import data.PlayerDatabase;
 import data.TeamDatabase;
-import entities.Player;
 import entities.Team;
 import io.RatingType;
 import org.javatuples.Pair;
 import org.junit.Before;
 import org.junit.Test;
-import search.SearchByPlayerAttributes;
 import search.SearchByTeamRating;
 import services.CSVAdapter;
 

@@ -6,7 +6,7 @@ import entities.Team;
 import java.util.List;
 
 public class TeamStatsCalculator extends StatsCalculator<Team> {
-    PlayerStatsCalculator playerCalc = new PlayerStatsCalculator();
+    final PlayerStatsCalculator playerCalc = new PlayerStatsCalculator();
 
     /**
      * Generates an overall offensive rating for a Team. Accomplishes this by making

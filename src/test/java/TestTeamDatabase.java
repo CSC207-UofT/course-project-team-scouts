@@ -3,8 +3,10 @@ import entities.Player;
 import entities.Team;
 import org.junit.Before;
 import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class TestTeamDatabase {
@@ -13,7 +15,7 @@ public class TestTeamDatabase {
     Player test_player;
 
     @Before
-    public void setup(){
+    public void setup() {
         test_player = new Player();
         List<Player> roster = new ArrayList<>();
         roster.add(test_player);

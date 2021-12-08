@@ -105,9 +105,10 @@ public class CSVAdapter implements InputAdapter {
      * The method responsible for reading each entry from a given row
      * of the data and assigning it to specific variables to generate and add
      * the player and the team to the database.
-     * @param values row to process
+     *
+     * @param values         row to process
      * @param playerDatabase player database to edit
-     * @param teamDatabase team database to edit
+     * @param teamDatabase   team database to edit
      */
     private void processRow(String[] values, PlayerDatabase playerDatabase, TeamDatabase teamDatabase) {
         String name = values[2];

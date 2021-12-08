@@ -1,13 +1,15 @@
 import data.PlayerDatabase;
 import entities.Player;
 import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class TestPlayerDatabase {
 
-    Player testPlayer = new Player();
+    final Player testPlayer = new Player();
 
     @Test
     public void testAddEntity() {

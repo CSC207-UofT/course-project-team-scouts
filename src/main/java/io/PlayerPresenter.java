@@ -1,6 +1,5 @@
 package io;
 
-import data.PlayerStatsCalculator;
 import entities.Player;
 
 import java.util.HashMap;
@@ -8,11 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 public class PlayerPresenter implements PresentData<Player> {
-    /* Create an instance of PlayerStatsCalculator for the purpose of
-     aggregated statistics calculation. */
-    PlayerStatsCalculator calculator = new PlayerStatsCalculator();
-    // TODO - maybe actually do something with stats, or not if not necessary.
-
     /**
      * Outputs all the relevant data pertaining to a specific player
      * in the database, typically after the player has been deliberately

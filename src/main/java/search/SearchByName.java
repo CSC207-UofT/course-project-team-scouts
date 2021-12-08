@@ -2,7 +2,6 @@ package search;
 
 import data.Database;
 import entities.Identifiable;
-import entities.Player;
 import org.apache.commons.text.similarity.LevenshteinDistance;
 
 import java.util.ArrayList;

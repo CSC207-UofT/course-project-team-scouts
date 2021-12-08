@@ -1,9 +1,8 @@
 package services;
 
 
-import java.io.IOException;
-import data.TeamDatabase;
 import data.PlayerDatabase;
+import data.TeamDatabase;
 
 public interface InputAdapter {
     /**

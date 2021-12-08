@@ -4,12 +4,13 @@ import entities.Player;
 import entities.Team;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import search.SearchByName;
 import services.CSVAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 public class SearchByNameTest {
     PlayerDatabase playerDatabase;
@@ -45,14 +46,14 @@ public class SearchByNameTest {
     @Test
     public void testPlayerSearchSpecific() {
         List<Player> result = searchByPlayerName.search(playerDatabase, "Messi");
-        assert(result.size() == 1);
+        assert (result.size() == 1);
         assertEquals(result.get(0).getName(), "L. Messi");
     }
 
     @Test
     public void testTeamSearchSpecific() {
         List<Team> result = searchByTeamName.search(teamDatabase, "Barcelona");
-        assert(result.size() == 1);
+        assert (result.size() == 1);
         assertEquals(result.get(0).getName(), "FC Barcelona");
     }
 }

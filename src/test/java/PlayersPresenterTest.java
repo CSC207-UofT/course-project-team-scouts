@@ -10,9 +10,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class PlayersPresenterTest {
+    private final PrintStream standardOut = System.out;
+    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
     /*
     Code for testing results printed to standard output originally designed and shared
     by Jonathan Cook of baeldung.com (August 13, 2020)
@@ -21,8 +23,6 @@ public class PlayersPresenterTest {
      */
     private PlayersPresenter presenter;
     private HashMap<String, Integer> defaultSkills;
-    private final PrintStream standardOut = System.out;
-    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
     @Before
     public void setUp() {
@@ -35,19 +35,19 @@ public class PlayersPresenterTest {
             this will break testing and cause unpredictable output, so we should consider
              using a sorted version, like TreeMap */
         defaultSkills = new HashMap<>();
-        String[] skillTypes = {"crossing" ,"finishing",
-                "heading accuracy","short passing",
-                "volleys","dribbling" ,"curve",
+        String[] skillTypes = {"crossing", "finishing",
+                "heading accuracy", "short passing",
+                "volleys", "dribbling", "curve",
                 "fk accuracy", "long passing",
-                "ball control", "acceleration" , "sprint speed",
+                "ball control", "acceleration", "sprint speed",
                 "agility", "reactions", "balance",
                 "shot_power", "jumping", "stamina", "strength",
                 "long_shots", "aggression", "interceptions",
                 "positioning", "vision", "penalties",
-                "composure","marking","standing tackle",
-                "sliding tackle","goalkeeping diving","goalkeeping handling",
-                "goalkeeping kicking","goalkeeping positioning","goalkeeping reflexes"};
-        for (int i = 0; i <= skillTypes.length - 1; i = i + 1){
+                "composure", "marking", "standing tackle",
+                "sliding tackle", "goalkeeping diving", "goalkeeping handling",
+                "goalkeeping kicking", "goalkeeping positioning", "goalkeeping reflexes"};
+        for (int i = 0; i <= skillTypes.length - 1; i = i + 1) {
             defaultSkills.put(skillTypes[i], 10);
         }
     }
@@ -97,10 +97,10 @@ public class PlayersPresenterTest {
         // We expect neat formatting of the table as follows.
         String expectedOutput =
                 "                                      ID|                Name|                 Age|    Offensive Rating|    Defensive Rating|                  jumping|                 strength|                penalties|                composure|       goalkeeping diving|                    curve|                  stamina|                  volleys|  goalkeeping positioning|                finishing|             acceleration|                dribbling|                  balance|              positioning|             sprint speed|            short passing|               long_shots|             ball control|          standing tackle|     goalkeeping handling|         heading accuracy|     goalkeeping reflexes|              fk accuracy|      goalkeeping kicking|               aggression|                 crossing|            interceptions|             long passing|                   vision|                  marking|                reactions|           sliding tackle|               shot_power|                  agility|\r\n" +
-                "                                       0|   Cristiano Ronaldo|                  35|                  10|                  10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|\r\n" +
-                "                                       1|        Lionel Messi|                  33|                  10|                  10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|\r\n";
+                        "                                       0|   Cristiano Ronaldo|                  35|                  10|                  10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|\r\n" +
+                        "                                       1|        Lionel Messi|                  33|                  10|                  10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|\r\n";
 
-                assertEquals(expectedOutput, outputStreamCaptor.toString());
+        assertEquals(expectedOutput, outputStreamCaptor.toString());
     }
 
     @Test
@@ -119,7 +119,7 @@ public class PlayersPresenterTest {
         // We expect that for now, the player with Chinese characters in their name does not get output.
         String expectedOutput =
                 "                                      ID|                Name|                 Age|    Offensive Rating|    Defensive Rating|                  jumping|                 strength|                penalties|                composure|       goalkeeping diving|                    curve|                  stamina|                  volleys|  goalkeeping positioning|                finishing|             acceleration|                dribbling|                  balance|              positioning|             sprint speed|            short passing|               long_shots|             ball control|          standing tackle|     goalkeeping handling|         heading accuracy|     goalkeeping reflexes|              fk accuracy|      goalkeeping kicking|               aggression|                 crossing|            interceptions|             long passing|                   vision|                  marking|                reactions|           sliding tackle|               shot_power|                  agility|\r\n" +
-                "                                       0|   Cristiano Ronaldo|                  35|                  10|                  10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|\r\n";
+                        "                                       0|   Cristiano Ronaldo|                  35|                  10|                  10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|                       10|\r\n";
         assertEquals(expectedOutput, outputStreamCaptor.toString());
     }
 }

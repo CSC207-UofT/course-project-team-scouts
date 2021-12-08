@@ -4,9 +4,7 @@ import data.Database;
 import data.UserDatabase;
 import entities.User;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class InputLogin implements InputData<User> {
     public LoginUseCase.LoginResult loginResult;
