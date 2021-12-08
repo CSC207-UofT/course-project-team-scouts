@@ -63,13 +63,13 @@ public class TeamsPresenter implements PresentData<Team> {
 
             }
             else {
-                System.out.println("");
+                System.out.println();
 
             }
 
         }
         catch (IOException e){
-            System.out.println("");
+            System.out.println();
 
         }
 
