@@ -6,15 +6,16 @@ import org.junit.Before;
 import org.junit.Test;
 import services.CSVAdapter;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class TestCsvAdapter {
-
+public class CSVAdapterTest {
     CSVAdapter adapter;
 
     @Before
@@ -31,11 +32,11 @@ public class TestCsvAdapter {
     }
 
     @Test
-    public void testStringToDouble() {
-        String t1 = "69.0";
-        String t2 = "kanye West";
-        assertEquals(69.0, adapter.stringToDouble(t1), 0.0);
-        assertEquals(0.0, adapter.stringToDouble(t2), 0.0);
+    public void testIsolatePosition() {
+        String position1 = "LW";
+        String position2 = "RW, CF";
+        assertEquals("LW", adapter.isolatePosition(position1));
+        assertEquals("RW", adapter.isolatePosition(position2));
     }
 
     @Test
@@ -48,8 +49,8 @@ public class TestCsvAdapter {
                 "fk accuracy", "long passing",
                 "ball control", "acceleration" , "sprint speed",
                 "agility", "reactions", "balance",
-                "shot_power", "jumping", "stamina", "strength",
-                "long_shots", "aggression", "interceptions",
+                "shot power", "jumping", "stamina", "strength",
+                "long shots", "aggression", "interceptions",
                 "positioning", "vision", "penalties",
                 "composure","marking","standing tackle",
                 "sliding tackle","goalkeeping diving","goalkeeping handling",
@@ -63,30 +64,25 @@ public class TestCsvAdapter {
     }
 
     @Test
-    public void testUpdateTeamsDatabase() {
-        Player test_player = new Player();
-        String team_name = "Fc Barcelona";
-        ArrayList<String> teams = new ArrayList<>();
-        adapter.updateTeamsDatabase(team_name, teams, test_player);
-
-        assertEquals(TeamDatabase.getTeams().size(), 1);
-
-        // Teardown
-        List<Team> empty = new ArrayList<>();
-        TeamDatabase.setTeams(empty);
+    public void testProcessFile() {
+        PlayerDatabase playerDatabase = new PlayerDatabase();
+        TeamDatabase teamDatabase = new TeamDatabase();
+        adapter.processFile("dataset(s)/testing_subset.csv", playerDatabase, teamDatabase);
+        assertEquals(playerDatabase.getEntities().size(), 3);
+        assertEquals(teamDatabase.getEntities().size(), 3);
     }
 
-
     @Test
-    public void testDataDump() throws IOException {
-        adapter.dataDump("dataset(s)/testing_subset.csv");
-        assertEquals(PlayerDatabase.getPlayers().size(), 3);
-        assertEquals(TeamDatabase.getTeams().size(), 3);
-
-        // TearDown
-        List<Team> empty = new ArrayList<>();
-        List<Player> empty2 = new ArrayList<>();
-        TeamDatabase.setTeams(empty);
-        PlayerDatabase.setPlayers(empty2);
+    public void testFileMissing() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        System.setErr(new PrintStream(errContent));
+        PlayerDatabase playerDatabase = new PlayerDatabase();
+        TeamDatabase teamDatabase = new TeamDatabase();
+        adapter.processFile("not_a_file.csv", playerDatabase, teamDatabase);
+        assertEquals("An error has occurred while loading in player/team data!\r\n" +
+                "Please ensure that 'players_20.csv' is located in the 'dataset(s)' folder.\r\n",
+                outContent.toString());
     }
 }

@@ -18,7 +18,7 @@ class TeamsPresenter implements PresentData<Team> {
      * @param teams the teams returned from a search.
      */
     @Override
-    public void outputResults(List<Team> teams) throws IOException {
+    public void outputResults(List<Team> teams) {
         System.out.println("=".repeat(48));
         if (teams.isEmpty()) {
             System.out.println("No matching teams found.");
@@ -46,7 +46,7 @@ class TeamsPresenter implements PresentData<Team> {
      *
      * @param teams the teams returned from a search.
      */
-    private void pauseOutput (List<Team> teams) throws IOException {
+    private void pauseOutput (List<Team> teams) {
         try {
             String userChoice = CommandLine.userChoiceOutputTeams();
 
