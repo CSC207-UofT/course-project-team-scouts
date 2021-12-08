@@ -24,7 +24,7 @@ public class CommandLine {
      *
      * @param args additional arguments
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         // Initialize adapter
         CSVAdapter adapter = new CSVAdapter();
 
@@ -50,7 +50,7 @@ public class CommandLine {
      * Runs through all user prompts
      */
     private static void runPrompts(UserDatabase userDatabase, PlayerDatabase playerDatabase,
-                                   TeamDatabase teamDatabase) throws IOException {
+                                   TeamDatabase teamDatabase) {
         // Run the login prompt
         runLoginPrompt(userDatabase);
         while (!stop) {
@@ -87,7 +87,7 @@ public class CommandLine {
         }
     }
 
-    private static void runSelectSearchPrompt(PlayerDatabase playerDatabase, TeamDatabase teamDatabase) throws IOException {
+    private static void runSelectSearchPrompt(PlayerDatabase playerDatabase, TeamDatabase teamDatabase) {
         // Initialize new BufferedReader
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -153,7 +153,7 @@ public class CommandLine {
         }
     }
 
-    private static void runTeamSearchPrompt(TeamDatabase teamDatabase) throws IOException {
+    private static void runTeamSearchPrompt(TeamDatabase teamDatabase) {
         // Initialize new BufferedReader
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 

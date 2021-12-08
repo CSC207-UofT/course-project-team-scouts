@@ -96,7 +96,8 @@ public class CSVAdapter implements InputAdapter {
                 processRow(row, playerDatabase, teamDatabase);
             }
         } catch (IOException | CsvException e) {
-            e.printStackTrace();
+            System.out.println("An error has occurred while loading in player/team data!");
+            System.out.println("Please ensure that 'players_20.csv' is located in the 'dataset(s)' folder.");
         }
     }
 
