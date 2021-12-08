@@ -11,7 +11,11 @@ import java.util.Locale;
 
 public class SearchByName<T> {
     public List<T> search(Database<T> database, String target) {
-        String lower_t = target.toLowerCase(Locale.ROOT);
+        String fTarget = target.toLowerCase(Locale.ROOT).strip();
+
+        if (fTarget.equals("")) {
+            return new ArrayList<>();
+        }
 
         List<T> entityList = database.getEntities();
         List<T> validEntities = new ArrayList<>();
@@ -20,8 +24,8 @@ public class SearchByName<T> {
             String n = ((Identifiable) entity).getName();
             String lower_n = n.toLowerCase(Locale.ROOT);
 
-            int score = LevenshteinDistance.getDefaultInstance().apply(lower_t, lower_n);
-            if ((score < 5) | (lower_n.contains(lower_t))) {
+            int score = LevenshteinDistance.getDefaultInstance().apply(fTarget, lower_n);
+            if ((score < 5) | (lower_n.contains(fTarget))) {
                 validEntities.add(entity);
             }
         }
