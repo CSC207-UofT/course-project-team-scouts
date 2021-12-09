@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Database superclass used to store entities.
+ * Database superclass used to store a variety of entities.
  */
 public class Database<T> implements Serializable {
     protected List<T> entityList;
@@ -15,7 +15,7 @@ public class Database<T> implements Serializable {
     }
 
     /**
-     * Adds new entity to the database
+     * Adds given entity to the database.
      *
      * @param entity object to be added to database
      */
@@ -24,7 +24,7 @@ public class Database<T> implements Serializable {
     }
 
     /**
-     * Returns a list of enities in the database
+     * Returns a list of entities in the database.
      *
      * @return list of entity objects
      */
@@ -33,8 +33,7 @@ public class Database<T> implements Serializable {
     }
 
     /**
-     * Sets the list of entities in the database to
-     * the given list
+     * Sets the list of entities in the database to the given list.
      *
      * @param entities list of entity objects
      */

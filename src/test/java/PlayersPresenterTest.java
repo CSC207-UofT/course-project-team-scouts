@@ -1,5 +1,5 @@
 import entities.Player;
-import io.PlayersPresenter;
+import io.output.PlayersPresenter;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

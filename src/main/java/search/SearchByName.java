@@ -23,6 +23,7 @@ public class SearchByName<T> {
     public List<T> search(Database<T> database, String target) {
         String fTarget = target.toLowerCase(Locale.ROOT).strip();
 
+        // If input is empty, we return an empty list
         if (fTarget.equals("")) {
             return new ArrayList<>();
         }
@@ -30,6 +31,7 @@ public class SearchByName<T> {
         List<T> entityList = database.getEntities();
         List<T> validEntities = new ArrayList<>();
 
+        // Check if each entity is "valid", i.e. if they belong in the search results
         for (T entity : entityList) {
             String n = ((Identifiable) entity).getName();
             String lower_n = n.toLowerCase(Locale.ROOT);

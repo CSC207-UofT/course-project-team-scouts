@@ -1,4 +1,4 @@
-package io;
+package search;
 
 /**
  * The possible rating types that can be chosen for a Search

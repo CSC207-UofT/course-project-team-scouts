@@ -1,8 +1,9 @@
-package io;
+package io.input;
 
 import data.Database;
 import data.PlayerDatabase;
 import entities.Player;
+import io.output.PlayersPresenter;
 import org.javatuples.Pair;
 import search.SearchByPlayerAttributes;
 

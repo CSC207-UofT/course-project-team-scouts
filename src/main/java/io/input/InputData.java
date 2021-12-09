@@ -1,4 +1,4 @@
-package io;
+package io.input;
 
 import data.Database;
 
@@ -6,6 +6,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+ * Interface implemented by all classes that prompt user for input.
+ *
+ * @param <T> type of entity relevant to the input
+ */
 public interface InputData<T> {
     /**
      * Takes in a single line of user input from the console.

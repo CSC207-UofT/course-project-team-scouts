@@ -25,19 +25,20 @@ public class Goalkeeper extends Player {
         super(name, age, height, weight, team, rating, value, position, skills);
     }
 
+    /**
+     * Return goalkeeping attributes that all Goalkeeper subtype of Players must have.
+     *
+     * @return a map of attributes to their corresponding ratings
+     */
     @Override
     public HashMap<String, Integer> getPositionSkills() {
         HashMap<String, Integer> allSkills = super.getSkills();
         HashMap<String, Integer> positionAttributes = new HashMap<>();
-
         String[] positionSkillAttributes = {"goalkeeping diving", "goalkeeping handling", "goalkeeping kicking",
                 "goalkeeping positioning", "goalkeeping reflexes"};
 
-
         for (String attribute : positionSkillAttributes) {
             positionAttributes.put(attribute, allSkills.get(attribute));
-
-
         }
         return positionAttributes;
     }

@@ -3,7 +3,6 @@ package search;
 import data.TeamDatabase;
 import data.TeamStatsCalculator;
 import entities.Team;
-import io.RatingType;
 import org.javatuples.Pair;
 
 import java.util.ArrayList;

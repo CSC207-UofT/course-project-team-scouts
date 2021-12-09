@@ -22,12 +22,12 @@ public class Forward extends Player {
     public Forward(String name, int age, int height, int weight, String team, int rating,
                    int value, String position, HashMap<String, Integer> skills) {
         super(name, age, height, weight, team, rating, value, position, skills);
-
-
     }
 
     /**
      * Return attacking attributes that all Forward subtype of Players must have.
+     *
+     * @return a map of attributes to their corresponding ratings
      */
     @Override
     public HashMap<String, Integer> getPositionSkills() {
@@ -36,11 +36,8 @@ public class Forward extends Player {
         String[] positionSkillAttributes = {"dribbling", "finishing", "sprint speed",
                 "short passing", "crossing", "ball control", "fk accuracy"};
 
-
         for (String attribute : positionSkillAttributes) {
             positionAttributes.put(attribute, allSkills.get(attribute));
-
-
         }
         return positionAttributes;
 

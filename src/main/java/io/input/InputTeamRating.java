@@ -1,9 +1,11 @@
-package io;
+package io.input;
 
 import data.Database;
 import data.TeamDatabase;
 import entities.Team;
+import io.output.TeamsPresenter;
 import org.javatuples.Pair;
+import search.RatingType;
 import search.SearchByTeamRating;
 
 import java.io.IOException;

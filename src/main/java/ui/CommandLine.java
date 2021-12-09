@@ -4,9 +4,12 @@ import data.Database;
 import data.PlayerDatabase;
 import data.TeamDatabase;
 import data.UserDatabase;
-import io.*;
+import io.LoginUseCase;
+import io.input.*;
+import io.output.LoginPresenter;
 import services.CSVAdapter;
 import services.InputAdapter;
+import services.ReadWriter;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -47,7 +50,7 @@ public class CommandLine {
     }
 
     /**
-     * Runs through all user prompts
+     * Runs through all program prompts.
      */
     private static void runPrompts(UserDatabase userDatabase, PlayerDatabase playerDatabase,
                                    TeamDatabase teamDatabase) {
@@ -65,6 +68,11 @@ public class CommandLine {
         }
     }
 
+    /**
+     * Runs through login prompts.
+     *
+     * @param userDatabase the UserDatabase containing all users
+     */
     private static void runLoginPrompt(UserDatabase userDatabase) {
         // Build the correct InputData class for this prompt
         InputLogin inputLogin = (InputLogin) InputBuilder.getInputType(InputType.LOGIN_DETAILS);
@@ -88,6 +96,12 @@ public class CommandLine {
         }
     }
 
+    /**
+     * Runs the prompt for selecting the type of search (player or team).
+     *
+     * @param playerDatabase the PlayerDatabase containing all players
+     * @param teamDatabase the TeamDatabase containing all teams
+     */
     private static void runSelectSearchPrompt(PlayerDatabase playerDatabase, TeamDatabase teamDatabase) {
         // Initialize new BufferedReader
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -120,6 +134,11 @@ public class CommandLine {
         }
     }
 
+    /**
+     * Runs the prompt for selecting the type of player search (name or attributes)
+     *
+     * @param playerDatabase the PlayerDatabase containing all players
+     */
     private static void runPlayerSearchPrompt(PlayerDatabase playerDatabase) {
         // Initialize new BufferedReader
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -154,6 +173,11 @@ public class CommandLine {
         }
     }
 
+    /**
+     * Runs the prompt for selecting the type of team search (name or ratings)
+     *
+     * @param teamDatabase the TeamDatabase containing all teams
+     */
     private static void runTeamSearchPrompt(TeamDatabase teamDatabase) {
         // Initialize new BufferedReader
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -188,6 +212,9 @@ public class CommandLine {
         }
     }
 
+    /**
+     * Runs the prompt for continuing to run the program or saving/exiting.
+     */
     private static void runContinuePrompt(UserDatabase userDatabase, PlayerDatabase playerDatabase,
                                           TeamDatabase teamDatabase) {
         // Initialize new BufferedReader
@@ -237,7 +264,6 @@ public class CommandLine {
         reader.readLine();
     }
 
-
     /**
      * Asks the user to either choose to view a player individually or view the next page
      * Used primarily by presenter classes.
@@ -246,12 +272,10 @@ public class CommandLine {
      */
     public static String userChoiceOutput() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
         System.out.print("Press 'player' to view a player individually, 'menu' to return to the menu" +
                 " or 'Next' to view the next page: ");
         String userChoice = reader.readLine();
         assert userChoice != null;
-
         return userChoice;
     }
 
@@ -265,12 +289,8 @@ public class CommandLine {
 
     public static String individualPlayerOutput() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
         System.out.print("Enter Player ID ");
-
-
         return reader.readLine();
-
     }
 
     /**
@@ -279,14 +299,11 @@ public class CommandLine {
      *
      * @throws IOException user may enter the wrong key.
      */
-
     public static String userChoiceOutputTeams() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
         System.out.print("Press 'team' to view a team individually or 'Next' to return to the menu: ");
         String userChoice = reader.readLine();
         assert userChoice != null;
-
         return userChoice;
     }
 
@@ -296,16 +313,10 @@ public class CommandLine {
      *
      * @throws IOException user may enter the wrong key.
      */
-
-
     public static String individualTeamOutput() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
         System.out.print("Enter Team ID ");
-
-
         return reader.readLine();
-
     }
 }
 

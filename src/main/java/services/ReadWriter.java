@@ -1,4 +1,4 @@
-package io;
+package services;
 
 import data.Database;
 import data.PlayerDatabase;
@@ -43,6 +43,13 @@ public class ReadWriter {
         return database;
     }
 
+
+    /**
+     * Fetches the serialized Database objects currently in the filesystem,
+     * or creates new objects if one or more files are missing.
+     *
+     * @return Array of Database objects
+     */
     public static Database<?>[] loadDatabases() {
         try {
             UserDatabase userDatabase = (UserDatabase) readFromFile("dataset(s)/users.ser");
@@ -59,6 +66,14 @@ public class ReadWriter {
         }
     }
 
+    /**
+     * Serializes (saves the state of) the specified Database objects.
+     *
+     * @param users UserDatabase to be serialized
+     * @param players PlayerDatabase to be serialized
+     * @param teams TeamDatabase to be serialized
+     * @return whether serialization of the objects was successful
+     */
     public static boolean saveDatabases(UserDatabase users, PlayerDatabase players, TeamDatabase teams) {
         try {
             saveToFile("dataset(s)/users.ser", users);

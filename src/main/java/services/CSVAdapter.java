@@ -19,7 +19,6 @@ import java.util.List;
  * depending on the use case.
  */
 public class CSVAdapter implements InputAdapter {
-
     /**
      * Helper method that converts strings to integers. Tries to catch NumberFormatException.
      *
@@ -64,6 +63,12 @@ public class CSVAdapter implements InputAdapter {
         return hashMap;
     }
 
+    /**
+     * Identifies and returns the player's primary position.
+     *
+     * @param compPosition String from the CSV representing a player's position(s)
+     * @return String representing the player's primary position
+     */
     public String isolatePosition(String compPosition) {
         String position;
         String comma = ",";

@@ -1,5 +1,5 @@
 import entities.Team;
-import io.TeamsPresenter;
+import io.output.TeamsPresenter;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

@@ -1,8 +1,10 @@
-package io;
+package io.input;
 
 import data.Database;
 import data.UserDatabase;
 import entities.User;
+import io.LoginController;
+import io.LoginUseCase;
 
 import java.io.IOException;
 

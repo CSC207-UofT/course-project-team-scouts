@@ -6,18 +6,13 @@ import java.io.Serializable;
  * A user with a username and a password.
  */
 public class User implements Serializable {
-
-    /**
-     * The username.
-     */
+    // User's username
     private final String username;
-    /**
-     * The password.
-     */
+    // User's password
     private final String password;
 
     /**
-     * A new user with username and password.
+     * Construct a new user with username and password.
      *
      * @param username the username
      * @param password the password
@@ -38,7 +33,9 @@ public class User implements Serializable {
     }
 
     /**
-     * The username.
+     * Return the user's username.
+     *
+     * @return the username of the User
      */
     public String getUsername() {
         return username;

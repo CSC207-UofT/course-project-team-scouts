@@ -2,9 +2,12 @@ package data;
 
 import entities.User;
 
+/**
+ * Responsible for storing User data as a list of User entities.
+ */
 public class UserDatabase extends Database<User> {
     /**
-     * Gets a specific user from the user database
+     * Gets a specific user from the user database.
      *
      * @param username a users username
      * @return a user if the user was found, null otherwise

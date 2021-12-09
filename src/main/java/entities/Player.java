@@ -7,41 +7,23 @@ import java.util.HashMap;
  * A player with his attributes and information.
  */
 public class Player implements Serializable, Identifiable {
-    /**
-     * The height.
-     */
+    // Player's height
     private final int height;
-    /**
-     * The weight.
-     */
+    // Player's weight
     private final int weight;
-    /**
-     * The rating.
-     */
+    // Player's overall rating
     private final int rating;
-    /**
-     * The value.
-     */
+    // Player's value (Euros)
     private final int value;
-    /**
-     * The position.
-     */
+    // Player's position
     private final String position;
-    /**
-     * Hashmap of skill name to skill value
-     */
+    // Mapping of player's skills to their rating in that skill
     private final HashMap<String, Integer> skills;
-    /**
-     * The name.
-     */
+    // Player's name
     private String name;
-    /**
-     * The age.
-     */
+    // Player's age (years)
     private int age;
-    /**
-     * The team.
-     */
+    // Player's team
     private String team;
 
     /**
