@@ -1,7 +1,8 @@
-package io;
+package io.input;
 
 import data.Database;
 import entities.Player;
+import io.output.PlayersPresenter;
 import search.SearchByName;
 
 import java.io.IOException;

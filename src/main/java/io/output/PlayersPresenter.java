@@ -1,4 +1,4 @@
-package io;
+package io.output;
 
 import data.PlayerStatsCalculator;
 import entities.Player;

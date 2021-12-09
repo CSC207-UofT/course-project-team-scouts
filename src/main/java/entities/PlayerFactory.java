@@ -31,7 +31,6 @@ public class PlayerFactory {
         defender.add("RWB");
         defender.add("LWB");
 
-
         Set<String> midfielder = new HashSet<>();
         midfielder.add("CM");
         midfielder.add("LM");
@@ -46,7 +45,6 @@ public class PlayerFactory {
         forward.add("CF");
         forward.add("RF");
         forward.add("LF");
-
 
         if (position.equals("GK")) {
             return new Goalkeeper(name, age, height, weight, team, rating, value, position, skills);

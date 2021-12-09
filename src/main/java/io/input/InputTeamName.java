@@ -1,7 +1,8 @@
-package io;
+package io.input;
 
 import data.Database;
 import entities.Team;
+import io.output.TeamsPresenter;
 import search.SearchByName;
 
 import java.io.BufferedReader;

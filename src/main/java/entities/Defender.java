@@ -25,22 +25,20 @@ public class Defender extends Player {
     }
 
     /**
-     * Return defending attributes that all Defender subtype of Players must have.
+     * Return attacking attributes that all Defender subtype of Players must have.
+     *
+     * @return a map of attributes to their corresponding ratings
      */
     @Override
     public HashMap<String, Integer> getPositionSkills() {
         HashMap<String, Integer> allSkills = super.getSkills();
         HashMap<String, Integer> positionAttributes = new HashMap<>();
-
         String[] positionSkillAttributes = {"aggression", "interceptions",
                 "short passing", "long passing", "marking", "standing tackle",
                 "sliding tackle"};
 
-
         for (String attribute : positionSkillAttributes) {
             positionAttributes.put(attribute, allSkills.get(attribute));
-
-
         }
         return positionAttributes;
     }

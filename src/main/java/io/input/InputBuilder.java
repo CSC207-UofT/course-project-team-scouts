@@ -1,9 +1,12 @@
-package io;
+package io.input;
 
+/**
+ * Factory class responsible for creating new instances of Input classes.
+ */
 public class InputBuilder {
-
-
     /**
+     * Return's an instance of the desired Input class.
+     *
      * @param i an enum representing the type of search
      * @return InputData a concrete instance of InputData corresponding
      * to the type of search

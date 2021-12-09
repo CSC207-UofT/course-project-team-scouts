@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Responsible for storing Team Data as a list of Team entities
+ * Responsible for storing Team data as a list of Team entities.
  */
 public class TeamDatabase extends Database<Team> {
     /**
